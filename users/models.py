@@ -1,0 +1,43 @@
+from django.db import models
+from django.utils import timezone
+from django.contrib.auth.models import AbstractUser
+from PIL import Image
+
+
+class User(AbstractUser):
+    is_paying_customer = models.BooleanField(default=False)
+    created_at = models.DateTimeField(editable=False)
+    updated_at = models.DateTimeField()
+
+    def __str__(self):
+        return self.email
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.created_at = timezone.now()
+        self.updated_at = timezone.now()
+        return super(User, self).save(*args, **kwargs)
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    phone_number = models.CharField(max_length=255, blank=True)
+    address = models.CharField(max_length=255, blank=True)
+    city = models.CharField(max_length=255, blank=True)
+    country = models.CharField(max_length=255, blank=True)
+    linked_in = models.CharField(max_length=255, blank=True)
+    objective = models.TextField(blank=True)
+    profile_pic = models.ImageField(default="profile-pics/default.jpg/", upload_to="profile-pics")
+
+    def __str__(self):
+        return self.user.email
+
+    def save(self):
+        super().save()
+
+        img = Image.open(self.profile_pic.path)
+
+        if img.height > 300 or img.width > 300:
+            output_size = (100, 100)
+            img.thumbnail(output_size)
+            img.save(self.profile_pic.path)
