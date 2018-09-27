@@ -32,7 +32,7 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.email
 
-    def save(self):
+    def save(self, force_insert=False, using=None):
         super().save()
 
         img = Image.open(self.profile_pic.path)
