@@ -280,7 +280,7 @@ html {
 
 body {
   font-weight: normal;
-  line-height: 1;
+  line-height: 1.5;
   text-rendering: optimizeLegibility;
   word-wrap: break-word;
   -webkit-overflow-scrolling: touch;
