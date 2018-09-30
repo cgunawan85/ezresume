@@ -1,4 +1,3 @@
-
 /*//////////////////////////////////////////////////////////////////
 [ FONT ]*/
 
@@ -60,6 +59,8 @@ a:hover {
 
 /*---------------------------------------------*/
 h1,h2,h3,h4,h5,h6 {
+    font-size: x-large;
+    color: #666666;
 	margin: 0px;
 }
 
@@ -178,13 +179,12 @@ iframe {
   justify-content: center;
   align-items: center;
   padding: 15px;
-  
   background-color: slategrey;
 }
 
 
 .wrap-login100 {
-  width: 560px;
+  width: 600px;
   background: #fff;
   border-radius: 10px;
   position: relative;
