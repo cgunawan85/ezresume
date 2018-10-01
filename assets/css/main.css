@@ -799,6 +799,30 @@ input[type="button"].button-primary:focus {
   border-color: #309a3f;
 }
 
+.button.button-secondary,
+button.button-secondary,
+input[type="submit"].button-secondary,
+input[type="reset"].button-secondary,
+input[type="button"].button-secondary {
+  background-color: #2859ee;
+  border-color: #2859ee;
+  color: #FFFFFF;
+}
+
+.button.button-secondary:hover,
+button.button-secondary:hover,
+input[type="submit"].button-secondary:hover,
+input[type="reset"].button-secondary:hover,
+input[type="button"].button-secondary:hover,
+.button.button-secondary:focus,
+button.button-secondary:focus,
+input[type="submit"].button-secondary:focus,
+input[type="reset"].button-secondary:focus,
+input[type="button"].button-secondary:focus {
+  background: #1349ec;
+  border-color: #1349ec;
+}
+
 button.full-width,
 .button.full-width {
   width: 100%;
@@ -2310,7 +2334,7 @@ html[data-useragent*='MSIE 10.0'] .home-scrolldown,
 
 #testimonial-slider p {
   font-family: "muli-regular", sans-serif;
-  font-size: 3.2rem;
+  font-size: 2.5rem;
   line-height: 1.5;
   color: #303030;
 }
@@ -2319,7 +2343,7 @@ html[data-useragent*='MSIE 10.0'] .home-scrolldown,
 #testimonial-slider p::after {
   display: inline-block;
   font-family: "muli-regular", serif;
-  font-size: 3.6rem;
+  font-size: 2.5rem;
   line-height: 1;
   position: relative;
   top: .3rem;

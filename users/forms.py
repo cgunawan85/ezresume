@@ -1,14 +1,16 @@
+from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .models import User
-from django import forms
 from django.contrib.auth.password_validation import validate_password
 
 
 class CustomUserCreationForm(UserCreationForm):
     def clean_username(self):
         username = self.cleaned_data['username']
+        if len(username) < 8:
+            raise forms.ValidationError("Your username is too short. A username must be at least 8 characters long")
         if User.objects.filter(username=username).exists():
-            raise forms.ValidationError("That username is already taken")
+            raise forms.ValidationError("Your username is already taken")
         return username
 
     def clean_password1(self):
@@ -22,7 +24,7 @@ class CustomUserCreationForm(UserCreationForm):
         password2 = self.cleaned_data.get("password2")
 
         if password1 != password2:
-            raise forms.ValidationError("Your passwords do not match! Please try again")
+            raise forms.ValidationError("Your passwords do not match. Please try again")
         return super(UserCreationForm, self).clean(*args, **kwargs)
 
     class Meta(UserCreationForm.Meta):
