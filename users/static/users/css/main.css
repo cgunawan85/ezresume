@@ -1,4 +1,18 @@
 /*//////////////////////////////////////////////////////////////////
+[ MESSAGES ]*/
+
+.messages {
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  background-color: green;
+}
+
+.message-text {
+  color: white;
+}
+
+/*//////////////////////////////////////////////////////////////////
 [ FONT ]*/
 
 @font-face {
@@ -179,7 +193,7 @@ iframe {
   justify-content: center;
   align-items: center;
   padding: 15px;
-  background-color: slategrey;
+  background-color: steelblue;
 }
 
 

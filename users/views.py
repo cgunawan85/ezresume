@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import CustomUserCreationForm
-# from django.contrib import messages
+from django.contrib import messages
 
 
 def register(request):
@@ -8,8 +8,8 @@ def register(request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            # username = form.cleaned_data.get('username')
-            # messages.success(request, "Account created for {}".format(username))
+            username = form.cleaned_data.get('username')
+            messages.success(request, "Account created for {}! Please login with your credentials to continue".format(username))
             return redirect('login')
     else:
         form = CustomUserCreationForm()
