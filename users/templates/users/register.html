@@ -111,7 +111,7 @@
                     {% if form.username.errors %}
                         <ul class='form-errors'>
                             {% for error in form.username.errors %}
-                                <li class="non-field-error">{{ error }}</li>
+                                <li class="error-text">{{ error }}</li>
                             {% endfor %}
                         </ul>
                     {% endif %}
@@ -120,7 +120,7 @@
                     {% if form.password1.errors %}
                         <ul class='form-errors'>
                             {% for error in form.password1.errors %}
-                                <li class="non-field-error">{{ error }}</li>
+                                <li class="error-text">{{ error }}</li>
                             {% endfor %}
                         </ul>
                     {% endif %}
@@ -129,7 +129,7 @@
                     {% if form.non_field_errors %}
                         <ul class='form-errors'>
                             {% for error in form.non_field_errors %}
-                                <li class="non-field-error">{{ error }}</li>
+                                <li class="error-text">{{ error }}</li>
                             {% endfor %}
                         </ul>
                     {% endif %}
@@ -159,7 +159,7 @@
 	<script src="{% static 'users/vendor/daterangepicker/moment.min.js' %}"></script>
 	<script src="{% static 'users/vendor/daterangepicker/daterangepicker.js' %}"></script>
 <!--===============================================================================================-->
-	<script src="{% static 'useres/vendor/countdowntime/countdowntime.js' %}"></script>
+	<script src="{% static 'users/vendor/countdowntime/countdowntime.js' %}"></script>
 <!--===============================================================================================-->
 	<script src="{% static 'users/js/main.js' %}"></script>
 

@@ -88,7 +88,7 @@
 <!----------------- Errors are displayed here --------------->
                     <div class="error-box">
                     {% if form.non_field_errors %}
-                        <ul class='form-errors'>
+                        <ul class='error-text'>
                             {% for error in form.non_field_errors %}
                                 <li class="non-field-error">{{ error }}</li>
                             {% endfor %}
@@ -122,7 +122,7 @@
 	<script src="{% static 'users/vendor/daterangepicker/moment.min.js' %}"></script>
 	<script src="{% static 'users/vendor/daterangepicker/daterangepicker.js' %}"></script>
 <!--===============================================================================================-->
-	<script src="{% static 'useres/vendor/countdowntime/countdowntime.js' %}"></script>
+	<script src="{% static 'users/vendor/countdowntime/countdowntime.js' %}"></script>
 <!--===============================================================================================-->
 	<script src="{% static 'users/js/main.js' %}"></script>
 
