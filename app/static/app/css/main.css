@@ -37,12 +37,15 @@ header a{
     float: right;
     text-decoration: none;
     display: inline-block;
-    padding: 13px 50px;
+    padding: 13px 40px;
     border-radius: 3px;
     font: bold 14px/1 'Open Sans', sans-serif;
     text-transform: uppercase;
-    background-color:#F05283;
+    background-color: deeppink;
+}
 
+header a:hover {
+    background-color: #cc1377;
 }
 
 ul {
@@ -68,7 +71,6 @@ ul a{
     margin: 4px;
     line-height: 1;
     outline: none;
-
     transition: 0.2s ease;
 }
 
@@ -103,6 +105,7 @@ ul li{
 
 .main-content{
     margin-bottom: 75px;
+    text-align: center;
 }
 
 /* -- Demo ads -- */
@@ -121,4 +124,44 @@ ul li{
 
 .tz-link span{
 	color: #da431c;
+}
+
+.button {
+    text-decoration: none;
+    font: bold 14px/1 'Open Sans', sans-serif;
+    color: white;
+    background-color: green;
+    padding: 10px 16px;
+    border-radius: 3px;
+    opacity: 0.8;
+    font-size: 16px;
+    display: inline-block;
+    margin: 4px;
+    outline: none;
+    transition: 0.2s ease;
+    text-transform: uppercase;
+}
+
+.button:hover {
+    background-color: darkgreen;
+}
+
+.button-box {
+    display: inline-block;
+    padding-top: 50px;
+}
+
+.empty-state-box {
+    padding-top: 100px;
+}
+
+.empty-state-text {
+    padding-top: 15px;
+    font: normal 14px/1.5 'Open Sans', sans-serif;
+}
+
+.centered img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }

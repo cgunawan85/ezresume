@@ -6,20 +6,20 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'app/css/main.css' %}">
 
 	{% block title %}{% endblock %}
 
-	<link rel="stylesheet" href="{% static 'app/css/main.css' %}">
 </head>
 
 <body>
 	<header>
 		<h1>EZResume</h1>
-        <a href="#">Logout</a>
+        <a href="{% url 'logout' %}">Logout</a>
     </header>
 
     <div class="main-content">
-
+    {% block content %}{% endblock %}
     </div>
 
 </body>
