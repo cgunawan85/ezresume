@@ -1,0 +1,35 @@
+{% extends 'app/layout.html' %}
+{% load static %}
+
+{% block subheader %}
+    <ul>
+        <li><a href="#" class="active">1. Resume Info</a></li>
+        <li><a href="#">2. Profile</a></li>
+        <li><a href="#">3. Work Experience</a></li>
+        <li><a href="#">4. Training</a></li>
+        <li><a href="#">5. Education</a></li>
+        <li><a href="#">6. Skills</a></li>
+        <li><a href="#">7. Languages</a></li>
+        <li><a href="#">7. Export</a></li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+<form class="form-labels-on-top" method="post" action="#">
+            <div class="form-title-row">
+                <h1>Resume Info</h1>
+            </div>
+
+            <div class="form-row">
+                <label>
+                    <span>Resume Name</span>
+                    <input type="text" name="job-position">
+                </label>
+            </div>
+
+            <div class="form-row">
+                <button type="submit">NEXT</button>
+            </div>
+
+        </form>
+{% endblock %}
