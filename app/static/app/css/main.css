@@ -126,12 +126,14 @@ ul li{
 	color: #da431c;
 }
 
+/*----------- Buttons ----------- */
+
 .button {
     text-decoration: none;
     font: bold 14px/1 'Open Sans', sans-serif;
     color: white;
     background-color: green;
-    padding: 10px 16px;
+    padding: 10px 25px;
     border-radius: 3px;
     opacity: 0.8;
     font-size: 16px;
