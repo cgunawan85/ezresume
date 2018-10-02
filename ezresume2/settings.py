@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'users',
+    'app'
 ]
 
 MIDDLEWARE = [
@@ -129,7 +130,7 @@ MEDIA_URL = '/media/'
 
 AUTH_USER_MODEL = 'users.User'
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = 'app:my-resumes'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
