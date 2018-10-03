@@ -2574,6 +2574,10 @@ html[data-useragent*='MSIE 10.0'] .home-scrolldown,
   background-image: url("../images/google-play.png");
 }
 
+#companies .banner{
+  width: 120%
+}
+
 
 /* -------------------------------------------------------------------
  * responsive:
