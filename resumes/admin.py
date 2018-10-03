@@ -3,7 +3,7 @@ from .models import Resume
 
 
 class ResumeAdmin(admin.ModelAdmin):
-    pass
+    readonly_fields = ('created_at',)
 
 
 admin.site.register(Resume, ResumeAdmin)

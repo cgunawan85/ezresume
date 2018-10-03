@@ -6,17 +6,11 @@ from PIL import Image
 
 class User(AbstractUser):
     is_paying_customer = models.BooleanField(default=False)
-    created_at = models.DateTimeField(editable=False)
-    updated_at = models.DateTimeField()
+    created_at = models.DateTimeField(auto_now_add=True, editable=False)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.email
-
-    def save(self, *args, **kwargs):
-        if not self.id:
-            self.created_at = timezone.now()
-        self.updated_at = timezone.now()
-        return super(User, self).save(*args, **kwargs)
 
 
 class Profile(models.Model):

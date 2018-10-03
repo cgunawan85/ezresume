@@ -15,21 +15,26 @@
 {% endblock %}
 
 {% block content %}
-<form class="form-labels-on-top" method="post" action="#">
+<form class="form-labels-on-top" method="POST">
+            {% csrf_token %}
             <div class="form-title-row">
                 <h1>Resume Info</h1>
             </div>
-
+            <div class="form-row">
+                {{ form.as_p }}
+            </div>
+            <!--
             <div class="form-row">
                 <label>
                     <span>Resume Name</span>
                     <input type="text" name="job-position">
                 </label>
             </div>
-
+            -->
             <div class="form-row">
                 <button type="submit">NEXT</button>
             </div>
+
 
         </form>
 {% endblock %}
