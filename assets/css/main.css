@@ -752,7 +752,6 @@ input[type="button"] {
   cursor: pointer;
   text-align: center;
   white-space: nowrap;
-  border-radius: .5rem;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
   background-color: #c5c5c5;
