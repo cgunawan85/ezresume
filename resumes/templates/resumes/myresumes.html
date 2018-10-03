@@ -9,8 +9,13 @@
                 start building your very first resume</p>
         </div>
     {% else %}
-        <div class="resume-box">
-            <p>Here are your resumes!</p>
+        <div class="wrapper">
+            <div class="resume-box">
+                <div class="container">
+                    <p>Resume 1 by {{ user.email }}</p>
+                    <p>Created at: October 12, 2018</p>
+                </div>
+            </div>
         </div>
     {% endif %}
     <div class="button-box">
