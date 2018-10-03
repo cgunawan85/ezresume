@@ -2,14 +2,16 @@
 {% load static %}
 {% block title %}<title>EZResume | My Resumes</title>{% endblock %}
 {% block content %}
-    {% if not user.resume %}
+    {% if not user.resume_set.exists %}
         <div class="empty-state-box">
             <img src="{% static 'resumes/images/resume-empty-icon.png' %}" class="centered">
             <p class="empty-state-text"><b>You currently don't have any resumes.</b><br>Create one and
                 start building your very first resume</p>
         </div>
     {% else %}
-        <p>Here are your resumes!</p>
+        <div class="resume-box">
+            <p>Here are your resumes!</p>
+        </div>
     {% endif %}
     <div class="button-box">
         <a href="{% url 'resumes:create-resume' %}" class="button">Create a resume</a>

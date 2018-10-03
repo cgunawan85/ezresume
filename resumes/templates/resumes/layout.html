@@ -16,10 +16,10 @@
 <body>
 	<header>
         <div class="header">
-            <a href="#" class="logo">EZResume</a>
+            <a href="{% url 'resumes:my-resumes' %}"><img src="{% static 'resumes/images/logo.png' %}" class="logo"></a>
                 <div class="header-left">
-                    <a href="#">My Resumes</a>
-                    <a href="#">Logout</a>
+                    <a href="{% url 'resumes:my-resumes' %}">My Resumes</a>
+                    <a href="{% url 'logout' %}">Logout</a>
                 </div>
         </div>
     </header>

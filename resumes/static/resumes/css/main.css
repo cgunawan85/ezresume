@@ -1,4 +1,5 @@
 @import url('http://fonts.googleapis.com/css?family=Open+Sans:400,700');
+@import url('https://fonts.googleapis.com/css?family=Raleway');
 
 *{
     margin: 0;
@@ -11,14 +12,16 @@ html{
 }
 
 body{
-	font:14px/1.5 Arial, Helvetica, sans-serif;
+	font:14px/1.5 'Raleway', sans-serif;
 	margin:0;
 }
 
+/*----------- Header ----------- */
+
 .header {
     overflow: hidden;
-    background-color: black;
-    padding: 20px 10px;
+    background-color: #111111;
+    padding: 10px 20px;
 }
 
 /* Style the header links */
@@ -34,15 +37,14 @@ body{
 }
 
 /* Style the logo link (notice that we set the same value of line-height and font-size to prevent the header to increase when the font gets bigger */
-.header a.logo {
-    font-size: 25px;
-    font-weight: bold;
+.header .logo {
+    width: 115px;
+    height: auto;
 }
 
 /* Change the background color on mouse-over */
 .header a:hover {
-    background-color: #ddd;
-    color: black;
+    color: #F05283;
 }
 
 /* Style the active/current link*/
@@ -56,11 +58,6 @@ body{
     float: left;
 }
 
-.header-button :hover {
-    background-color: #d21079;
-    color: white;
-}
-
 /* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
 @media screen and (max-width: 500px) {
   .header a {
@@ -72,6 +69,8 @@ body{
     float: none;
   }
 }
+
+/*----------- End Header ----------- */
 
 ul {
     list-style: none;
@@ -155,7 +154,7 @@ ul li{
 
 .button {
     text-decoration: none;
-    font: bold 14px/1 'Open Sans', sans-serif;
+    font: bold 14px/1 'Raleway-Medium', sans-serif;
     color: white;
     background-color: green;
     padding: 10px 25px;
@@ -166,7 +165,6 @@ ul li{
     margin: 4px;
     outline: none;
     transition: 0.2s ease;
-    text-transform: uppercase;
 }
 
 .button:hover {
@@ -184,7 +182,7 @@ ul li{
 
 .empty-state-text {
     padding-top: 15px;
-    font: normal 14px/1.5 'Open Sans', sans-serif;
+    font: normal 14px/1.5 'Raleway-Regular', sans-serif;
 }
 
 .centered img {
@@ -201,11 +199,8 @@ ul li{
     max-width: 475px;
     margin: 0 auto;
     padding: 55px;
-
     background-color:  #ffffff;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-
-    font: bold 14px sans-serif;
     text-align: center;
 }
 
@@ -304,4 +299,10 @@ ul li{
         width: 240px;
     }
 
+}
+
+/*----------- Resume Box ----------- */
+
+.resume-box{
+    padding-top: 50px;
 }
