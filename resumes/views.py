@@ -4,13 +4,14 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.urls import reverse
 
-from .forms import ResumeForm
+from .forms import ResumeForm, ProfileUpdateForm
+from users.forms import CustomUserChangeForm
 
 
 @login_required()
 # add queryset as context for resumes to list in template
 def my_resumes(request):
-    return render(request, 'resumes/myresumes.html')
+    return render(request, 'resumes/my_resumes.html')
 
 
 @login_required()
@@ -26,3 +27,22 @@ def resume_view(request):
     else:
         form = ResumeForm()
     return render(request, 'resumes/resume.html', {'form': form})
+
+
+@login_required()
+def update_profile(request):
+    if request.method == 'POST':
+        u_form = CustomUserChangeForm(request.POST, instance=request.user)
+        p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            messages.success(request, 'Your profile has been saved!')
+            return HttpResponseRedirect(reverse('resumes:update-profile'))
+    else:
+        u_form = CustomUserChangeForm(instance=request.user)
+        p_form = ProfileUpdateForm(instance=request.user.profile)
+    context = {'p_form': p_form,
+               'u_form': u_form,
+               }
+    return render(request, 'resumes/profile.html', context)

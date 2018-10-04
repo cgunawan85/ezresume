@@ -1,0 +1,21 @@
+{% extends 'resumes/layout.html' %}
+{% load static %}
+{% block title %}<title>EZResume | Profile</title>{% endblock %}
+{% block content %}
+<form class="form-labels-on-top" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-title-row">
+        <h1>Profile</h1>
+    </div>
+    <div class="image-cropper">
+        <img src="{{ user.profile.profile_pic.url }}">
+    </div>
+    <div class="form-row">
+        {{ u_form.as_p }}
+        {{ p_form.as_p }}
+    </div>
+    <div class="form-row">
+        <button type="submit">Save</button>
+    </div>
+</form>
+{% endblock %}

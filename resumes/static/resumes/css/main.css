@@ -196,7 +196,7 @@ body{
 
 .form-labels-on-top{
     box-sizing: border-box;
-    max-width: 475px;
+    max-width: 800px;
     margin: 0 auto;
     padding: 55px;
     background-color:  #ffffff;
@@ -347,4 +347,27 @@ body{
   color: white;
 }
 
-/*----------- Messages End ----------- */
+/*----------- Image Cropper ----------- */
+
+.image-cropper {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.image-cropper img {
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: auto;
+}
+
+/*----------- Profile Form ----------- */
+
+.objective-box {
+    font-family: "Raleway-Regular", sans-serif;
+    font-size: 16px;
+}
