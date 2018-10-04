@@ -9,7 +9,7 @@
                 <p>{{ resume.name }}</p>
                 <p>Created on {{ resume.created_at }}</p>
                 <form action="{% url 'resumes:delete-resume' pk=resume.id %}">
-                    <input type="submit" value="Delete" />
+                    <input type="submit" class="confirm-delete" value="Delete" />
                 </form>
             </div>
         </div>
