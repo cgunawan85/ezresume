@@ -59,8 +59,14 @@
 				<li><a class="smoothscroll"  href="#companies" title="companies">Companies</a></li>
 			</ul>
 
-            <a href="{% url 'register' %}" title="sign-up" class="button button-primary cta">Register</a>
-            <a href="{% url 'login' %}" title="login" class="button button-secondary cta">Login</a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'resumes:my-resumes' %}" title="my-resumes" class="button button-secondary cta">
+                    Resume Builder</a>
+            {% else %}
+                <a href="{% url 'register' %}" title="sign-up" class="button button-primary cta">Register</a>
+                <a href="{% url 'login' %}" title="login" class="button button-secondary cta">Login</a>
+            {% endif %}
+
 		</nav>
 
 		<a class="header-menu-toggle" href="#"><span>Menu</span></a>
@@ -340,8 +346,8 @@
                         <div class="testimonial-author">
                                 <img src="{% static 'images/avatars/user-02.jpg' %}" alt="Author image">
                                 <div class="author-info">
-                                    Steve Jobs
-                                    <span class="position">CEO, Apple.</span>
+                                    Chris Gunawan
+                                    <span class="position">CEO, RestoDepot</span>
                                 </div>
                         </div>
                     </div>

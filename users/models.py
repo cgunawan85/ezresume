@@ -27,6 +27,7 @@ class Profile(models.Model):
         return self.user.email
 
     def save(self, force_insert=False, using=None):
+        # calling super, using args and kwargs
         super().save()
 
         img = Image.open(self.profile_pic.path)

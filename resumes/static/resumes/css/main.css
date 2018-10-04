@@ -73,7 +73,7 @@ body{
 
 /*----------- End Header ----------- */
 
-ul {
+.sub-header ul {
     list-style: none;
     border-bottom: 1px solid #EAEAEA;
     background-color: #FFF;
@@ -83,7 +83,7 @@ ul {
     margin-bottom: 75px;
 }
 
-ul a{
+.sub-header ul a{
     text-decoration: none;
     color: #FFF;
     text-align: left;
@@ -99,17 +99,17 @@ ul a{
     transition: 0.2s ease;
 }
 
-ul li a.active{
+.sub-header ul li a.active{
     background-color: #F05283;
     pointer-events: none;
 }
 
-ul li a:hover {
+.sub-header ul li a:hover {
     opacity: 1;
 }
 
 
-ul li{
+.sub-header ul li{
     display: inline-block;
 }
 
@@ -301,7 +301,9 @@ ul li{
 
 }
 */
+
 /*----------- Resume Box ----------- */
+
 .wrapper{
     text-align: center;
     padding-top: 50px;
@@ -327,3 +329,22 @@ ul li{
 .container {
     padding: 100px;
 }
+
+/*----------- Messages ----------- */
+
+.messages {
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  background-color: green;
+}
+
+.messages ul {
+    list-style-type: none;
+}
+
+.message-text {
+  color: white;
+}
+
+/*----------- Messages End ----------- */
