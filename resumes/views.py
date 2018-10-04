@@ -6,12 +6,14 @@ from django.urls import reverse
 
 from .forms import ResumeForm, ProfileUpdateForm
 from users.forms import CustomUserChangeForm
+from .models import Resume
 
 
 @login_required()
 # add queryset as context for resumes to list in template
 def my_resumes(request):
-    return render(request, 'resumes/my_resumes.html')
+    resumes = Resume.objects.all()
+    return render(request, 'resumes/my_resumes.html', {'resumes': resumes})
 
 
 @login_required()
@@ -46,3 +48,13 @@ def update_profile(request):
                'u_form': u_form,
                }
     return render(request, 'resumes/profile.html', context)
+
+
+@login_required()
+def delete_resume(request, pk):
+    resume = Resume.objects.get(pk=pk)
+    resume.delete()
+    messages.success(request, "Your resume has been deleted!")
+    return HttpResponseRedirect(reverse('resumes:my-resumes'))
+
+

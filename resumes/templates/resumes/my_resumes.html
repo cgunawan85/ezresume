@@ -2,23 +2,28 @@
 {% load static %}
 {% block title %}<title>EZResume | My Resumes</title>{% endblock %}
 {% block content %}
-    {% if not user.resume_set.exists %}
+    <div class="wrapper">
+    {% for resume in resumes %}
+       <div class="resume-box">
+            <div class="container">
+                <p>{{ resume.name }}</p>
+                <p>Created on {{ resume.created_at }}</p>
+                <form action="{% url 'resumes:delete-resume' pk=resume.id %}">
+                    <input type="submit" value="Delete" />
+                </form>
+            </div>
+        </div>
+    {% empty %}
         <div class="empty-state-box">
             <img src="{% static 'resumes/images/resume-empty-icon.png' %}" class="centered">
             <p class="empty-state-text"><b>You currently don't have any resumes.</b><br>Create one and
                 start building your very first resume</p>
         </div>
-    {% else %}
-        <div class="wrapper">
-            <div class="resume-box">
-                <div class="container">
-                    <p>Resume 1 by {{ user.email }}</p>
-                    <p>Created at: October 12, 2018</p>
-                </div>
-            </div>
-        </div>
-    {% endif %}
+    {% endfor %}
     <div class="button-box">
         <a href="{% url 'resumes:create-resume' %}" class="button">Create a resume</a>
     </div>
+    </div>
 {% endblock %}
+
+
