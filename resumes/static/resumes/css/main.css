@@ -319,6 +319,7 @@ body{
     border: 1px solid lightgray;
     margin: 10px;
     background-color: white;
+    text-align: right;
 }
 
 /* On mouse-over, add a deeper shadow */
@@ -329,6 +330,11 @@ body{
 /* Add some padding inside the card container */
 .container {
     padding: 50px;
+}
+
+.resume-name {
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
 /*----------- Messages ----------- */
@@ -370,5 +376,8 @@ body{
 
 .objective-box {
     font-family: "Raleway-Regular", sans-serif;
-    font-size: 16px;
+    font-size: 14px;
+    color: #5f5f5f;
+    border: 1px solid lightgray;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
 }

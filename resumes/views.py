@@ -4,13 +4,12 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.urls import reverse
 
-from .forms import ResumeForm, ProfileUpdateForm
 from users.forms import CustomUserChangeForm
+from .forms import ResumeForm, ProfileUpdateForm
 from .models import Resume
 
 
 @login_required()
-# add queryset as context for resumes to list in template
 def my_resumes(request):
     resumes = Resume.objects.all()
     return render(request, 'resumes/my_resumes.html', {'resumes': resumes})

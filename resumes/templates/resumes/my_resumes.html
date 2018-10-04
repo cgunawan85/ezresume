@@ -6,7 +6,7 @@
     {% for resume in resumes %}
        <div class="resume-box">
             <div class="container">
-                <p>{{ resume.name }}</p>
+                <p class="resume-name">{{ resume.name }}</p>
                 <p>Created on {{ resume.created_at }}</p>
                 <form action="{% url 'resumes:delete-resume' pk=resume.id %}">
                     <input type="submit" class="confirm-delete" value="Delete" />

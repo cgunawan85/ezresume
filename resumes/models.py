@@ -10,3 +10,6 @@ class Resume(models.Model):
 
     def __str__(self):
         return self.name
+
+
+# TODO: Create models for work experience, training, education, skills and languages
