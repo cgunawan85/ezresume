@@ -22,4 +22,3 @@ class ProfileUpdateForm(ModelForm):
                   "profile_pic": "Profile picture",
                   "objective": "Professional objective",
                   }
-
