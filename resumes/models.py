@@ -12,4 +12,14 @@ class Resume(models.Model):
         return self.name
 
 
-# TODO: Create models for work experience, training, education, skills and languages
+class WorkExperience(models.Model):
+    position = models.CharField(max_length=255)
+    company = models.CharField(max_length=255)
+    city = models.CharField(max_length=255)
+    start_date = models.DateTimeField()
+    end_date = models.DateTimeField()
+    achievements = models.TextField()
+    resume = models.ForeignKey(Resume, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.position

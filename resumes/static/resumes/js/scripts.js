@@ -5,3 +5,7 @@ $(document).on('click', '.confirm-delete', function(){
 setTimeout(function(){
   $('.messages').remove();
 }, 4000);
+
+$(function() {
+    $('.date-picker').datepicker()
+});

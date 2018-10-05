@@ -1,6 +1,6 @@
-from django.forms import ModelForm, Textarea, TextInput
+from django.forms import DateInput, ModelForm, Textarea, TextInput
 
-from .models import Resume
+from .models import Resume, WorkExperience
 from users.models import Profile
 
 
@@ -22,3 +22,13 @@ class ProfileUpdateForm(ModelForm):
                   "profile_pic": "Profile picture",
                   "objective": "Professional objective",
                   }
+
+
+class WorkExperienceForm(ModelForm):
+    class Meta:
+        model = WorkExperience
+        fields = ['position', 'company', 'city', 'start_date', 'end_date', 'achievements', ]
+        widgets = {
+            'start_date': DateInput(attrs={'class': 'date-picker'}),
+            'end_date': DateInput(attrs={'class': 'date-picker'}),
+        }

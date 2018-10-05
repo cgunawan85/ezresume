@@ -5,7 +5,8 @@ from . import views
 urlpatterns = [
     path('', views.my_resumes, name='my-resumes'),
     path('create-resume/', views.create_resume, name='create-resume'),
-    path('profile/', views.update_profile, name='update-profile'),
-    path('update-profile/', views.update_profile_form, name='update-profile-form'),
+    path('edit-profile/', views.edit_profile, name='edit-profile'),
+    path('edit-profile-form/', views.edit_profile_form, name='edit-profile-form'),
+    path('edit-work-experience-form/', views.edit_work_experience, name='edit-work-experience'),
     path('delete/<int:pk>/', views.delete_resume, name='delete-resume'),
 ]

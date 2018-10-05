@@ -9,13 +9,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/ico" href="{% static 'resumes/images/favicon.ico' %}"/>
     <link rel="stylesheet" href="{% static 'resumes/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'resumes/css/jquery-ui.css' %}">
 
 	{% block title %}{% endblock %}
 
 </head>
-
 <body>
-
     {% if messages %}
         <div class="messages">
             <ul class="messages">
@@ -32,7 +31,7 @@
                 <div class="header-left">
                     <a href="{% url 'resumes:my-resumes' %}">My Resumes</a>
                     <a href="#">Templates</a>
-                    <a href="{% url 'resumes:update-profile' %}">Profile</a>
+                    <a href="{% url 'resumes:edit-profile' %}">Profile</a>
                     <a href="{% url 'logout' %}">Logout</a>
                 </div>
         </div>
@@ -46,6 +45,7 @@
 
     </div>
     <script src="{% static 'resumes/js/jquery-3.3.1.js' %}"></script>
+    <script src="{% static 'resumes/js/jquery-ui.js' %}"></script>
     <script src="{% static 'resumes/js/scripts.js' %}"></script>
 </body>
 
