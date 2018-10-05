@@ -241,12 +241,6 @@ body{
     border: 1px solid #dbdbdb;
 }
 
-.form-labels-on-top input[type=radio],
-.form-labels-on-top input[type=checkbox]{
-    box-shadow: none;
-    width: auto;
-}
-
 .form-labels-on-top select{
     background-color: #ffffff;
     color:  #5f5f5f;
@@ -267,10 +261,6 @@ body{
     font-weight: normal;
 }
 
-.form-labels-on-top .form-radio-buttons input{
-    width: auto;
-}
-
 .form-labels-on-top button{
     border-radius: 2px;
     background-color: green;
@@ -284,6 +274,10 @@ body{
 
 .form-labels-on-top button:hover{
     background-color: darkgreen;
+}
+
+.form-row p {
+    margin-bottom: 15px;
 }
 
 /*	Making the form responsive. Remove this media query

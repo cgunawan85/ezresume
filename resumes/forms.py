@@ -1,4 +1,4 @@
-from django.forms import ModelForm, Textarea
+from django.forms import ModelForm, Textarea, TextInput
 
 from .models import Resume
 from users.models import Profile
@@ -14,8 +14,12 @@ class ProfileUpdateForm(ModelForm):
     class Meta:
         model = Profile
         fields = ['address', 'city', 'country', 'phone_number', 'linked_in', 'objective', 'profile_pic', ]
-        widgets = {'objective': Textarea(attrs={'class': 'objective-box', 'cols': 50, 'rows': 10}), }
+        widgets = {'objective': Textarea(attrs={'class': 'objective-box', 'cols': 50, 'rows': 10}),
+                   'city': TextInput(attrs={'placeholder': 'What city do you live in?'}),
+                   }
         labels = {"linked_in": "LinkedIn profile",
                   "phone_number": "Mobile number",
                   "profile_pic": "Profile picture",
+                  "objective": "Professional objective",
                   }
+
