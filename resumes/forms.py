@@ -31,4 +31,5 @@ class WorkExperienceForm(ModelForm):
         widgets = {
             'start_date': DateInput(attrs={'class': 'date-picker'}),
             'end_date': DateInput(attrs={'class': 'date-picker'}),
+            'achievements': Textarea(attrs={'class': 'objective-box', 'cols': 50, 'rows': 10}),
         }
