@@ -21,9 +21,35 @@
         </div>
     {% endfor %}
     <div class="button-box">
-        <a href="{% url 'resumes:create-resume' %}" class="button">Create a resume</a>
+        <a href="#" class="button" onclick="overlay()">Create a resume</a>
     </div>
     </div>
 {% endblock %}
-
+{% block popup %}
+    <div id="overlay">
+        <div class="overlay-content">
+            <form class="form-labels-on-top" method="POST">
+                {% csrf_token %}
+                <div class="form-title-row">
+                    <h1>Create a resume</h1>
+                </div>
+                <div class="form-row">
+                    {{ form.as_p }}
+                </div>
+                <!--
+                <div class="form-row">
+                    <label>
+                        <span>Resume Name</span>
+                        <input type="text" name="job-position">
+                    </label>
+                </div>
+                -->
+                <div class="form-row">
+                    <button type="submit">Next</button>
+                    <button id="button-close" onclick="overlay()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
 

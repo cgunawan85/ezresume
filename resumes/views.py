@@ -12,22 +12,18 @@ from .models import Resume
 @login_required()
 def my_resumes(request):
     resumes = Resume.objects.all()
-    return render(request, 'resumes/my_resumes.html', {'resumes': resumes})
-
-
-@login_required()
-def create_resume(request):
+    # creates resume from modal pop up
     if request.method == 'POST':
         form = ResumeForm(request.POST)
         if form.is_valid():
             temp = form.save(commit=False)
             temp.user = request.user
             temp.save()
-            messages.success(request, 'Your resume info has been saved!')
+            messages.success(request, 'Your resume has been created!')
             return HttpResponseRedirect(reverse('resumes:edit-profile-form'))
     else:
         form = ResumeForm()
-    return render(request, 'resumes/resume_form.html', {'form': form})
+    return render(request, 'resumes/my_resumes.html', {'resumes': resumes, 'form': form})
 
 
 @login_required()
@@ -74,7 +70,8 @@ def edit_work_experience(request):
     if request.method == 'POST':
         form = WorkExperienceForm(request.POST)
         if form.is_valid():
-            form.save()
+            form.save(commit=False)
+            # need to add resume.id to work experience before saving
             messages.success(request, 'Your work experience has been saved!')
             return HttpResponseRedirect(reverse('resumes:edit-work-experience'))
     else:

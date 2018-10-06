@@ -8,6 +8,9 @@ class ResumeForm(ModelForm):
     class Meta:
         model = Resume
         fields = ['name', ]
+        widgets = {'name': TextInput(attrs={'placeholder': 'Example: Business Development Executive'}),
+                   }
+        labels = {"name": "Position you are applying for",}
 
 
 class ProfileUpdateForm(ModelForm):
