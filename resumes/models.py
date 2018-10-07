@@ -1,6 +1,6 @@
 from django.db import models
 from users.models import User
-
+#test
 
 class Resume(models.Model):
     name = models.CharField(max_length=255)
