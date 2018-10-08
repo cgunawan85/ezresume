@@ -21,7 +21,7 @@
         </div>
     {% endfor %}
         <div class="button-box">
-            <a href="#" class="button" onclick="overlay()">Create a resume</a>
+            <a href="{% url 'resumes:create-resume' %}" class="button">Create a resume</a>
         </div>
     </div>
 {% endblock %}

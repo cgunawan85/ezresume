@@ -407,3 +407,10 @@ body{
 #overlay .overlay-content .form-labels-on-top {
     display: inline-block;
 }
+
+/*----------- Steps, form wizard ----------- */
+
+.step-text {
+    color: gray;
+    margin-bottom: 10px;
+}

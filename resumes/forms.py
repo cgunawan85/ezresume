@@ -1,18 +1,29 @@
-from django.forms import DateInput, ModelForm, Textarea, TextInput
+from django.forms import ModelForm, Textarea, TextInput
+from django import forms
 
-from .models import Resume, WorkExperience
 from users.models import Profile
 
 # TODO: Create forms for all resume models
 
 
-class ResumeForm(ModelForm):
-    class Meta:
-        model = Resume
-        fields = ['name', ]
-        widgets = {'name': TextInput(attrs={'placeholder': 'Example: Business Development Executive'}),
-                   }
-        labels = {"name": "Position you are applying for", }
+class ResumeForm(forms.Form):
+    name = forms.CharField(label='Resume name', max_length=255)
+
+
+class WorkExperienceForm(forms.Form):
+    position = forms.CharField(max_length=255, required=False)
+    company = forms.CharField(max_length=255, required=False)
+    city = forms.CharField(max_length=255, required=False)
+    start_date = forms.DateTimeField(widget=forms.TextInput(attrs={'class': 'date-picker'}), required=False)
+    end_date = forms.DateTimeField(widget=forms.TextInput(attrs={'class': 'date-picker'}), required=False)
+    achievements = forms.CharField(widget=forms.Textarea(attrs={'class': 'objective-box', 'cols': 50, 'rows': 10}),
+                                   required=False)
+
+
+class CertificationForm(forms.Form):
+    name = forms.CharField(label='Certification name', max_length=255, required=False)
+    date_obtained = forms.DateTimeField(widget=forms.TextInput(attrs={'class': 'date-picker'}), required=False)
+    city = forms.CharField(max_length=255, required=False)
 
 
 class ProfileUpdateForm(ModelForm):
@@ -28,13 +39,3 @@ class ProfileUpdateForm(ModelForm):
                   "objective": "Professional objective",
                   }
 
-
-class WorkExperienceForm(ModelForm):
-    class Meta:
-        model = WorkExperience
-        fields = ['position', 'company', 'city', 'start_date', 'end_date', 'achievements', ]
-        widgets = {
-            'start_date': DateInput(attrs={'class': 'date-picker'}),
-            'end_date': DateInput(attrs={'class': 'date-picker'}),
-            'achievements': Textarea(attrs={'class': 'objective-box', 'cols': 50, 'rows': 10}),
-        }

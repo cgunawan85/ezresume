@@ -1,0 +1,45 @@
+{% extends 'resumes/layout.html' %}
+{% load i18n %}
+{% load static %}
+{% block title %}<title>EZResume | Work Experience</title>{% endblock %}
+{% block subheader %}
+    <div class="sub-header">
+        <ul>
+            <li><a href="#">1. Resume Info</a></li>
+            <li><a href="#">2. Work Experience</a></li>
+            <li><a href="#"  class="active">3. Certifications</a></li>
+            <li><a href="#">4. Education</a></li>
+            <li><a href="#">5. Skills</a></li>
+            <li><a href="#">6. Languages</a></li>
+            <li><a href="#">7. Export</a></li>
+        </ul>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <form action="" class="form-labels-on-top" method="POST">{% csrf_token %}
+    <p class="step-text">Step {{ wizard.steps.step1 }} of {{ wizard.steps.count }}</p>
+        <div class="form-title-row">
+            <h1>Certifications</h1>
+        </div>
+        {{ wizard.management_form }}
+        {% if wizard.form.forms %}
+            {{ wizard.form.management_form }}
+            {% for form in wizard.form.forms %}
+                <div class="form-row">
+                {{ form.as_p }}
+                </div>
+        {% endfor %}
+        {% else %}
+            <div class="form-row">
+            {{ wizard.form.as_p }}
+            </div>
+        {% endif %}
+    <div class="form-row">
+        {% if wizard.steps.prev %}
+            <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}">{% trans "Previous" %}</button>
+        {% endif %}
+        <button type="submit">Next</button>
+    </div>
+    </form>
+{% endblock %}
