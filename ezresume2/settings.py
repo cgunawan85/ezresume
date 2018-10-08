@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django_countries',
     'users',
     'resumes',
+    'formtools',
 ]
 
 MIDDLEWARE = [

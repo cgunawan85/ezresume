@@ -2,6 +2,8 @@ from django.urls import path
 
 from . import views
 
+# TODO: URLS need to follow resumes/create/1 or resumes/edit/1
+
 urlpatterns = [
     path('', views.my_resumes, name='my-resumes'),
     path('edit-profile/', views.edit_profile, name='edit-profile'),

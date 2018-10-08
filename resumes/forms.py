@@ -3,6 +3,8 @@ from django.forms import DateInput, ModelForm, Textarea, TextInput
 from .models import Resume, WorkExperience
 from users.models import Profile
 
+# TODO: Create forms for all resume models
+
 
 class ResumeForm(ModelForm):
     class Meta:
@@ -10,7 +12,7 @@ class ResumeForm(ModelForm):
         fields = ['name', ]
         widgets = {'name': TextInput(attrs={'placeholder': 'Example: Business Development Executive'}),
                    }
-        labels = {"name": "Position you are applying for",}
+        labels = {"name": "Position you are applying for", }
 
 
 class ProfileUpdateForm(ModelForm):
