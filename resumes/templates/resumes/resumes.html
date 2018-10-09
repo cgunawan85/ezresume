@@ -1,13 +1,13 @@
 {% extends 'resumes/layout.html' %}
 {% load i18n %}
 {% load static %}
-{% block title %}<title>EZResume | Certifications</title>{% endblock %}
+{% block title %}<title>EZResume | Resume</title>{% endblock %}
 {% block subheader %}
     <div class="sub-header">
         <ul>
-            <li><a href="#">1. Resume Info</a></li>
+            <li><a href="#" class="active">1. Resume Info</a></li>
             <li><a href="#">2. Work Experience</a></li>
-            <li><a href="#"  class="active">3. Certifications</a></li>
+            <li><a href="#">3. Certifications</a></li>
             <li><a href="#">4. Education</a></li>
             <li><a href="#">5. Skills</a></li>
             <li><a href="#">6. Languages</a></li>
@@ -19,7 +19,14 @@
     <form action="" class="form-labels-on-top" method="POST">{% csrf_token %}
     <p class="step-text">Step {{ wizard.steps.step1 }} of {{ wizard.steps.count }}</p>
         <div class="form-title-row">
-            <h1>Certifications</h1>
+            <h1>Resume Info</h1>
+            <div class="tooltip">
+                <i class="far fa-question-circle"></i>
+                <span class="tool-tip-text">
+                    Please choose a unique name for this resume.
+                    This will help you stay organized. Especially if you are creating more than one resume.
+                </span>
+            </div>
         </div>
         {{ wizard.management_form }}
         {% if wizard.form.forms %}
@@ -36,9 +43,10 @@
         {% endif %}
     <div class="form-row">
         {% if wizard.steps.prev %}
-            <button name="wizard_goto_step" class="button-previous" type="submit" value="{{ wizard.steps.prev }}">{% trans "Previous" %}</button>
+            <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}">{% trans "Previous" %}</button>
+            <button name="wizard_goto_step" type="submit" value="{{ wizard.steps1 }}">{% trans "Step 1" %}</button>
         {% endif %}
-        <button type="submit" class="button-next">Next</button>
+        <button type="submit">Next</button>
     </div>
     </form>
 {% endblock %}

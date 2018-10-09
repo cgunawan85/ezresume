@@ -54,6 +54,15 @@ class Education(models.Model):
         verbose_name_plural = "Education"
 
 
+class Skill(models.Model):
+    name = models.CharField(max_length=255)
+    competency = models.IntegerField()
+    resume = models.ForeignKey(Resume, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
+
+
 class Language(models.Model):
     name = models.CharField(max_length=255)
     competency = models.IntegerField()
@@ -62,12 +71,4 @@ class Language(models.Model):
     def __str__(self):
         return self.name
 
-
-class Skill(models.Model):
-    name = models.CharField(max_length=255)
-    competency = models.IntegerField()
-    resume = models.ForeignKey(Resume, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.name
 

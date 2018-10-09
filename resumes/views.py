@@ -1,39 +1,36 @@
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse
 
 from users.forms import CustomUserChangeForm
-from .forms import ResumeForm, ProfileUpdateForm, WorkExperienceForm, CertificationForm
+from .forms import (ResumeForm, ProfileUpdateForm, WorkExperienceForm, CertificationForm,
+                    EducationForm, SkillForm, LanguageForm)
 from .models import Resume
 from formtools.wizard.views import SessionWizardView
 
 
 FORMS = [('resumes', ResumeForm),
          ('work_experience', WorkExperienceForm),
-         ('certifications', CertificationForm), ]
+         ('certifications', CertificationForm),
+         ('education', EducationForm),
+         ('skills', SkillForm),
+         ('languages', LanguageForm), ]
 
-TEMPLATES = {'resumes': 'resumes/resume.html',
+TEMPLATES = {'resumes': 'resumes/resumes.html',
              'work_experience': 'resumes/work_experience.html',
-             'certifications': 'resumes/certifications.html', }
+             'certifications': 'resumes/certifications.html',
+             'education': 'resumes/education.html',
+             'skills': 'resumes/skills.html',
+             'languages': 'resumes/languages.html', }
 
 
 @login_required()
 def my_resumes(request):
     resumes = Resume.objects.all()
-    # creates resume from modal pop up
-    if request.method == 'POST':
-        form = ResumeForm(request.POST)
-        if form.is_valid():
-            temp = form.save(commit=False)
-            temp.user = request.user
-            temp.save()
-            messages.success(request, 'Your resume has been created!')
-            return HttpResponseRedirect(reverse('resumes:edit-profile-form'))
-    else:
-        form = ResumeForm()
-    return render(request, 'resumes/my_resumes.html', {'resumes': resumes, 'form': form})
+    return render(request, 'resumes/my_resumes.html', {'resumes': resumes})
 
 
 @login_required()
@@ -63,8 +60,9 @@ def delete_resume(request, pk):
     return HttpResponseRedirect(reverse('resumes:my-resumes'))
 
 
-# TODO: Add login required mixin to this view
-class ResumeWizard(SessionWizardView):
+class ResumeWizard(LoginRequiredMixin, SessionWizardView):
+    login_url = '/login/'
+
     def get_template_names(self):
         return [TEMPLATES[self.steps.current]]
 

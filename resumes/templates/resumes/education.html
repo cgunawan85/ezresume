@@ -1,14 +1,14 @@
 {% extends 'resumes/layout.html' %}
 {% load i18n %}
 {% load static %}
-{% block title %}<title>EZResume | Certifications</title>{% endblock %}
+{% block title %}<title>EZResume | Education</title>{% endblock %}
 {% block subheader %}
     <div class="sub-header">
         <ul>
             <li><a href="#">1. Resume Info</a></li>
             <li><a href="#">2. Work Experience</a></li>
-            <li><a href="#"  class="active">3. Certifications</a></li>
-            <li><a href="#">4. Education</a></li>
+            <li><a href="#">3. Certifications</a></li>
+            <li><a href="#"  class="active">4. Education</a></li>
             <li><a href="#">5. Skills</a></li>
             <li><a href="#">6. Languages</a></li>
         </ul>
@@ -19,7 +19,7 @@
     <form action="" class="form-labels-on-top" method="POST">{% csrf_token %}
     <p class="step-text">Step {{ wizard.steps.step1 }} of {{ wizard.steps.count }}</p>
         <div class="form-title-row">
-            <h1>Certifications</h1>
+            <h1>Education</h1>
         </div>
         {{ wizard.management_form }}
         {% if wizard.form.forms %}

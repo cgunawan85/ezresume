@@ -1,7 +1,9 @@
 from django.forms import ModelForm, Textarea, TextInput
 from django import forms
 
+from .choices import COMPETENCY_CHOICES
 from users.models import Profile
+
 
 # TODO: Create forms for all resume models and add widgets
 
@@ -29,10 +31,20 @@ class CertificationForm(forms.Form):
 class EducationForm(forms.Form):
     school = forms.CharField(max_length=255, required=False)
     degree = forms.CharField(max_length=255, required=False)
-    gpa = forms.FloatField(required=False)
+    gpa = forms.FloatField(label='GPA', required=False)
     city = forms.CharField(max_length=255, required=False)
     start_date = forms.DateTimeField(widget=forms.TextInput(attrs={'class': 'date-picker'}), required=False)
     end_date = forms.DateTimeField(widget=forms.TextInput(attrs={'class': 'date-picker'}), required=False)
+
+
+class SkillForm(forms.Form):
+    name = forms.CharField(max_length=255, required=False)
+    competency = forms.ChoiceField(choices=COMPETENCY_CHOICES, required=False)
+
+
+class LanguageForm(forms.Form):
+    name = forms.CharField(max_length=255, required=False)
+    competency = forms.ChoiceField(choices=COMPETENCY_CHOICES, required=False)
 
 
 class ProfileUpdateForm(ModelForm):
