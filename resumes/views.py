@@ -63,6 +63,7 @@ def delete_resume(request, pk):
     return HttpResponseRedirect(reverse('resumes:my-resumes'))
 
 
+# TODO: Add login required mixin to this view
 class ResumeWizard(SessionWizardView):
     def get_template_names(self):
         return [TEMPLATES[self.steps.current]]

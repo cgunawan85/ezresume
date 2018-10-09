@@ -3,7 +3,7 @@ from django import forms
 
 from users.models import Profile
 
-# TODO: Create forms for all resume models
+# TODO: Create forms for all resume models and add widgets
 
 
 class ResumeForm(forms.Form):
@@ -24,6 +24,15 @@ class CertificationForm(forms.Form):
     name = forms.CharField(label='Certification name', max_length=255, required=False)
     date_obtained = forms.DateTimeField(widget=forms.TextInput(attrs={'class': 'date-picker'}), required=False)
     city = forms.CharField(max_length=255, required=False)
+
+
+class EducationForm(forms.Form):
+    school = forms.CharField(max_length=255, required=False)
+    degree = forms.CharField(max_length=255, required=False)
+    gpa = forms.FloatField(required=False)
+    city = forms.CharField(max_length=255, required=False)
+    start_date = forms.DateTimeField(widget=forms.TextInput(attrs={'class': 'date-picker'}), required=False)
+    end_date = forms.DateTimeField(widget=forms.TextInput(attrs={'class': 'date-picker'}), required=False)
 
 
 class ProfileUpdateForm(ModelForm):

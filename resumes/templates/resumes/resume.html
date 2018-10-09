@@ -21,6 +21,13 @@
     <p class="step-text">Step {{ wizard.steps.step1 }} of {{ wizard.steps.count }}</p>
         <div class="form-title-row">
             <h1>Resume Info</h1>
+            <div class="tooltip">
+                <i class="far fa-question-circle"></i>
+                <span class="tool-tip-text">
+                    Please choose a unique name for this resume.
+                    This will help you stay organized. Especially if you are creating more than one resume.
+                </span>
+            </div>
         </div>
         {{ wizard.management_form }}
         {% if wizard.form.forms %}
