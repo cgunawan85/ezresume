@@ -3,48 +3,51 @@ from django import forms
 
 from .choices import COMPETENCY_CHOICES
 from users.models import Profile
+from .models import Certification, Education, Language, Resume, Skill, WorkExperience
 
 
-# TODO: Create forms for all resume models and add widgets
+class ResumeForm(ModelForm):
+    class Meta:
+        model = Resume
+        fields = ['name', ]
 
 
-class ResumeForm(forms.Form):
-    name = forms.CharField(label='Resume name', max_length=255)
+class WorkExperienceForm(ModelForm):
+    class Meta:
+        model = WorkExperience
+        fields = ['position', 'company', 'city', 'start_date', 'end_date', 'achievements', ]
+        widgets = {'start_date': TextInput(attrs={'class': 'date-picker'}),
+                   'end_date': TextInput(attrs={'class': 'date-picker'}),
+                   'achievements': Textarea(attrs={'class': 'objective-box', 'cols': 50, 'rows': 10}), }
 
 
-class WorkExperienceForm(forms.Form):
-    position = forms.CharField(max_length=255, required=False)
-    company = forms.CharField(max_length=255, required=False)
-    city = forms.CharField(max_length=255, required=False)
-    start_date = forms.DateTimeField(widget=forms.TextInput(attrs={'class': 'date-picker'}), required=False)
-    end_date = forms.DateTimeField(widget=forms.TextInput(attrs={'class': 'date-picker'}), required=False)
-    achievements = forms.CharField(widget=forms.Textarea(attrs={'class': 'objective-box', 'cols': 50, 'rows': 10}),
-                                   required=False)
+class CertificationForm(ModelForm):
+    class Meta:
+        model = Certification
+        fields = ['name', 'date_obtained', 'city', ]
+        widgets = {'date_obtained': TextInput(attrs={'class': 'date-picker'})}
 
 
-class CertificationForm(forms.Form):
-    name = forms.CharField(label='Certification name', max_length=255, required=False)
-    date_obtained = forms.DateTimeField(widget=forms.TextInput(attrs={'class': 'date-picker'}), required=False)
-    city = forms.CharField(max_length=255, required=False)
+class EducationForm(ModelForm):
+    class Meta:
+        model = Education
+        fields = ['school', 'degree', 'gpa', 'city', 'start_date', 'end_date', ]
+        widgets = {'start_date': TextInput(attrs={'class': 'date-picker'}),
+                   'end_date': TextInput(attrs={'class': 'date-picker'}), }
 
 
-class EducationForm(forms.Form):
-    school = forms.CharField(max_length=255, required=False)
-    degree = forms.CharField(max_length=255, required=False)
-    gpa = forms.FloatField(label='GPA', required=False)
-    city = forms.CharField(max_length=255, required=False)
-    start_date = forms.DateTimeField(widget=forms.TextInput(attrs={'class': 'date-picker'}), required=False)
-    end_date = forms.DateTimeField(widget=forms.TextInput(attrs={'class': 'date-picker'}), required=False)
+class SkillForm(ModelForm):
+    class Meta:
+        model = Skill
+        fields = ['name', 'competency', ]
+        widgets = {'competency': forms.Select(choices=COMPETENCY_CHOICES, attrs={'class': 'form-control'}), }
 
 
-class SkillForm(forms.Form):
-    name = forms.CharField(max_length=255, required=False)
-    competency = forms.ChoiceField(choices=COMPETENCY_CHOICES, required=False)
-
-
-class LanguageForm(forms.Form):
-    name = forms.CharField(max_length=255, required=False)
-    competency = forms.ChoiceField(choices=COMPETENCY_CHOICES, required=False)
+class LanguageForm(ModelForm):
+    class Meta:
+        model = Language
+        fields = ['name', 'competency', ]
+        widgets = {'competency': forms.Select(choices=COMPETENCY_CHOICES, attrs={'class': 'form-control'}), }
 
 
 class ProfileUpdateForm(ModelForm):
@@ -57,6 +60,5 @@ class ProfileUpdateForm(ModelForm):
         labels = {"linked_in": "LinkedIn profile",
                   "phone_number": "Mobile number",
                   "profile_pic": "Profile picture",
-                  "objective": "Professional objective",
-                  }
+                  "objective": "Professional objective", }
 
