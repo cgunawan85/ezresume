@@ -14,12 +14,12 @@ class Resume(models.Model):
 
 
 class WorkExperience(models.Model):
-    position = models.CharField(max_length=255)
-    company = models.CharField(max_length=255)
-    city = models.CharField(max_length=255)
-    start_date = models.DateTimeField()
-    end_date = models.DateTimeField()
-    achievements = models.TextField()
+    position = models.CharField(max_length=255, blank=True)
+    company = models.CharField(max_length=255, blank=True)
+    city = models.CharField(max_length=255, blank=True)
+    start_date = models.DateTimeField(blank=True)
+    end_date = models.DateTimeField(blank=True)
+    achievements = models.TextField(blank=True)
     resume = models.ForeignKey(Resume, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -30,21 +30,22 @@ class WorkExperience(models.Model):
 
 
 class Certification(models.Model):
-    name = models.CharField(max_length=255)
-    date_obtained = models.DateTimeField()
-    city = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, blank=True)
+    date_obtained = models.DateTimeField(blank=True)
+    city = models.CharField(max_length=255, blank=True)
+    resume = models.ForeignKey(Resume, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
 
 
 class Education(models.Model):
-    school = models.CharField(max_length=255)
-    degree = models.CharField(max_length=255)
+    school = models.CharField(max_length=255, blank=True)
+    degree = models.CharField(max_length=255, blank=True)
     gpa = models.FloatField(blank=True)
-    city = models.CharField(max_length=255)
-    start_date = models.DateTimeField()
-    end_date = models.DateTimeField()
+    city = models.CharField(max_length=255, blank=True)
+    start_date = models.DateTimeField(blank=True)
+    end_date = models.DateTimeField(blank=True)
     resume = models.ForeignKey(Resume, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -55,8 +56,8 @@ class Education(models.Model):
 
 
 class Skill(models.Model):
-    name = models.CharField(max_length=255)
-    competency = models.IntegerField()
+    name = models.CharField(max_length=255, blank=True)
+    competency = models.IntegerField(blank=True)
     resume = models.ForeignKey(Resume, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -64,8 +65,8 @@ class Skill(models.Model):
 
 
 class Language(models.Model):
-    name = models.CharField(max_length=255)
-    competency = models.IntegerField()
+    name = models.CharField(max_length=255, blank=True)
+    competency = models.IntegerField(blank=True)
     resume = models.ForeignKey(Resume, on_delete=models.CASCADE)
 
     def __str__(self):

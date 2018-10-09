@@ -61,4 +61,3 @@ class ProfileUpdateForm(ModelForm):
                   "phone_number": "Mobile number",
                   "profile_pic": "Profile picture",
                   "objective": "Professional objective", }
-
