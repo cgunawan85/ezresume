@@ -28,11 +28,14 @@
                 <div class="form-row">
                 {{ form.as_p }}
                 </div>
-        {% endfor %}
+            {% endfor %}
         {% else %}
-            <div class="form-row">
-            {{ wizard.form.as_p }}
-            </div>
+            {{ formset.management_form }}
+            {% for form in formset %}
+                <div class="form-row formset">
+                {{ form.as_p }}
+                </div>
+            {% endfor %}
         {% endif %}
     <div class="form-row">
         {% if wizard.steps.prev %}

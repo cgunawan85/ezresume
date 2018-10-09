@@ -1,5 +1,6 @@
 from django.forms import ModelForm, Textarea, TextInput
 from django import forms
+from django.forms import modelformset_factory
 
 from .choices import COMPETENCY_CHOICES
 from users.models import Profile

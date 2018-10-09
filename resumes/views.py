@@ -1,5 +1,6 @@
 from django.http import HttpResponseRedirect
 from django.contrib import messages
+from django.forms import formset_factory
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
@@ -62,6 +63,19 @@ def delete_resume(request, pk):
 
 class ResumeWizard(LoginRequiredMixin, SessionWizardView):
     login_url = '/login/'
+
+    def get_context_data(self, form, **kwargs):
+        data = {
+            'form-TOTAL_FORMS': '1',
+            'form-INITIAL_FORMS': '5',
+            'form-MAX_NUM_FORMS': '5',
+        }
+        SkillFormSet = formset_factory(SkillForm)
+        formset = SkillFormSet(data)
+        context = super(ResumeWizard, self).get_context_data(form, **kwargs)
+        if self.steps.current == 'skills':
+            context.update({'formset': formset})
+        return context
 
     def get_template_names(self):
         return [TEMPLATES[self.steps.current]]

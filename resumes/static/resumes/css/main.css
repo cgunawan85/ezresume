@@ -476,3 +476,17 @@ body{
     visibility: visible;
     opacity: 1;
 }
+
+/*----------- Form Set ----------- */
+
+.formset {
+    padding-bottom: 15px;
+}
+
+.delete-row {
+    color: #5ba2d8;
+}
+
+.add-row {
+    color: #5ba2d8;
+}

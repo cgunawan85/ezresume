@@ -1,6 +1,5 @@
 from django.db import models
 from users.models import User
-# TODO: Add training model and determine which fields are optional
 
 
 class Resume(models.Model):
