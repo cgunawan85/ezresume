@@ -2,7 +2,7 @@ from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
 from django.urls import reverse
 
 from users.forms import CustomUserChangeForm
@@ -42,7 +42,7 @@ def edit_profile(request):
             u_form.save()
             p_form.save()
             messages.success(request, 'Your profile has been saved!')
-            return HttpResponseRedirect(reverse('resumes:update-profile'))
+            return HttpResponseRedirect(reverse('resumes:edit-profile'))
     else:
         u_form = CustomUserChangeForm(instance=request.user)
         p_form = ProfileUpdateForm(instance=request.user.profile)
@@ -67,5 +67,6 @@ class ResumeWizard(LoginRequiredMixin, SessionWizardView):
         return [TEMPLATES[self.steps.current]]
 
     def done(self, form_list, **kwargs):
-        return HttpResponseRedirect(reverse('resumes:my-resumes'))
-
+        return render_to_response('resumes/done.html', {
+            'form_data': [form.cleaned_data for form in form_list],
+        })
