@@ -25,14 +25,14 @@
         {% if wizard.form.forms %}
             {{ wizard.form.management_form }}
             {% for form in wizard.form.forms %}
-                <div class="form-row">
-                {{ form.as_p }}
+                <div class="form-row form-duplicate">
+                    {{ form.as_p }}
                 </div>
             {% endfor %}
+            <input type="button" value="Add More" id="add_more">
         {% else %}
-            {{ formset.management_form }}
             {% for form in formset %}
-                <div class="form-row formset">
+                <div class="form-row">
                 {{ form.as_p }}
                 </div>
             {% endfor %}
@@ -44,4 +44,11 @@
         <button type="submit" class="button-next">Next</button>
     </div>
     </form>
+{% endblock %}
+{% block script %}
+    <script>
+        $('#add_more').click(function() {
+            cloneMore('div.form-duplicate:last', 'skills');
+        });
+    </script>
 {% endblock %}

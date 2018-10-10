@@ -1,6 +1,5 @@
 from django.http import HttpResponseRedirect
 from django.contrib import messages
-from django.forms import formset_factory
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
@@ -8,7 +7,7 @@ from django.urls import reverse
 
 from users.forms import CustomUserChangeForm
 from .forms import (ResumeForm, ProfileUpdateForm, WorkExperienceForm, CertificationForm,
-                    EducationForm, SkillForm, LanguageForm)
+                    EducationForm, SkillFormSet, LanguageForm)
 from .models import Resume
 from formtools.wizard.views import SessionWizardView
 
@@ -17,7 +16,7 @@ FORMS = [('resumes', ResumeForm),
          ('work_experience', WorkExperienceForm),
          ('certifications', CertificationForm),
          ('education', EducationForm),
-         ('skills', SkillForm),
+         ('skills', SkillFormSet),
          ('languages', LanguageForm), ]
 
 TEMPLATES = {'resumes': 'resumes/resumes.html',
@@ -63,19 +62,6 @@ def delete_resume(request, pk):
 
 class ResumeWizard(LoginRequiredMixin, SessionWizardView):
     login_url = '/login/'
-
-    def get_context_data(self, form, **kwargs):
-        data = {
-            'form-TOTAL_FORMS': '1',
-            'form-INITIAL_FORMS': '5',
-            'form-MAX_NUM_FORMS': '5',
-        }
-        SkillFormSet = formset_factory(SkillForm)
-        formset = SkillFormSet(data)
-        context = super(ResumeWizard, self).get_context_data(form, **kwargs)
-        if self.steps.current == 'skills':
-            context.update({'formset': formset})
-        return context
 
     def get_template_names(self):
         return [TEMPLATES[self.steps.current]]

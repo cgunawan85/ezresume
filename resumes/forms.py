@@ -44,6 +44,9 @@ class SkillForm(ModelForm):
         widgets = {'competency': forms.Select(choices=COMPETENCY_CHOICES, attrs={'class': 'form-control'}), }
 
 
+SkillFormSet = modelformset_factory(Skill, form=SkillForm, extra=1, max_num=5)
+
+
 class LanguageForm(ModelForm):
     class Meta:
         model = Language
