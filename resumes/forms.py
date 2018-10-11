@@ -32,7 +32,7 @@ class CertificationForm(ModelForm):
 class EducationForm(ModelForm):
     class Meta:
         model = Education
-        fields = ['school', 'degree', 'gpa', 'city', 'start_date', 'end_date', ]
+        fields = ['school', 'degree', 'major', 'gpa', 'city', 'start_date', 'end_date', ]
         widgets = {'start_date': TextInput(attrs={'class': 'date-picker'}),
                    'end_date': TextInput(attrs={'class': 'date-picker'}), }
         labels = {'gpa': 'GPA'}
@@ -46,7 +46,7 @@ class SkillForm(ModelForm):
                    'name': TextInput(attrs={'placeholder': 'For example: Microsoft Excel'}), }
 
 
-SkillFormSet = modelformset_factory(Skill, form=SkillForm, extra=1, max_num=5)
+SkillFormSet = modelformset_factory(Skill, form=SkillForm, extra=0, max_num=5)
 
 
 class LanguageForm(ModelForm):
@@ -57,7 +57,7 @@ class LanguageForm(ModelForm):
                    'name': TextInput(attrs={'placeholder': 'For example: English or Mandarin'}), }
 
 
-LanguageFormSet = modelformset_factory(Language, form=LanguageForm, extra=1, max_num=5)
+LanguageFormSet = modelformset_factory(Language, form=LanguageForm, extra=0, max_num=5)
 
 
 class ProfileUpdateForm(ModelForm):

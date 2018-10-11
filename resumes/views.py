@@ -91,6 +91,7 @@ class ResumeWizard(LoginRequiredMixin, SessionWizardView):
         education_form_data = self.get_cleaned_data_for_step('education')
         Education.objects.create(school=education_form_data['school'],
                                  degree=education_form_data['degree'],
+                                 major=education_form_data['major'],
                                  gpa=education_form_data['gpa'],
                                  city=education_form_data['city'],
                                  start_date=education_form_data['start_date'],

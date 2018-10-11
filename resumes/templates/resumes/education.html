@@ -32,7 +32,7 @@
         {% if wizard.form.forms %}
             {{ wizard.form.management_form }}
             {% for form in wizard.form.forms %}
-                <div class="form-row">
+                <div class="form-row form-duplicate">
                 {{ form.as_p }}
                 </div>
         {% endfor %}
@@ -49,3 +49,4 @@
     </div>
     </form>
 {% endblock %}
+{% block script %}{% endblock %}

@@ -20,6 +20,13 @@
     <p class="step-text">Step {{ wizard.steps.step1 }} of {{ wizard.steps.count }}</p>
         <div class="form-title-row">
             <h1>Certifications</h1>
+            <div class="tooltip">
+                <i class="far fa-question-circle"></i>
+                <span class="tool-tip-text">
+                    If the position you are applying for requires fancy certifications, this is where you put them!
+                    Maximum of 5 certification entries.
+                </span>
+            </div>
         </div>
         {{ wizard.management_form }}
         {% if wizard.form.forms %}

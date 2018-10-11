@@ -6,7 +6,11 @@ setTimeout(function(){
   $('.messages').remove();
 }, 4000);
 
-$(function() {
-    $('.date-picker').datepicker()
+$(document).on('focus', '.date-picker',function(){
+    $(this).datepicker({
+        todayHighlight:true,
+        format:'yyyy-mm-dd',
+        autoclose:true
+    })
 });
 
