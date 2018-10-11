@@ -18,6 +18,7 @@ class WorkExperience(models.Model):
     city = models.CharField(max_length=255, blank=True)
     start_date = models.DateTimeField(null=True, blank=True)
     end_date = models.DateTimeField(null=True, blank=True)
+    # TODO: use tiny-mce to make achievements more rich
     achievements = models.TextField(blank=True)
     resume = models.ForeignKey(Resume, on_delete=models.CASCADE)
 

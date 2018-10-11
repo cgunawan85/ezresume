@@ -29,11 +29,10 @@
                     {{ form.as_p }}
                 </div>
             {% endfor %}
-            <input type="button" value="Add More" id="add_more">
         {% else %}
             {% for form in formset %}
                 <div class="form-row">
-                {{ form.as_p }}
+                    {{ form.as_p }}
                 </div>
             {% endfor %}
         {% endif %}
@@ -46,9 +45,9 @@
     </form>
 {% endblock %}
 {% block script %}
-    <script>
-        $('#add_more').click(function() {
-            cloneMore('div.form-duplicate:last', 'skills');
-        });
+    <script type="text/javascript">
+        $(function() {
+            $('.form-duplicate').formset();
+        })
     </script>
 {% endblock %}
