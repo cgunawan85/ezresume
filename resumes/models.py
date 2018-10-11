@@ -16,8 +16,8 @@ class WorkExperience(models.Model):
     position = models.CharField(max_length=255, blank=True)
     company = models.CharField(max_length=255, blank=True)
     city = models.CharField(max_length=255, blank=True)
-    start_date = models.DateTimeField(blank=True)
-    end_date = models.DateTimeField(blank=True)
+    start_date = models.DateTimeField(null=True, blank=True)
+    end_date = models.DateTimeField(null=True, blank=True)
     achievements = models.TextField(blank=True)
     resume = models.ForeignKey(Resume, on_delete=models.CASCADE)
 
@@ -30,7 +30,7 @@ class WorkExperience(models.Model):
 
 class Certification(models.Model):
     name = models.CharField(max_length=255, blank=True)
-    date_obtained = models.DateTimeField(blank=True)
+    date_obtained = models.DateTimeField(null=True, blank=True)
     city = models.CharField(max_length=255, blank=True)
     resume = models.ForeignKey(Resume, on_delete=models.CASCADE)
 
@@ -41,10 +41,10 @@ class Certification(models.Model):
 class Education(models.Model):
     school = models.CharField(max_length=255, blank=True)
     degree = models.CharField(max_length=255, blank=True)
-    gpa = models.FloatField(blank=True)
+    gpa = models.FloatField(null=True, blank=True)
     city = models.CharField(max_length=255, blank=True)
-    start_date = models.DateTimeField(blank=True)
-    end_date = models.DateTimeField(blank=True)
+    start_date = models.DateTimeField(null=True, blank=True)
+    end_date = models.DateTimeField(null=True, blank=True)
     resume = models.ForeignKey(Resume, on_delete=models.CASCADE)
 
     def __str__(self):

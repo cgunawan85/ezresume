@@ -2,13 +2,13 @@ from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render, render_to_response
+from django.shortcuts import render
 from django.urls import reverse
 
 from users.forms import CustomUserChangeForm
 from .forms import (ResumeForm, ProfileUpdateForm, WorkExperienceForm, CertificationForm,
                     EducationForm, SkillFormSet, LanguageForm)
-from .models import Resume
+from .models import Certification, Education, Language, Resume, Skill, WorkExperience
 from formtools.wizard.views import SessionWizardView
 
 
@@ -67,6 +67,45 @@ class ResumeWizard(LoginRequiredMixin, SessionWizardView):
         return [TEMPLATES[self.steps.current]]
 
     def done(self, form_list, **kwargs):
-        return render_to_response('resumes/done.html', {
-            'form_data': [form.cleaned_data for form in form_list],
-        })
+        user = self.request.user
+
+        resume_form_data = self.get_cleaned_data_for_step('resumes')
+        resume_name = resume_form_data['name']
+        resume = Resume.objects.create(name=resume_name, user=user)
+
+        work_experience_form_data = self.get_cleaned_data_for_step('work_experience')
+        WorkExperience.objects.create(position=work_experience_form_data['position'],
+                                      company=work_experience_form_data['company'],
+                                      city=work_experience_form_data['city'],
+                                      start_date=work_experience_form_data['start_date'],
+                                      end_date=work_experience_form_data['end_date'],
+                                      achievements=work_experience_form_data['achievements'],
+                                      resume=resume, )
+
+        certifications_form_data = self.get_cleaned_data_for_step('certifications')
+        Certification.objects.create(name=certifications_form_data['name'],
+                                     date_obtained=certifications_form_data['date_obtained'],
+                                     city=certifications_form_data['city'],
+                                     resume=resume, )
+
+        education_form_data = self.get_cleaned_data_for_step('education')
+        Education.objects.create(school=education_form_data['school'],
+                                 degree=education_form_data['degree'],
+                                 gpa=education_form_data['gpa'],
+                                 city=education_form_data['city'],
+                                 start_date=education_form_data['start_date'],
+                                 end_date=education_form_data['end_date'],
+                                 resume=resume, )
+
+        # TODO: Insert loop here to loop over skills
+        skills_form_data = self.get_cleaned_data_for_step('skills')
+        Skill.objects.create(name=skills_form_data[0]['name'],
+                             competency=skills_form_data[0]['competency'],
+                             resume=resume, )
+
+        languages_form_data = self.get_cleaned_data_for_step('languages')
+        Language.objects.create(name=languages_form_data['name'],
+                                competency=languages_form_data['competency'],
+                                resume=resume, )
+
+        return HttpResponseRedirect(reverse('resumes:my-resumes'))
