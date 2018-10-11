@@ -6,6 +6,12 @@
     {% csrf_token %}
     <div class="form-title-row">
         <h1>Profile</h1>
+        <div class="tooltip">
+            <i class="far fa-question-circle"></i>
+            <span class="tool-tip-text">
+                Keep information on this page as up-to-date as possible
+            </span>
+        </div>
     </div>
     <div class="image-cropper">
         <img src="{{ user.profile.profile_pic.url }}">

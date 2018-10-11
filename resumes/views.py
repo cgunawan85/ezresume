@@ -97,11 +97,11 @@ class ResumeWizard(LoginRequiredMixin, SessionWizardView):
                                  end_date=education_form_data['end_date'],
                                  resume=resume, )
 
-        # TODO: Insert loop here to loop over skills
         skills_form_data = self.get_cleaned_data_for_step('skills')
-        Skill.objects.create(name=skills_form_data[0]['name'],
-                             competency=skills_form_data[0]['competency'],
-                             resume=resume, )
+        for skill in skills_form_data:
+            Skill.objects.create(name=skill['name'],
+                                 competency=skill['competency'],
+                                 resume=resume, )
 
         languages_form_data = self.get_cleaned_data_for_step('languages')
         Language.objects.create(name=languages_form_data['name'],

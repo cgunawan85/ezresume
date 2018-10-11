@@ -57,11 +57,18 @@ class LanguageForm(ModelForm):
 class ProfileUpdateForm(ModelForm):
     class Meta:
         model = Profile
-        fields = ['address', 'city', 'country', 'phone_number', 'linked_in', 'objective', 'profile_pic', ]
-        widgets = {'objective': Textarea(attrs={'class': 'objective-box', 'cols': 50, 'rows': 10}),
+        fields = ['address', 'address2', 'city', 'country', 'phone_number', 'linked_in', 'objective', 'profile_pic', ]
+        widgets = {'objective': Textarea(attrs={'class': 'objective-box', 'cols': 50, 'rows': 10,
+                                                'placeholder': 'A short blurb telling the hiring manager what skills, '
+                                                               'knowledge, and abilities you have that will help the '
+                                                'company achieve its goals.'}),
+                   'address': TextInput(attrs={'placeholder': 'What is your home street address?'}),
+                   'address2': TextInput(attrs={'placeholder': 'Neighborhood or sub-district'}),
                    'city': TextInput(attrs={'placeholder': 'What city do you live in?'}),
-                   }
+                   'phone_number': TextInput(attrs={'placeholder': 'What is your mobile number?'}),
+                   'linked_in': TextInput(attrs={'placeholder': 'What is your LinkedIn profile?'}), }
         labels = {"linked_in": "LinkedIn profile",
                   "phone_number": "Mobile number",
                   "profile_pic": "Profile picture",
-                  "objective": "Professional objective", }
+                  "objective": "Career objective",
+                  "address2": "Address", }
