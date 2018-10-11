@@ -7,7 +7,7 @@ from django.urls import reverse
 
 from users.forms import CustomUserChangeForm
 from .forms import (ResumeForm, ProfileUpdateForm, WorkExperienceForm, CertificationForm,
-                    EducationForm, SkillFormSet, LanguageForm)
+                    EducationForm, SkillFormSet, LanguageFormSet)
 from .models import Certification, Education, Language, Resume, Skill, WorkExperience
 from formtools.wizard.views import SessionWizardView
 
@@ -17,7 +17,7 @@ FORMS = [('resumes', ResumeForm),
          ('certifications', CertificationForm),
          ('education', EducationForm),
          ('skills', SkillFormSet),
-         ('languages', LanguageForm), ]
+         ('languages', LanguageFormSet), ]
 
 TEMPLATES = {'resumes': 'resumes/resumes.html',
              'work_experience': 'resumes/work_experience.html',
@@ -104,8 +104,10 @@ class ResumeWizard(LoginRequiredMixin, SessionWizardView):
                                  resume=resume, )
 
         languages_form_data = self.get_cleaned_data_for_step('languages')
-        Language.objects.create(name=languages_form_data['name'],
-                                competency=languages_form_data['competency'],
-                                resume=resume, )
+        for language in languages_form_data:
+            Language.objects.create(name=language['name'],
+                                    competency=language['competency'],
+                                    resume=resume, )
+
         messages.add_message(self.request, messages.SUCCESS, 'Your resume has been saved!')
         return HttpResponseRedirect(reverse('resumes:my-resumes'))

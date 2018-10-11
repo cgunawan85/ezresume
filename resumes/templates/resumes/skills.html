@@ -20,6 +20,13 @@
     <p class="step-text">Step {{ wizard.steps.step1 }} of {{ wizard.steps.count }}</p>
         <div class="form-title-row">
             <h1>Skills</h1>
+            <div class="tooltip">
+                <i class="far fa-question-circle"></i>
+                <span class="tool-tip-text">
+                    Include relevant hard skills such as "Microsoft Excel" or "Adobe Photoshop". You may include soft skills such
+                    as "Communication" or "Time Management". Maximum is 5 skill entries.
+                </span>
+            </div>
         </div>
         {{ wizard.management_form }}
         {% if wizard.form.forms %}
@@ -47,7 +54,7 @@
 {% block script %}
     <script type="text/javascript">
         $(function() {
-            $('.form-duplicate').formset();
+            $('.form-duplicate').formset({ prefix: 'skills' });
         })
     </script>
 {% endblock %}

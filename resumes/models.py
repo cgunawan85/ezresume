@@ -43,6 +43,7 @@ class Education(models.Model):
     school = models.CharField(max_length=255, blank=True)
     degree = models.CharField(max_length=255, blank=True)
     gpa = models.FloatField(null=True, blank=True)
+    # TODO: Add major/concentration?
     city = models.CharField(max_length=255, blank=True)
     start_date = models.DateTimeField(null=True, blank=True)
     end_date = models.DateTimeField(null=True, blank=True)

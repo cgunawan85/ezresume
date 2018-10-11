@@ -35,13 +35,15 @@ class EducationForm(ModelForm):
         fields = ['school', 'degree', 'gpa', 'city', 'start_date', 'end_date', ]
         widgets = {'start_date': TextInput(attrs={'class': 'date-picker'}),
                    'end_date': TextInput(attrs={'class': 'date-picker'}), }
+        labels = {'gpa': 'GPA'}
 
 
 class SkillForm(ModelForm):
     class Meta:
         model = Skill
         fields = ['name', 'competency', ]
-        widgets = {'competency': forms.Select(choices=COMPETENCY_CHOICES, attrs={'class': 'form-control'}), }
+        widgets = {'competency': forms.Select(choices=COMPETENCY_CHOICES, attrs={'class': 'form-control'}),
+                   'name': TextInput(attrs={'placeholder': 'For example: Microsoft Excel'}), }
 
 
 SkillFormSet = modelformset_factory(Skill, form=SkillForm, extra=1, max_num=5)
@@ -51,7 +53,11 @@ class LanguageForm(ModelForm):
     class Meta:
         model = Language
         fields = ['name', 'competency', ]
-        widgets = {'competency': forms.Select(choices=COMPETENCY_CHOICES, attrs={'class': 'form-control'}), }
+        widgets = {'competency': forms.Select(choices=COMPETENCY_CHOICES, attrs={'class': 'form-control'}),
+                   'name': TextInput(attrs={'placeholder': 'For example: English or Mandarin'}), }
+
+
+LanguageFormSet = modelformset_factory(Language, form=LanguageForm, extra=1, max_num=5)
 
 
 class ProfileUpdateForm(ModelForm):
@@ -59,9 +65,10 @@ class ProfileUpdateForm(ModelForm):
         model = Profile
         fields = ['address', 'address2', 'city', 'country', 'phone_number', 'linked_in', 'objective', 'profile_pic', ]
         widgets = {'objective': Textarea(attrs={'class': 'objective-box', 'cols': 50, 'rows': 10,
+                                                'maxlength': 500,
                                                 'placeholder': 'A short blurb telling the hiring manager what skills, '
                                                                'knowledge, and abilities you have that will help the '
-                                                'company achieve its goals.'}),
+                                                'company achieve its goals. Max length is 500 characters.'}),
                    'address': TextInput(attrs={'placeholder': 'What is your home street address?'}),
                    'address2': TextInput(attrs={'placeholder': 'Neighborhood or sub-district'}),
                    'city': TextInput(attrs={'placeholder': 'What city do you live in?'}),
