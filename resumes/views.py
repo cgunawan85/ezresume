@@ -107,5 +107,5 @@ class ResumeWizard(LoginRequiredMixin, SessionWizardView):
         Language.objects.create(name=languages_form_data['name'],
                                 competency=languages_form_data['competency'],
                                 resume=resume, )
-
+        messages.add_message(self.request, messages.SUCCESS, 'Your resume has been saved!')
         return HttpResponseRedirect(reverse('resumes:my-resumes'))
