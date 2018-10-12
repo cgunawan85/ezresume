@@ -113,6 +113,26 @@ body{
     display: inline-block;
 }
 
+.sub-header button {
+    font:14px/1.5 'Raleway', sans-serif;
+    background-color: darkgray;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 5px;
+}
+
+.sub-header button:hover {
+    background-color: gray;
+}
+
+.sub-header button.active {
+    background-color: #ce4670;
+}
+
 /*
 @media (max-width: 1000px) {
 

@@ -58,6 +58,17 @@ EducationFormSet = modelformset_factory(Education, form=EducationForm, formset=M
 
 
 class SkillForm(ModelForm):
+    def clean(self):
+        cleaned_data = super(SkillForm, self).clean()
+        name = cleaned_data.get('name')
+        competency = cleaned_data.get('competency')
+
+        if name and competency not in [1, 2, 3, 4, 5]:
+                raise forms.ValidationError("Please select a competency level for your skill")
+
+        if competency in [1, 2, 3, 4, 5] and not name:
+                raise forms.ValidationError("Please enter a skill first")
+
     class Meta:
         model = Skill
         fields = ['name', 'competency', ]
@@ -70,6 +81,17 @@ SkillFormSet = modelformset_factory(Skill, form=SkillForm, formset=MyModelFormSe
 
 
 class LanguageForm(ModelForm):
+    def clean(self):
+        cleaned_data = super(LanguageForm, self).clean()
+        name = cleaned_data.get('name')
+        competency = cleaned_data.get('competency')
+
+        if name and competency not in [1, 2, 3, 4, 5]:
+                raise forms.ValidationError("Please select a competency level for your language")
+
+        if competency in [1, 2, 3, 4, 5] and not name:
+                raise forms.ValidationError("Please enter a language first")
+
     class Meta:
         model = Language
         fields = ['name', 'competency', ]
@@ -85,12 +107,14 @@ class ProfileUpdateForm(ModelForm):
     class Meta:
         model = Profile
         # TODO: Restrict phone number to 0-9 numerals
-        fields = ['address', 'address2', 'city', 'country', 'phone_number', 'linked_in', 'objective', 'profile_pic', ]
+        fields = ['job_title', 'address', 'address2', 'city', 'country', 'phone_number', 'linked_in', 'objective',
+                  'profile_pic', ]
         widgets = {'objective': Textarea(attrs={'class': 'objective-box', 'cols': 50, 'rows': 10,
                                                 'maxlength': 500,
                                                 'placeholder': 'A short blurb telling the hiring manager what skills, '
                                                 'knowledge, and abilities you have that will help the '
                                                 'company achieve its goals. Max length is 500 characters.'}),
+                   'job_title': TextInput(attrs={'placeholder': 'What is your current job title?'}),
                    'address': TextInput(attrs={'placeholder': 'What is your home street address?'}),
                    'address2': TextInput(attrs={'placeholder': 'Neighborhood or sub-district'}),
                    'city': TextInput(attrs={'placeholder': 'What city do you live in?'}),

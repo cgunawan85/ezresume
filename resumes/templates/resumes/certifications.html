@@ -3,16 +3,19 @@
 {% load static %}
 {% block title %}<title>EZResume | Certifications</title>{% endblock %}
 {% block subheader %}
-    <div class="sub-header">
-        <ul>
-            <li><a href="#">1. Resume Info</a></li>
-            <li><a href="#">2. Work Experience</a></li>
-            <li><a href="#" class="active">3. Certifications</a></li>
-            <li><a href="#">4. Education</a></li>
-            <li><a href="#">5. Skills</a></li>
-            <li><a href="#">6. Languages</a></li>
-        </ul>
-    </div>
+    <form action="" method="POST">{% csrf_token %}
+        {{ wizard.management_form }}
+        <div class="sub-header">
+            <ul>
+                <li><button name="wizard_goto_step" type="submit" value="resumes">1. Resume Info</button></li>
+                <li><button name="wizard_goto_step" type="submit" value="work_experience">2. Work Experience</button></li>
+                <li><button name="wizard_goto_step" type="submit" value="certifications" class="active">3. Certifications</button></li>
+                <li><button name="wizard_goto_step" type="submit" value="education">4. Education</button></li>
+                <li><button name="wizard_goto_step" type="submit" value="skills">5. Skills</button></li>
+                <li><button name="wizard_goto_step" type="submit" value="languages">6. Languages</button></li>
+            </ul>
+        </div>
+    </form>
 {% endblock %}
 
 {% block content %}

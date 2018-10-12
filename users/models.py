@@ -15,6 +15,7 @@ class User(AbstractUser):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    job_title = models.CharField(max_length=255, blank=True)
     phone_number = models.CharField(max_length=255, blank=True)
     address = models.CharField(max_length=255, blank=True)
     address2 = models.CharField(max_length=255, blank=True)
