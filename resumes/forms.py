@@ -84,16 +84,17 @@ LanguageFormSet = modelformset_factory(Language, form=LanguageForm, formset=MyMo
 class ProfileUpdateForm(ModelForm):
     class Meta:
         model = Profile
+        # TODO: Restrict phone number to 0-9 numerals
         fields = ['address', 'address2', 'city', 'country', 'phone_number', 'linked_in', 'objective', 'profile_pic', ]
         widgets = {'objective': Textarea(attrs={'class': 'objective-box', 'cols': 50, 'rows': 10,
                                                 'maxlength': 500,
                                                 'placeholder': 'A short blurb telling the hiring manager what skills, '
-                                                               'knowledge, and abilities you have that will help the '
+                                                'knowledge, and abilities you have that will help the '
                                                 'company achieve its goals. Max length is 500 characters.'}),
                    'address': TextInput(attrs={'placeholder': 'What is your home street address?'}),
                    'address2': TextInput(attrs={'placeholder': 'Neighborhood or sub-district'}),
                    'city': TextInput(attrs={'placeholder': 'What city do you live in?'}),
-                   'phone_number': TextInput(attrs={'placeholder': 'What is your mobile number?'}),
+                   'phone_number': TextInput(attrs={'placeholder': 'What is your mobile number?', }),
                    'linked_in': TextInput(attrs={'placeholder': 'What is your LinkedIn profile?'}), }
         labels = {"linked_in": "LinkedIn profile",
                   "phone_number": "Mobile number",

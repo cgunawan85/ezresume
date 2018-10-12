@@ -1,4 +1,5 @@
 COMPETENCY_CHOICES = (
+    ('', '-----'),
     (1, 'Poor'),
     (2, 'Below Average'),
     (3, 'Average'),
