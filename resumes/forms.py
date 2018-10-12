@@ -1,10 +1,18 @@
 from django.forms import ModelForm, Textarea, TextInput
 from django import forms
 from django.forms import modelformset_factory
+from django.forms.models import BaseModelFormSet
 
 from .choices import COMPETENCY_CHOICES
 from users.models import Profile
 from .models import Certification, Education, Language, Resume, Skill, WorkExperience
+
+
+class MyModelFormSet(BaseModelFormSet):
+    def __init__(self, *args, **kwargs):
+        super(MyModelFormSet, self).__init__(*args, **kwargs)
+        for form in self.forms:
+            form.empty_permitted = False
 
 
 class ResumeForm(ModelForm):
@@ -22,11 +30,19 @@ class WorkExperienceForm(ModelForm):
                    'achievements': Textarea(attrs={'class': 'objective-box', 'cols': 50, 'rows': 10}), }
 
 
+WorkExperienceFormSet = modelformset_factory(WorkExperience, form=WorkExperienceForm, formset=MyModelFormSet,
+                                             validate_min=True, extra=1, max_num=3)
+
+
 class CertificationForm(ModelForm):
     class Meta:
         model = Certification
         fields = ['name', 'date_obtained', 'city', ]
         widgets = {'date_obtained': TextInput(attrs={'class': 'date-picker'})}
+
+
+CertificationFormSet = modelformset_factory(Certification, form=CertificationForm, formset=MyModelFormSet,
+                                            extra=1, max_num=5)
 
 
 class EducationForm(ModelForm):
@@ -38,26 +54,31 @@ class EducationForm(ModelForm):
         labels = {'gpa': 'GPA'}
 
 
+EducationFormSet = modelformset_factory(Education, form=EducationForm, formset=MyModelFormSet, extra=1, max_num=3)
+
+
 class SkillForm(ModelForm):
     class Meta:
         model = Skill
         fields = ['name', 'competency', ]
+        # TODO: Default for competency has to be none
         widgets = {'competency': forms.Select(choices=COMPETENCY_CHOICES, attrs={'class': 'form-control'}),
                    'name': TextInput(attrs={'placeholder': 'For example: Microsoft Excel'}), }
 
 
-SkillFormSet = modelformset_factory(Skill, form=SkillForm, extra=0, max_num=5)
+SkillFormSet = modelformset_factory(Skill, form=SkillForm, formset=MyModelFormSet, extra=1, max_num=5)
 
 
 class LanguageForm(ModelForm):
     class Meta:
         model = Language
         fields = ['name', 'competency', ]
+        # TODO: Default for competency has to be none
         widgets = {'competency': forms.Select(choices=COMPETENCY_CHOICES, attrs={'class': 'form-control'}),
                    'name': TextInput(attrs={'placeholder': 'For example: English or Mandarin'}), }
 
 
-LanguageFormSet = modelformset_factory(Language, form=LanguageForm, extra=0, max_num=5)
+LanguageFormSet = modelformset_factory(Language, form=LanguageForm, formset=MyModelFormSet, extra=1, max_num=5)
 
 
 class ProfileUpdateForm(ModelForm):

@@ -13,13 +13,13 @@ class Resume(models.Model):
 
 
 class WorkExperience(models.Model):
-    position = models.CharField(max_length=255, blank=True)
-    company = models.CharField(max_length=255, blank=True)
-    city = models.CharField(max_length=255, blank=True)
+    position = models.CharField(null=True, max_length=255, blank=True)
+    company = models.CharField(null=True, max_length=255, blank=True)
+    city = models.CharField(null=True, max_length=255, blank=True)
     start_date = models.DateTimeField(null=True, blank=True)
     end_date = models.DateTimeField(null=True, blank=True)
     # TODO: use tiny-mce to make achievements more rich
-    achievements = models.TextField(blank=True)
+    achievements = models.TextField(null=True, blank=True)
     resume = models.ForeignKey(Resume, on_delete=models.CASCADE)
 
     def __str__(self):

@@ -2,20 +2,20 @@ from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
 from django.urls import reverse
 
 from users.forms import CustomUserChangeForm
-from .forms import (ResumeForm, ProfileUpdateForm, WorkExperienceForm, CertificationForm,
-                    EducationForm, SkillFormSet, LanguageFormSet)
+from .forms import (ResumeForm, ProfileUpdateForm, WorkExperienceFormSet, CertificationFormSet,
+                    EducationFormSet, SkillFormSet, LanguageFormSet)
 from .models import Certification, Education, Language, Resume, Skill, WorkExperience
 from formtools.wizard.views import SessionWizardView
 
 
 FORMS = [('resumes', ResumeForm),
-         ('work_experience', WorkExperienceForm),
-         ('certifications', CertificationForm),
-         ('education', EducationForm),
+         ('work_experience', WorkExperienceFormSet),
+         ('certifications', CertificationFormSet),
+         ('education', EducationFormSet),
          ('skills', SkillFormSet),
          ('languages', LanguageFormSet), ]
 
@@ -74,29 +74,32 @@ class ResumeWizard(LoginRequiredMixin, SessionWizardView):
         resume = Resume.objects.create(name=resume_name, user=user)
 
         work_experience_form_data = self.get_cleaned_data_for_step('work_experience')
-        WorkExperience.objects.create(position=work_experience_form_data['position'],
-                                      company=work_experience_form_data['company'],
-                                      city=work_experience_form_data['city'],
-                                      start_date=work_experience_form_data['start_date'],
-                                      end_date=work_experience_form_data['end_date'],
-                                      achievements=work_experience_form_data['achievements'],
-                                      resume=resume, )
+        for work_experience in work_experience_form_data:
+            WorkExperience.objects.create(position=work_experience.get('position'),
+                                          company=work_experience.get('company'),
+                                          city=work_experience.get('company'),
+                                          start_date=work_experience.get('start_date'),
+                                          end_date=work_experience.get('end_date'),
+                                          achievements=work_experience.get('achievements'),
+                                          resume=resume, )
 
         certifications_form_data = self.get_cleaned_data_for_step('certifications')
-        Certification.objects.create(name=certifications_form_data['name'],
-                                     date_obtained=certifications_form_data['date_obtained'],
-                                     city=certifications_form_data['city'],
-                                     resume=resume, )
+        for certifications in certifications_form_data:
+            Certification.objects.create(name=certifications['name'],
+                                         date_obtained=certifications['date_obtained'],
+                                         city=certifications['city'],
+                                         resume=resume, )
 
         education_form_data = self.get_cleaned_data_for_step('education')
-        Education.objects.create(school=education_form_data['school'],
-                                 degree=education_form_data['degree'],
-                                 major=education_form_data['major'],
-                                 gpa=education_form_data['gpa'],
-                                 city=education_form_data['city'],
-                                 start_date=education_form_data['start_date'],
-                                 end_date=education_form_data['end_date'],
-                                 resume=resume, )
+        for education in education_form_data:
+            Education.objects.create(school=education['school'],
+                                     degree=education['degree'],
+                                     major=education['major'],
+                                     gpa=education['gpa'],
+                                     city=education['city'],
+                                     start_date=education['start_date'],
+                                     end_date=education['end_date'],
+                                     resume=resume, )
 
         skills_form_data = self.get_cleaned_data_for_step('skills')
         for skill in skills_form_data:

@@ -49,4 +49,10 @@
     </div>
     </form>
 {% endblock %}
-{% block script %}{% endblock %}
+{% block script %}
+    <script type="text/javascript">
+        $(function() {
+            $('.form-duplicate').formset({ prefix: 'education' });
+        })
+    </script>
+{% endblock %}
