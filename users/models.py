@@ -2,6 +2,7 @@ from django_countries.fields import CountryField
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from PIL import Image
+from tinymce.models import HTMLField
 
 
 class User(AbstractUser):
@@ -22,7 +23,7 @@ class Profile(models.Model):
     city = models.CharField(max_length=255, blank=True)
     country = CountryField(blank_label='(Select country)', blank=True)
     linked_in = models.CharField(max_length=255, blank=True)
-    objective = models.TextField(blank=True)
+    objective = HTMLField(blank=True)
     profile_pic = models.ImageField(default="profile-pics/default.jpg/", upload_to="profile-pics")
 
     def __str__(self):

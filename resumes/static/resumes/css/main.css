@@ -221,6 +221,8 @@ body{
     background-color: #e0e0e0;
     color: #3d3d3d;
     border: 1px solid #dbdbdb;
+    border-radius: 2px;
+    padding: 14px 22px;
 }
 
 .form-labels-on-top .button-previous:hover {
@@ -229,6 +231,17 @@ body{
 
 .form-labels-on-top .button-next{
     float: right;
+    border-radius: 2px;
+    background-color: green;
+    color: #ffffff;
+    font-weight: bold;
+    box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.08);
+    padding: 14px 22px;
+    border: 0;
+}
+
+.form-labels-on-top .button-next:hover{
+    background-color: darkgreen;
 }
 
 #add_more {
@@ -244,6 +257,21 @@ body{
 
 .confirm-delete {
     margin-top: 10px;
+}
+
+.form-labels-on-top .form-button{
+    border-radius: 2px;
+    background-color: green;
+    color: #ffffff;
+    font-weight: bold;
+    box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.08);
+    padding: 14px 22px;
+    border: 0;
+    margin-top: 15px;
+}
+
+.form-labels-on-top .form-button:hover{
+    background-color: darkgreen;
 }
 
 /*----------- Resume Form ----------- */
@@ -315,21 +343,6 @@ body{
     margin-left: 8px;
     color:  #5f5f5f;
     font-weight: normal;
-}
-
-.form-labels-on-top button{
-    border-radius: 2px;
-    background-color: green;
-    color: #ffffff;
-    font-weight: bold;
-    box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.08);
-    padding: 14px 22px;
-    border: 0;
-    margin-top: 15px;
-}
-
-.form-labels-on-top button:hover{
-    background-color: darkgreen;
 }
 
 .form-row p {

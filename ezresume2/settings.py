@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'users',
     'resumes',
     'formtools',
+    'tinymce'
 ]
 
 MIDDLEWARE = [
