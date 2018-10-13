@@ -1,7 +1,7 @@
 {% extends 'resumes/layout.html' %}
 {% load i18n %}
 {% load static %}
-{% block title %}<title>EZResume | Resume</title>{% endblock %}
+{% block title %}<title>EZResume | Resume Info</title>{% endblock %}
 {% block subheader %}
     <form action="" method="POST">{% csrf_token %}
         {{ wizard.management_form }}

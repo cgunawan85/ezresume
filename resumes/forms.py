@@ -19,6 +19,7 @@ class ResumeForm(ModelForm):
     class Meta:
         model = Resume
         fields = ['name', ]
+        widgets = {'name': TextInput(attrs={'placeholder': 'For example: Jedi Knight or Bank Teller'}), }
 
 
 class WorkExperienceForm(ModelForm):
@@ -72,7 +73,6 @@ class SkillForm(ModelForm):
     class Meta:
         model = Skill
         fields = ['name', 'competency', ]
-        # TODO: Default for competency has to be none
         widgets = {'competency': forms.Select(choices=COMPETENCY_CHOICES, attrs={'class': 'form-control'}),
                    'name': TextInput(attrs={'placeholder': 'For example: Microsoft Excel'}), }
 
@@ -114,7 +114,7 @@ class ProfileUpdateForm(ModelForm):
                                                 'placeholder': 'A short blurb telling the hiring manager what skills, '
                                                 'knowledge, and abilities you have that will help the '
                                                 'company achieve its goals. Max length is 500 characters.'}),
-                   'job_title': TextInput(attrs={'placeholder': 'What is your current job title?'}),
+                   'job_title': TextInput(attrs={'placeholder': 'What is your desired job title?'}),
                    'address': TextInput(attrs={'placeholder': 'What is your home street address?'}),
                    'address2': TextInput(attrs={'placeholder': 'Neighborhood or sub-district'}),
                    'city': TextInput(attrs={'placeholder': 'What city do you live in?'}),
