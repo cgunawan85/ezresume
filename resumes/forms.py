@@ -104,6 +104,7 @@ LanguageFormSet = modelformset_factory(Language, form=LanguageForm, formset=MyMo
 
 
 class ProfileUpdateForm(ModelForm):
+
     class Meta:
         model = Profile
         # TODO: Restrict phone number to 0-9 numerals
