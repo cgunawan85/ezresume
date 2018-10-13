@@ -4,26 +4,34 @@ from .models import Education, Certification, Language, Resume, Skill, WorkExper
 
 class ResumeAdmin(admin.ModelAdmin):
     readonly_fields = ('created_at',)
+    search_fields = ['name', ]
+    list_filter = ['created_at', ]
+    list_display = ['name', 'user', 'created_at', 'updated_at', ]
 
 
 class WorkExperienceAdmin(admin.ModelAdmin):
-    pass
+    search_fields = ['position', 'company', ]
+    list_display = ['position', 'company', 'resume', ]
 
 
 class EducationAdmin(admin.ModelAdmin):
-    pass
+    search_fields = ['school', ]
+    list_display = ['school', 'resume', ]
 
 
 class CertificationAdmin(admin.ModelAdmin):
-    pass
+    search_fields = ['name', ]
+    list_display = ['name', 'resume', ]
 
 
 class SkillAdmin(admin.ModelAdmin):
-    pass
+    search_fields = ['name', ]
+    list_display = ['name', 'resume', ]
 
 
 class LanguageAdmin(admin.ModelAdmin):
-    pass
+    search_fields = ['name', ]
+    list_display = ['name', 'resume', ]
 
 
 admin.site.register(Resume, ResumeAdmin)
