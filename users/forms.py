@@ -34,7 +34,6 @@ class CustomUserCreationForm(UserCreationForm):
 
 
 class CustomUserChangeForm(forms.ModelForm):
-
     class Meta:
         model = User
         fields = ('first_name', 'last_name', )

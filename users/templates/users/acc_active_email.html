@@ -1,11 +1,11 @@
 {% autoescape off %}
 Hi {{ user.username }},
 
-Your account security is our priority. Please click on the link to complete your EZResume registration:
+Please click on the link below to complete your EZResume registration:
 
 http://{{ domain }}{% url 'activate' uidb64=uid token=token %}
 
-Kind Regards,
+With appreciation,
 
 
 

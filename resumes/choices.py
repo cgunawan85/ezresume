@@ -1,3 +1,4 @@
+# choices for skills and languages
 COMPETENCY_CHOICES = (
     ('', '-----'),
     (1, 'Poor'),

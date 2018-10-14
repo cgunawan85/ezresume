@@ -1,4 +1,4 @@
-from django.forms import ModelForm, Textarea, TextInput
+from django.forms import ModelForm, Textarea, TextInput, DateInput
 from django import forms
 from django.forms import modelformset_factory
 from django.forms.models import BaseModelFormSet
@@ -8,6 +8,7 @@ from users.models import Profile
 from .models import Certification, Education, Language, Resume, Skill, WorkExperience
 
 
+# allows validation on empty forms for ResumeWizard
 class MyModelFormSet(BaseModelFormSet):
     def __init__(self, *args, **kwargs):
         super(MyModelFormSet, self).__init__(*args, **kwargs)
@@ -19,16 +20,19 @@ class ResumeForm(ModelForm):
     class Meta:
         model = Resume
         fields = ['name', ]
-        widgets = {'name': TextInput(attrs={'placeholder': 'For example: Jedi Knight or Bank Teller'}), }
+        widgets = {'name': TextInput(attrs={'placeholder': 'For example: Jedi Knight or Sales Manager'}), }
 
 
 class WorkExperienceForm(ModelForm):
     class Meta:
         model = WorkExperience
         fields = ['position', 'company', 'city', 'start_date', 'end_date', 'achievements', ]
-        widgets = {'start_date': TextInput(attrs={'class': 'date-picker'}),
-                   'end_date': TextInput(attrs={'class': 'date-picker'}),
-                   'achievements': Textarea(attrs={'class': 'objective-box', 'cols': 50, 'rows': 10}), }
+        widgets = {'start_date': TextInput(attrs={'class': 'date-picker', 'placeholder': 'MM/DD/YYYY'}),
+                   'end_date': TextInput(attrs={'class': 'date-picker', 'placeholder': 'MM/DD/YYYY'}),
+                   'achievements': Textarea(attrs={'class': 'objective-box', 'cols': 50, 'rows': 10}),
+                   'position': TextInput(attrs={'placeholder': 'For example: Bank Teller'}),
+                   'company': TextInput(attrs={'placeholder': 'For example: Bank Central Asia'}),
+                   'city': TextInput(attrs={'placeholder': 'For example: Jakarta'}), }
 
 
 WorkExperienceFormSet = modelformset_factory(WorkExperience, form=WorkExperienceForm, formset=MyModelFormSet,
@@ -39,7 +43,10 @@ class CertificationForm(ModelForm):
     class Meta:
         model = Certification
         fields = ['name', 'date_obtained', 'city', ]
-        widgets = {'date_obtained': TextInput(attrs={'class': 'date-picker'})}
+        widgets = {'date_obtained': TextInput(attrs={'class': 'date-picker',
+                                                     'placeholder': 'MM/DD/YYYY'}),
+                   'name': TextInput(attrs={'placeholder': 'For example: Certified Public Accountant'}),
+                   'city': TextInput(attrs={'placeholder': 'For example: Jakarta'}), }
 
 
 CertificationFormSet = modelformset_factory(Certification, form=CertificationForm, formset=MyModelFormSet,
@@ -50,8 +57,13 @@ class EducationForm(ModelForm):
     class Meta:
         model = Education
         fields = ['school', 'degree', 'major', 'gpa', 'city', 'start_date', 'end_date', ]
-        widgets = {'start_date': TextInput(attrs={'class': 'date-picker'}),
-                   'end_date': TextInput(attrs={'class': 'date-picker'}), }
+        widgets = {'start_date': TextInput(attrs={'class': 'date-picker', 'placeholder': 'MM/DD/YYYY'}),
+                   'end_date': TextInput(attrs={'class': 'date-picker', 'placeholder': 'MM/DD/YYYY'}),
+                   'school': TextInput(attrs={'placeholder': 'For example: University of San Francisco'}),
+                   'degree': TextInput(attrs={'placeholder': 'For example: Bachelor of Science'}),
+                   'major': TextInput(attrs={'placeholder': 'For example: Economics'}),
+                   'gpa': TextInput(attrs={'placeholder': 'For example: 3.7'}),
+                   'city': TextInput(attrs={'placeholder': 'For example: San Francisco'}), }
         labels = {'gpa': 'GPA'}
 
 
@@ -95,7 +107,6 @@ class LanguageForm(ModelForm):
     class Meta:
         model = Language
         fields = ['name', 'competency', ]
-        # TODO: Default for competency has to be none
         widgets = {'competency': forms.Select(choices=COMPETENCY_CHOICES, attrs={'class': 'form-control'}),
                    'name': TextInput(attrs={'placeholder': 'For example: English or Mandarin'}), }
 
@@ -104,18 +115,12 @@ LanguageFormSet = modelformset_factory(Language, form=LanguageForm, formset=MyMo
 
 
 class ProfileUpdateForm(ModelForm):
-
     class Meta:
         model = Profile
         # TODO: Restrict phone number to 0-9 numerals
         fields = ['job_title', 'address', 'address2', 'city', 'country', 'phone_number', 'linked_in', 'objective',
                   'profile_pic', ]
-        widgets = {'objective': Textarea(attrs={'class': 'objective-box', 'cols': 50, 'rows': 10,
-                                                'maxlength': 500,
-                                                'placeholder': 'A short blurb telling the hiring manager what skills, '
-                                                'knowledge, and abilities you have that will help the '
-                                                'company achieve its goals. Max length is 500 characters.'}),
-                   'job_title': TextInput(attrs={'placeholder': 'What is your desired job title?'}),
+        widgets = {'job_title': TextInput(attrs={'placeholder': 'What is your desired job title?'}),
                    'address': TextInput(attrs={'placeholder': 'What is your home street address?'}),
                    'address2': TextInput(attrs={'placeholder': 'Neighborhood or sub-district'}),
                    'city': TextInput(attrs={'placeholder': 'What city do you live in?'}),
