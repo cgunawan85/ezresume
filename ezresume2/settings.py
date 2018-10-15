@@ -146,4 +146,3 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'chrisgunawan@gmail.com'
 EMAIL_HOST_PASSWORD = 'Monday12'
 
-DATE_INPUT_FORMATS = ['%d-%m-%Y']
