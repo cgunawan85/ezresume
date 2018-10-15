@@ -1,4 +1,4 @@
-from django.forms import ModelForm, Textarea, TextInput, DateInput
+from django.forms import ModelForm, Textarea, TextInput, NumberInput
 from django import forms
 from django.forms import modelformset_factory
 from django.forms.models import BaseModelFormSet
@@ -64,7 +64,7 @@ class EducationForm(ModelForm):
                    'school': TextInput(attrs={'placeholder': 'For example: University of San Francisco'}),
                    'degree': TextInput(attrs={'placeholder': 'For example: Bachelor of Science'}),
                    'major': TextInput(attrs={'placeholder': 'For example: Economics'}),
-                   'gpa': TextInput(attrs={'placeholder': 'For example: 3.7'}),
+                   'gpa': NumberInput(attrs={'placeholder': 'For example: 3.7'}),
                    'city': TextInput(attrs={'placeholder': 'For example: San Francisco'}), }
         labels = {'gpa': 'GPA'}
 

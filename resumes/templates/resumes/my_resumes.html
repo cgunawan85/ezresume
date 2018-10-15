@@ -8,9 +8,14 @@
             <div class="container">
                 <p class="resume-name">{{ resume.name }}</p>
                 <p>Created on {{ resume.created_at }}</p>
-                <form action="{% url 'resumes:delete-resume' pk=resume.id %}">
-                    <input type="submit" class="confirm-delete" value="Delete" />
-                </form>
+                <div class="button-row">
+                    <form action="{% url 'resumes:delete-resume' pk=resume.id %}">
+                        <input type="submit" class="confirm-delete" value="Delete" />
+                    </form>
+                    <form action="{% url 'resumes:edit-resume' pk=resume.id %}">
+                        <input type="submit" class="edit-resume-button" value="Edit" />
+                    </form>
+                </div>
             </div>
         </div>
     {% empty %}

@@ -63,6 +63,40 @@ def delete_resume(request, pk):
 class ResumeWizard(LoginRequiredMixin, SessionWizardView):
     login_url = '/login/'
 
+    def get_form_initial(self, step):
+        if 'pk' in self.kwargs:
+            return {}
+        return self.initial_dict.get(step, {})
+
+    def get_form_instance(self, step):
+        if 'pk' in self.kwargs:
+            pk = self.kwargs['pk']
+            resume = Resume.objects.get(id=pk)
+
+            if step == 'resumes':
+                return resume
+
+            if step == 'work_experience':
+                work_experience = resume.workexperience_set.all()
+                return work_experience
+
+            if step == 'certifications':
+                certification = resume.certification_set.all()
+                return certification
+
+            if step == 'education':
+                education = resume.education_set.all()
+                return education
+
+            if step == 'skills':
+                skill = resume.skill_set.all()
+                return skill
+
+            if step == 'languages':
+                language = resume.language_set.all()
+                return language
+        return None
+
     def get_template_names(self):
         return [TEMPLATES[self.steps.current]]
 
@@ -77,7 +111,7 @@ class ResumeWizard(LoginRequiredMixin, SessionWizardView):
         for work_experience in work_experience_form_data:
             WorkExperience.objects.create(position=work_experience.get('position'),
                                           company=work_experience.get('company'),
-                                          city=work_experience.get('company'),
+                                          city=work_experience.get('city'),
                                           start_date=work_experience.get('start_date'),
                                           end_date=work_experience.get('end_date'),
                                           achievements=work_experience.get('achievements'),
