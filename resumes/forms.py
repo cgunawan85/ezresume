@@ -20,7 +20,8 @@ class ResumeForm(ModelForm):
     class Meta:
         model = Resume
         fields = ['name', ]
-        widgets = {'name': TextInput(attrs={'placeholder': 'For example: Jedi Knight or Sales Manager'}), }
+        widgets = {'name': TextInput(attrs={'placeholder': 'For example: Data Scientist or Sales Manager'}), }
+        labels = {'name': 'Resume name'}
 
 
 class WorkExperienceForm(ModelForm):
@@ -45,8 +46,9 @@ class CertificationForm(ModelForm):
         fields = ['name', 'date_obtained', 'city', ]
         widgets = {'date_obtained': TextInput(attrs={'class': 'date-picker',
                                                      'placeholder': 'MM/DD/YYYY'}),
-                   'name': TextInput(attrs={'placeholder': 'For example: Certified Public Accountant'}),
-                   'city': TextInput(attrs={'placeholder': 'For example: Jakarta'}), }
+                   'name': TextInput(attrs={'placeholder': 'For example: Certified Technical Architect'}),
+                   'city': TextInput(attrs={'placeholder': 'For example: New York'}), }
+        labels = {'name': 'Certification name'}
 
 
 CertificationFormSet = modelformset_factory(Certification, form=CertificationForm, formset=MyModelFormSet,
@@ -87,6 +89,7 @@ class SkillForm(ModelForm):
         fields = ['name', 'competency', ]
         widgets = {'competency': forms.Select(choices=COMPETENCY_CHOICES, attrs={'class': 'form-control'}),
                    'name': TextInput(attrs={'placeholder': 'For example: Microsoft Excel'}), }
+        labels = {'name': 'Skill name'}
 
 
 SkillFormSet = modelformset_factory(Skill, form=SkillForm, formset=MyModelFormSet, extra=1, max_num=5)
@@ -109,6 +112,7 @@ class LanguageForm(ModelForm):
         fields = ['name', 'competency', ]
         widgets = {'competency': forms.Select(choices=COMPETENCY_CHOICES, attrs={'class': 'form-control'}),
                    'name': TextInput(attrs={'placeholder': 'For example: English or Mandarin'}), }
+        labels = {'name': 'Language name'}
 
 
 LanguageFormSet = modelformset_factory(Language, form=LanguageForm, formset=MyModelFormSet, extra=1, max_num=5)
