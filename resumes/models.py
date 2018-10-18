@@ -7,14 +7,14 @@ class Resume(models.Model):
     name = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
 
     def __str__(self):
         return self.name
 
 
 class WorkExperience(models.Model):
-    resume = models.ForeignKey(Resume, on_delete=models.CASCADE)
+    resume = models.ForeignKey(Resume, on_delete=models.CASCADE, blank=True)
     position = models.CharField(max_length=255, blank=True)
     company = models.CharField(max_length=255, blank=True)
     city = models.CharField(max_length=255, blank=True)
@@ -30,7 +30,7 @@ class WorkExperience(models.Model):
 
 
 class Certification(models.Model):
-    resume = models.ForeignKey(Resume, on_delete=models.CASCADE)
+    resume = models.ForeignKey(Resume, on_delete=models.CASCADE, blank=True)
     name = models.CharField(max_length=255, blank=True)
     date_obtained = models.DateField(null=True, blank=True)
     city = models.CharField(max_length=255, blank=True)
@@ -40,7 +40,7 @@ class Certification(models.Model):
 
 
 class Education(models.Model):
-    resume = models.ForeignKey(Resume, on_delete=models.CASCADE)
+    resume = models.ForeignKey(Resume, on_delete=models.CASCADE, blank=True)
     school = models.CharField(max_length=255, blank=True)
     degree = models.CharField(max_length=255, blank=True)
     major = models.CharField(max_length=255, blank=True)
@@ -57,7 +57,7 @@ class Education(models.Model):
 
 
 class Skill(models.Model):
-    resume = models.ForeignKey(Resume, on_delete=models.CASCADE)
+    resume = models.ForeignKey(Resume, on_delete=models.CASCADE, blank=True)
     name = models.CharField(max_length=255, blank=True)
     competency = models.IntegerField(null=True, blank=True)
 
@@ -66,7 +66,7 @@ class Skill(models.Model):
 
 
 class Language(models.Model):
-    resume = models.ForeignKey(Resume, on_delete=models.CASCADE)
+    resume = models.ForeignKey(Resume, on_delete=models.CASCADE, blank=True)
     name = models.CharField(max_length=255, blank=True)
     competency = models.IntegerField(null=True, blank=True)
 

@@ -19,57 +19,60 @@ class MyModelFormSet(BaseModelFormSet):
 class ResumeForm(ModelForm):
     class Meta:
         model = Resume
-        fields = ['name', ]
-        widgets = {'name': TextInput(attrs={'placeholder': 'For example: Data Scientist or Sales Manager'}), }
+        fields = ['name', 'user', 'id', ]
+        widgets = {'name': TextInput(attrs={'placeholder': 'For example: Data Scientist or Sales Manager'}),
+                   'user': forms.HiddenInput(),
+                   'id': forms.HiddenInput(), }
         labels = {'name': 'Resume name'}
 
 
 class WorkExperienceForm(ModelForm):
     class Meta:
         model = WorkExperience
-        fields = ['position', 'company', 'city', 'start_date', 'end_date', 'achievements', ]
+        fields = ['position', 'company', 'city', 'start_date', 'end_date', 'achievements', 'resume', ]
         widgets = {'start_date': TextInput(attrs={'class': 'date-picker', 'placeholder': 'MM/DD/YYYY'}),
                    'end_date': TextInput(attrs={'class': 'date-picker', 'placeholder': 'MM/DD/YYYY'}),
                    'achievements': Textarea(attrs={'class': 'objective-box', 'cols': 50, 'rows': 10}),
                    'position': TextInput(attrs={'placeholder': 'For example: Bank Teller'}),
                    'company': TextInput(attrs={'placeholder': 'For example: Bank Central Asia'}),
-                   'city': TextInput(attrs={'placeholder': 'For example: Jakarta'}), }
+                   'city': TextInput(attrs={'placeholder': 'For example: Jakarta'}),
+                   'resume': forms.HiddenInput(), }
 
 
-WorkExperienceFormSet = modelformset_factory(WorkExperience, form=WorkExperienceForm, formset=MyModelFormSet,
-                                             validate_min=True, extra=1, max_num=3)
+WorkExperienceFormSet = modelformset_factory(WorkExperience, form=WorkExperienceForm, formset=MyModelFormSet, max_num=3)
 
 
 class CertificationForm(ModelForm):
     class Meta:
         model = Certification
-        fields = ['name', 'date_obtained', 'city', ]
+        fields = ['name', 'date_obtained', 'city', 'resume', ]
         widgets = {'date_obtained': TextInput(attrs={'class': 'date-picker',
                                                      'placeholder': 'MM/DD/YYYY'}),
                    'name': TextInput(attrs={'placeholder': 'For example: Certified Technical Architect'}),
-                   'city': TextInput(attrs={'placeholder': 'For example: New York'}), }
+                   'city': TextInput(attrs={'placeholder': 'For example: New York'}),
+                   'resume': forms.HiddenInput(), }
         labels = {'name': 'Certification name'}
 
 
-CertificationFormSet = modelformset_factory(Certification, form=CertificationForm, formset=MyModelFormSet,
-                                            extra=1, max_num=5)
+CertificationFormSet = modelformset_factory(Certification, form=CertificationForm, formset=MyModelFormSet, max_num=5)
 
 
 class EducationForm(ModelForm):
     class Meta:
         model = Education
-        fields = ['school', 'degree', 'major', 'gpa', 'city', 'start_date', 'end_date', ]
+        fields = ['school', 'degree', 'major', 'gpa', 'city', 'start_date', 'end_date', 'resume', ]
         widgets = {'start_date': TextInput(attrs={'class': 'date-picker', 'placeholder': 'MM/DD/YYYY'}),
                    'end_date': TextInput(attrs={'class': 'date-picker', 'placeholder': 'MM/DD/YYYY'}),
                    'school': TextInput(attrs={'placeholder': 'For example: University of San Francisco'}),
                    'degree': TextInput(attrs={'placeholder': 'For example: Bachelor of Science'}),
                    'major': TextInput(attrs={'placeholder': 'For example: Economics'}),
                    'gpa': NumberInput(attrs={'placeholder': 'For example: 3.7'}),
-                   'city': TextInput(attrs={'placeholder': 'For example: San Francisco'}), }
+                   'city': TextInput(attrs={'placeholder': 'For example: San Francisco'}),
+                   'resume': forms.HiddenInput(), }
         labels = {'gpa': 'GPA'}
 
 
-EducationFormSet = modelformset_factory(Education, form=EducationForm, formset=MyModelFormSet, extra=1, max_num=3)
+EducationFormSet = modelformset_factory(Education, form=EducationForm, formset=MyModelFormSet, max_num=3)
 
 
 class SkillForm(ModelForm):
@@ -86,13 +89,14 @@ class SkillForm(ModelForm):
 
     class Meta:
         model = Skill
-        fields = ['name', 'competency', ]
+        fields = ['name', 'competency', 'resume', ]
         widgets = {'competency': forms.Select(choices=COMPETENCY_CHOICES, attrs={'class': 'form-control'}),
-                   'name': TextInput(attrs={'placeholder': 'For example: Microsoft Excel'}), }
+                   'name': TextInput(attrs={'placeholder': 'For example: Microsoft Excel'}),
+                   'resume': forms.HiddenInput(),}
         labels = {'name': 'Skill name'}
 
 
-SkillFormSet = modelformset_factory(Skill, form=SkillForm, formset=MyModelFormSet, extra=1, max_num=5)
+SkillFormSet = modelformset_factory(Skill, form=SkillForm, formset=MyModelFormSet, max_num=5)
 
 
 class LanguageForm(ModelForm):
@@ -109,19 +113,19 @@ class LanguageForm(ModelForm):
 
     class Meta:
         model = Language
-        fields = ['name', 'competency', ]
+        fields = ['name', 'competency', 'resume', ]
         widgets = {'competency': forms.Select(choices=COMPETENCY_CHOICES, attrs={'class': 'form-control'}),
-                   'name': TextInput(attrs={'placeholder': 'For example: English or Mandarin'}), }
+                   'name': TextInput(attrs={'placeholder': 'For example: English or Mandarin'}),
+                   'resume': forms.HiddenInput(), }
         labels = {'name': 'Language name'}
 
 
-LanguageFormSet = modelformset_factory(Language, form=LanguageForm, formset=MyModelFormSet, extra=1, max_num=5)
+LanguageFormSet = modelformset_factory(Language, form=LanguageForm, formset=MyModelFormSet, max_num=5)
 
 
 class ProfileUpdateForm(ModelForm):
     class Meta:
         model = Profile
-        # TODO: Restrict phone number to 0-9 numerals
         fields = ['job_title', 'address', 'address2', 'city', 'country', 'phone_number', 'linked_in', 'objective',
                   'profile_pic', ]
         widgets = {'job_title': TextInput(attrs={'placeholder': 'What is your desired job title?'}),
