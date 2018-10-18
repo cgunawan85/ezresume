@@ -9,6 +9,7 @@ from . import views
 
 urlpatterns = [
     path('app/', include(('resumes.urls', 'resumes'), namespace='resumes')),
+    path('accounts/', include('allauth.urls')),
     path('tinymce/', include('tinymce.urls')),
     path('admin/', admin.site.urls),
     path('signup/', user_views.signup, name='signup'),

@@ -40,10 +40,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_countries',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.linkedin',
     'users',
     'resumes',
     'formtools',
-    'tinymce'
+    'tinymce',
 ]
 
 MIDDLEWARE = [
@@ -146,3 +152,12 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'chrisgunawan@gmail.com'
 EMAIL_HOST_PASSWORD = 'Monday12'
 
+AUTHENTICATION_BACKENDS = (
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
+
+SITE_ID = 1
+
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False

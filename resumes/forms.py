@@ -1,7 +1,7 @@
 from django.forms import ModelForm, Textarea, TextInput, NumberInput
 from django import forms
+from django.forms import BaseModelFormSet
 from django.forms import modelformset_factory
-from django.forms.models import BaseModelFormSet
 
 from .choices import COMPETENCY_CHOICES
 from users.models import Profile
@@ -39,7 +39,8 @@ class WorkExperienceForm(ModelForm):
                    'resume': forms.HiddenInput(), }
 
 
-WorkExperienceFormSet = modelformset_factory(WorkExperience, form=WorkExperienceForm, formset=MyModelFormSet, max_num=3)
+WorkExperienceFormSet = modelformset_factory(WorkExperience, form=WorkExperienceForm, formset=MyModelFormSet, extra=1,
+                                             max_num=5)
 
 
 class CertificationForm(ModelForm):
@@ -92,7 +93,7 @@ class SkillForm(ModelForm):
         fields = ['name', 'competency', 'resume', ]
         widgets = {'competency': forms.Select(choices=COMPETENCY_CHOICES, attrs={'class': 'form-control'}),
                    'name': TextInput(attrs={'placeholder': 'For example: Microsoft Excel'}),
-                   'resume': forms.HiddenInput(),}
+                   'resume': forms.HiddenInput(), }
         labels = {'name': 'Skill name'}
 
 

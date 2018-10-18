@@ -1,4 +1,5 @@
 {% load static %}
+{% load socialaccount %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,6 +46,9 @@
 			<div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
 				<form class="login100-form validate-form flex-sb flex-w" method="POST"
                       action="{% url 'signup' %}">{% csrf_token %}
+                    <div>
+                        <p><a href="{% provider_login_url 'google' %}">Log In with Gmail</a></p>
+                    </div>
                     <span>
                         <h1>EZResume</h1>
 					</span>
