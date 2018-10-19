@@ -61,6 +61,15 @@ def delete_resume(request, pk):
     return HttpResponseRedirect(reverse('resumes:my-resumes'))
 
 
+def dict_has_data(input_dict):
+    has_data = False
+    for key in input_dict:
+        if input_dict[key]:
+            has_data = True
+            break
+    return has_data
+
+
 class ResumeWizard(LoginRequiredMixin, SessionWizardView):
     login_url = '/login/'
 
@@ -109,14 +118,16 @@ class ResumeWizard(LoginRequiredMixin, SessionWizardView):
 
         work_experience_form_data = self.get_cleaned_data_for_step('work_experience')
         for work_experience in work_experience_form_data:
-            we_obj = work_experience.get('id')
             we_kwargs = {'position': work_experience.get('position'),
                          'company': work_experience.get('company'),
                          'city': work_experience.get('city'),
                          'start_date': work_experience.get('start_date'),
                          'end_date': work_experience.get('end_date'),
-                         'achievements': work_experience.get('achievements'),
-                         'resume': resume, }
+                         'achievements': work_experience.get('achievements')}
+            if not dict_has_data(we_kwargs):
+                continue
+            we_kwargs['resume'] = resume
+            we_obj = work_experience.get('id')
             if we_obj:
                 WorkExperience.objects.filter(id=we_obj.id).update(**we_kwargs)
             else:
