@@ -10,4 +10,5 @@ urlpatterns = [
     path('edit/resume/<int:pk>/', views.ResumeWizard.as_view(views.FORMS), name='edit-resume'),
     path('view/resume/<int:pk>/', views.view_resume, name='view-resume'),
     path('faq/', views.faq, name='faq'),
+    path('templates/', views.templates, name='templates'),
 ]

@@ -41,8 +41,14 @@ def view_resume(request, pk):
     return render(request, 'resumes/resume.html', {'resume': resume})
 
 
+@login_required()
 def faq(request):
     return render(request, 'resumes/faq.html')
+
+
+@login_required()
+def templates(request):
+    return render(request, 'resumes/templates.html')
 
 
 @login_required()

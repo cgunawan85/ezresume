@@ -605,7 +605,7 @@ body{
     color: white;
 }
 
-/*----------- Bottom ----------- */
+/*----------- FAQ ----------- */
 
 .question-page{
     text-align: left;
@@ -616,3 +616,22 @@ body{
     margin-bottom: 50px;
     font-size: 16px;
 }
+
+.list-answer {
+    margin-left: 50px;
+}
+
+.question {
+    margin-bottom: 15px;
+}
+
+.question-box p {
+    margin-top: 7px;
+}
+
+.answer {
+    color: #5c5c5c;
+}
+
+
+
