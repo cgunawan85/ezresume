@@ -203,6 +203,16 @@ iframe {
   position: relative;
 }
 
+.social-buttons {
+  padding-bottom: 55px;
+  text-align: center;
+  display: block;
+}
+
+.login-with {
+  padding-bottom: 40px;
+  font-size: 16px;
+}
 
 /*==================================================================
 [ Form ]*/
@@ -221,7 +231,29 @@ iframe {
   display: block;
 }
 
+#id_email {
+  border: 1px solid gray;
+  width: 250px;
+}
 
+#signup_form button{
+  background-color: green;
+  color: white;
+  padding: 10px;
+}
+
+#signup_form button:hover {
+  background-color: darkgreen;
+}
+
+#signup_form p {
+  padding-top: 5px;
+}
+
+.menu {
+  text-align: center;
+  padding-top: 40px;
+}
 
 /*------------------------------------------------------------------
 [ Input ]*/
@@ -419,6 +451,28 @@ iframe {
 
 .login100-form-btn:hover {
   background-color: #57b846;
+}
+
+.google-button {
+  background-color: #FF0000;
+  color: white;
+  padding: 10px 50px;
+}
+
+.google-button:hover {
+  background-color: #c70000;
+  color: white;
+}
+
+.linkedin-button {
+  background-color: #1e90ff;
+  color: white;
+  padding: 10px 50px;
+}
+
+.linkedin-button:hover {
+  background-color: #197ee1;
+  color: white;
 }
 
 

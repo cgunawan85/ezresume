@@ -13,7 +13,7 @@ from .forms import CustomUserCreationForm
 from .models import User
 
 
-def signup(request):
+def register(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
@@ -35,7 +35,7 @@ def signup(request):
             return redirect('login')
     else:
         form = CustomUserCreationForm()
-    return render(request, 'users/signup.html', {'form': form})
+    return render(request, 'users/register.html', {'form': form})
 
 
 def activate(request, uidb64, token):

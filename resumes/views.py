@@ -8,7 +8,7 @@ from django.urls import reverse
 from users.forms import CustomUserChangeForm
 from .forms import (ResumeForm, ProfileUpdateForm, WorkExperienceFormSet, CertificationFormSet,
                     EducationFormSet, SkillFormSet, LanguageFormSet)
-from .models import Certification, Education, Language, Resume, Skill, WorkExperience
+from .models import Resume
 from formtools.wizard.views import SessionWizardView
 
 
@@ -18,6 +18,8 @@ FORMS = [('resumes', ResumeForm),
          ('education', EducationFormSet),
          ('skills', SkillFormSet),
          ('languages', LanguageFormSet), ]
+
+FORM_TYPES = ('work_experience', 'certifications', 'education', 'skills', 'languages')
 
 TEMPLATES = {'resumes': 'resumes/resumes.html',
              'work_experience': 'resumes/work_experience.html',
@@ -29,9 +31,14 @@ TEMPLATES = {'resumes': 'resumes/resumes.html',
 
 @login_required()
 def my_resumes(request):
-    user = request.user
-    resumes = Resume.objects.filter(user=user)
+    resumes = Resume.objects.all()
     return render(request, 'resumes/my_resumes.html', {'resumes': resumes})
+
+
+@login_required()
+def view_resume(request, pk):
+    resume = Resume.objects.get(pk=pk)
+    return render(request, 'resumes/resume.html', {'resume': resume})
 
 
 @login_required()
@@ -116,150 +123,19 @@ class ResumeWizard(LoginRequiredMixin, SessionWizardView):
         resume, created = Resume.objects.update_or_create(id=pk, defaults={'user': user,
                                                                            'name': resume_name, })
 
-        work_experience_form_data = self.get_cleaned_data_for_step('work_experience')
-        for work_experience in work_experience_form_data:
-            we_kwargs = {'position': work_experience.get('position'),
-                         'company': work_experience.get('company'),
-                         'city': work_experience.get('city'),
-                         'start_date': work_experience.get('start_date'),
-                         'end_date': work_experience.get('end_date'),
-                         'achievements': work_experience.get('achievements')}
-            if not dict_has_data(we_kwargs):
-                continue
-            we_kwargs['resume'] = resume
-            we_obj = work_experience.get('id')
-            if we_obj:
-                WorkExperience.objects.filter(id=we_obj.id).update(**we_kwargs)
-            else:
-                WorkExperience.objects.create(**we_kwargs)
+        for form_name in FORM_TYPES:
+            form_data_list = self.get_cleaned_data_for_step(form_name)
+            for form_data in form_data_list:
+                if not dict_has_data(form_data):
+                    continue
+                form_data['resume'] = resume
 
-        certification_form_data = self.get_cleaned_data_for_step('certifications')
-        for certification in certification_form_data:
-            cert_obj = certification.get('id')
-            cert_kwargs = {'name': certification.get('name'),
-                           'date_obtained': certification.get('date_obtained'),
-                           'city': certification.get('city'),
-                           'resume': resume, }
-            if cert_obj:
-                Certification.objects.filter(id=cert_obj.id).update(**cert_kwargs)
-            else:
-                Certification.objects.create(**cert_kwargs)
-
-        education_form_data = self.get_cleaned_data_for_step('education')
-        for education in education_form_data:
-            edu_obj = education.get('id')
-            edu_kwargs = {'school': education.get('school'),
-                          'degree': education.get('degree'),
-                          'major': education.get('major'),
-                          'gpa': education.get('gpa'),
-                          'city': education.get('city'),
-                          'start_date': education.get('start_date'),
-                          'end_date': education.get('end_date'),
-                          'resume': resume, }
-            if edu_obj:
-                Education.objects.filter(id=edu_obj.id).update(**edu_kwargs)
-            else:
-                Education.objects.create(**edu_kwargs)
-
-        skill_form_data = self.get_cleaned_data_for_step('skills')
-        for skill in skill_form_data:
-            skill_obj = skill.get('id')
-            skill_kwargs = {'name': skill.get('name'),
-                            'competency': skill.get('competency'),
-                            'resume': resume, }
-            if skill_obj:
-                Skill.objects.filter(id=skill_obj.id).update(**skill_kwargs)
-            else:
-                Skill.objects.create(**skill_kwargs)
-
-        language_form_data = self.get_cleaned_data_for_step('languages')
-        for language in language_form_data:
-            lang_obj = language.get('id')
-            lang_kwargs = {'name': language.get('name'),
-                           'competency': language.get('competency'),
-                           'resume': resume, }
-            if lang_obj:
-                Language.objects.filter(id=lang_obj.id).update(**lang_kwargs)
-            else:
-                Language.objects.create(**lang_kwargs)
+                form_instance = self.get_form(step=form_name)
+                obj = form_data.pop('id')
+                if obj:
+                    form_instance.model.objects.filter(id=obj.id).update(**form_data)
+                else:
+                    form_instance.model.objects.create(**form_data)
 
         messages.add_message(self.request, messages.SUCCESS, 'Your resume has been saved!')
         return HttpResponseRedirect(reverse('resumes:my-resumes'))
-
-    '''
-    [{'name': 'Test', 'user': None}, [
-        {'position': '', 'company': '', 'city': '', 'start_date': None, 'end_date': None, 'achievements': '',
-         'resume': None, 'id': None}], [{'name': '', 'date_obtained': None, 'city': '', 'resume': None, 'id': None}], [
-         {'school': '', 'degree': '', 'major': '', 'gpa': None, 'city': '', 'start_date': None, 'end_date': None,
-          'resume': None, 'id': None}], [{'name': '', 'competency': None, 'resume': None, 'id': None}],
-     [{'name': '', 'competency': None, 'resume': None, 'id': None}]]
-
-    def done(self, form_list, **kwargs):
-        # TODO: Refactor this code to use modelform methods like save()
-        user = self.request.user
-        resume_form_data = self.get_cleaned_data_for_step('resumes')
-        resume_name = resume_form_data['name']
-        resume = Resume.objects.create(name=resume_name, user=user)
-
-        work_experience_form_data = self.get_cleaned_data_for_step('work_experience')
-        for work_experience in work_experience_form_data:
-            we_obj = work_experience.get('id')
-            # There is id in the form even though its hidden
-            print('we_obj', we_obj, type(we_obj))
-            we_kwargs = {'position': work_experience.get('position'),
-                         'company': work_experience.get('company'),
-                         'city': work_experience.get('city'),
-                         'start_date': work_experience.get('start_date'),
-                         'end_date': work_experience.get('end_date'),
-                         'achievements': work_experience.get('achievements'),
-                         'resume': resume, }
-
-            if we_obj:
-                # update object (have to filter first to get queryset for update)
-                # This is the easiest way to update multiple fields on an object
-                WorkExperience.objects.filter(id=we_obj.id).update(**we_kwargs)
-            else:
-                WorkExperience.objects.create(**we_kwargs)
-                """
-                WorkExperience.objects.create(position=work_experience.get('position'),
-                                          company=work_experience.get('company'),
-                                          city=work_experience.get('city'),
-                                          start_date=work_experience.get('start_date'),
-                                          end_date=work_experience.get('end_date'),
-                                          achievements=work_experience.get('achievements'),
-                                          resume=resume, )
-                """
-
-        certifications_form_data = self.get_cleaned_data_for_step('certifications')
-        for certifications in certifications_form_data:
-            Certification.objects.create(name=certifications['name'],
-                                         date_obtained=certifications['date_obtained'],
-                                         city=certifications['city'],
-                                         resume=resume, )
-
-        education_form_data = self.get_cleaned_data_for_step('education')
-        for education in education_form_data:
-            Education.objects.create(school=education['school'],
-                                     degree=education['degree'],
-                                     major=education['major'],
-                                     gpa=education['gpa'],
-                                     city=education['city'],
-                                     start_date=education['start_date'],
-                                     end_date=education['end_date'],
-                                     resume=resume, )
-
-        skills_form_data = self.get_cleaned_data_for_step('skills')
-        for skill in skills_form_data:
-            Skill.objects.create(name=skill['name'],
-                                 competency=skill['competency'],
-                                 resume=resume, )
-
-        languages_form_data = self.get_cleaned_data_for_step('languages')
-        for language in languages_form_data:
-            Language.objects.create(name=language['name'],
-                                    competency=language['competency'],
-                                    resume=resume, )
-
-        messages.add_message(self.request, messages.SUCCESS, 'Your resume has been saved!')
-        return HttpResponseRedirect(reverse('resumes:my-resumes'))
-        '''

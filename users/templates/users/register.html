@@ -44,11 +44,19 @@
     <div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
+                <div class="social-buttons">
+                    <p class="login-with">
+                        Login with
+                    </p>
+                    <p>
+                        <a href="{% provider_login_url 'google' %}" class="google-button">
+                            <i class="fa fa-google fa-fw"></i> Google</a>
+                        <a href="{% provider_login_url 'linkedin' %}" class="linkedin-button">
+                            <i class="fa fa-linkedin fa-fw"></i> LinkedIn</a>
+                    </p>
+                </div>
 				<form class="login100-form validate-form flex-sb flex-w" method="POST"
-                      action="{% url 'signup' %}">{% csrf_token %}
-                    <div>
-                        <p><a href="{% provider_login_url 'google' %}">Log In with Gmail</a></p>
-                    </div>
+                      action="{% url 'register' %}">{% csrf_token %}
                     <span>
                         <h1>EZResume</h1>
 					</span>
@@ -166,6 +174,7 @@
 	<script src="{% static 'users/vendor/countdowntime/countdowntime.js' %}"></script>
 <!--===============================================================================================-->
 	<script src="{% static 'users/js/main.js' %}"></script>
+<!--===============================================================================================-->
 
 </body>
 </html>

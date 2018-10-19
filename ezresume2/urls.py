@@ -12,7 +12,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('tinymce/', include('tinymce.urls')),
     path('admin/', admin.site.urls),
-    path('signup/', user_views.signup, name='signup'),
+    path('register/', user_views.register, name='register'),
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
     path('password-reset/', auth_views.PasswordResetView.as_view(template_name='users/password_reset.html'),

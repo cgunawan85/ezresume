@@ -15,6 +15,9 @@
                     <form action="{% url 'resumes:edit-resume' pk=resume.id %}">
                         <input type="submit" class="edit-resume-button" value="Edit" />
                     </form>
+                    <form action="{% url 'resumes:view-resume' pk=resume.id %}">
+                    <input type="submit" class="view-resume-button" value="View" />
+                    </form>
                 </div>
             </div>
         </div>
