@@ -19,6 +19,8 @@ FORMS = [('resumes', ResumeForm),
          ('skills', SkillFormSet),
          ('languages', LanguageFormSet), ]
 
+FORM_TYPES = ('work_experience', 'certifications', 'education', 'skills', 'languages')
+
 TEMPLATES = {'resumes': 'resumes/resumes.html',
              'work_experience': 'resumes/work_experience.html',
              'certifications': 'resumes/certifications.html',
@@ -31,6 +33,12 @@ TEMPLATES = {'resumes': 'resumes/resumes.html',
 def my_resumes(request):
     resumes = Resume.objects.all()
     return render(request, 'resumes/my_resumes.html', {'resumes': resumes})
+
+
+@login_required()
+def view_resume(request, pk):
+    resume = Resume.objects.get(pk=pk)
+    return render(request, 'resumes/resume.html', {'resume': resume})
 
 
 @login_required()
@@ -115,72 +123,19 @@ class ResumeWizard(LoginRequiredMixin, SessionWizardView):
         resume, created = Resume.objects.update_or_create(id=pk, defaults={'user': user,
                                                                            'name': resume_name, })
 
-        work_experience_form_data = self.get_cleaned_data_for_step('work_experience')
-        for work_experience in work_experience_form_data:
-            we_kwargs = {'position': work_experience.get('position'),
-                         'company': work_experience.get('company'),
-                         'city': work_experience.get('city'),
-                         'start_date': work_experience.get('start_date'),
-                         'end_date': work_experience.get('end_date'),
-                         'achievements': work_experience.get('achievements')}
-            if not dict_has_data(we_kwargs):
-                continue
-            we_kwargs['resume'] = resume
-            we_obj = work_experience.get('id')
-            if we_obj:
-                WorkExperience.objects.filter(id=we_obj.id).update(**we_kwargs)
-            else:
-                WorkExperience.objects.create(**we_kwargs)
+        for form_name in FORM_TYPES:
+            form_data_list = self.get_cleaned_data_for_step(form_name)
+            for form_data in form_data_list:
+                if not dict_has_data(form_data):
+                    continue
+                form_data['resume'] = resume
 
-        certification_form_data = self.get_cleaned_data_for_step('certifications')
-        for certification in certification_form_data:
-            cert_obj = certification.get('id')
-            cert_kwargs = {'name': certification.get('name'),
-                           'date_obtained': certification.get('date_obtained'),
-                           'city': certification.get('city'),
-                           'resume': resume, }
-            if cert_obj:
-                Certification.objects.filter(id=cert_obj.id).update(**cert_kwargs)
-            else:
-                Certification.objects.create(**cert_kwargs)
-
-        education_form_data = self.get_cleaned_data_for_step('education')
-        for education in education_form_data:
-            edu_obj = education.get('id')
-            edu_kwargs = {'school': education.get('school'),
-                          'degree': education.get('degree'),
-                          'major': education.get('major'),
-                          'gpa': education.get('gpa'),
-                          'city': education.get('city'),
-                          'start_date': education.get('start_date'),
-                          'end_date': education.get('end_date'),
-                          'resume': resume, }
-            if edu_obj:
-                Education.objects.filter(id=edu_obj.id).update(**edu_kwargs)
-            else:
-                Education.objects.create(**edu_kwargs)
-
-        skill_form_data = self.get_cleaned_data_for_step('skills')
-        for skill in skill_form_data:
-            skill_obj = skill.get('id')
-            skill_kwargs = {'name': skill.get('name'),
-                            'competency': skill.get('competency'),
-                            'resume': resume, }
-            if skill_obj:
-                Skill.objects.filter(id=skill_obj.id).update(**skill_kwargs)
-            else:
-                Skill.objects.create(**skill_kwargs)
-
-        language_form_data = self.get_cleaned_data_for_step('languages')
-        for language in language_form_data:
-            lang_obj = language.get('id')
-            lang_kwargs = {'name': language.get('name'),
-                           'competency': language.get('competency'),
-                           'resume': resume, }
-            if lang_obj:
-                Language.objects.filter(id=lang_obj.id).update(**lang_kwargs)
-            else:
-                Language.objects.create(**lang_kwargs)
+                form_instance = self.get_form(step=form_name)
+                obj = form_data.pop('id')
+                if obj:
+                    form_instance.model.objects.filter(id=obj.id).update(**form_data)
+                else:
+                    form_instance.model.objects.create(**form_data)
 
         messages.add_message(self.request, messages.SUCCESS, 'Your resume has been saved!')
         return HttpResponseRedirect(reverse('resumes:my-resumes'))

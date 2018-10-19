@@ -1,0 +1,22 @@
+{% extends 'resumes/layout.html' %}
+{% load static %}
+{% block title %}<title>EZResume | My Resume</title>{% endblock %}
+{% block content %}
+    <div class="wrapper">
+       <div class="resume-box">
+            <p class="resume-name">{{ resume }}</p>
+            {% for work_experience in resume.workexperience_set.all %}
+                <p>{{ work_experience }}</p>
+            {% empty %}
+                <div class="empty-state-box">
+                    <p class="empty-state-text"><b>You don't have any work experience yet</b></p>
+                </div>
+            {% endfor %}
+            <div class="button-row">
+                <form action="{% url 'resumes:edit-resume' pk=resume.id %}">
+                    <input type="submit" class="edit-resume-button" value="Edit" />
+                </form>
+            </div>
+       </div>
+    </div>
+{% endblock %}
