@@ -456,7 +456,7 @@ iframe {
 .google-button {
   background-color: #FF0000;
   color: white;
-  padding: 10px 50px;
+  padding: 10px 40px;
 }
 
 .google-button:hover {
@@ -465,13 +465,13 @@ iframe {
 }
 
 .linkedin-button {
-  background-color: #1e90ff;
+  background-color: #0077B5;
   color: white;
-  padding: 10px 50px;
+  padding: 10px 40px;
 }
 
 .linkedin-button:hover {
-  background-color: #197ee1;
+  background-color: #006092;
   color: white;
 }
 

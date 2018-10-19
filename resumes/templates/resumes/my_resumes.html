@@ -9,15 +9,9 @@
                 <p class="resume-name">{{ resume.name }}</p>
                 <p>Created on {{ resume.created_at }}</p>
                 <div class="button-row">
-                    <form action="{% url 'resumes:delete-resume' pk=resume.id %}">
-                        <input type="submit" class="confirm-delete" value="Delete" />
-                    </form>
-                    <form action="{% url 'resumes:edit-resume' pk=resume.id %}">
-                        <input type="submit" class="edit-resume-button" value="Edit" />
-                    </form>
-                    <form action="{% url 'resumes:view-resume' pk=resume.id %}">
-                    <input type="submit" class="view-resume-button" value="View" />
-                    </form>
+                    <a href="{% url 'resumes:delete-resume' pk=resume.id %}" class="confirm-delete">Delete</a>
+                    <a href="{% url 'resumes:edit-resume' pk=resume.id %}" class="edit-resume">Edit</a>
+                    <a href="{% url 'resumes:view-resume' pk=resume.id %}" class="view-resume">View</a>
                 </div>
             </div>
         </div>

@@ -41,6 +41,10 @@ def view_resume(request, pk):
     return render(request, 'resumes/resume.html', {'resume': resume})
 
 
+def faq(request):
+    return render(request, 'resumes/faq.html')
+
+
 @login_required()
 def edit_profile(request):
     if request.method == 'POST':

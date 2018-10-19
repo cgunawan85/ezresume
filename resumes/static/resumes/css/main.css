@@ -133,6 +133,12 @@ body{
     background-color: #ce4670;
 }
 
+.sub-header h1 {
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
 /*
 @media (max-width: 1000px) {
 
@@ -179,7 +185,6 @@ body{
     color: white;
     background-color: green;
     padding: 10px 25px;
-    border-radius: 3px;
     opacity: 0.8;
     font-size: 16px;
     display: inline-block;
@@ -256,7 +261,40 @@ body{
 }
 
 .confirm-delete {
-    margin-top: 10px;
+    padding: 7px;
+    margin-right: 30px;
+    background-color: red;
+    color: white;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.confirm-delete:hover {
+    background-color: #c50000;
+}
+
+.edit-resume {
+    padding: 7px;
+    background-color: dodgerblue;
+    color: white;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.edit-resume:hover {
+    background-color: #1a77d2;
+}
+
+.view-resume {
+    padding: 7px;
+    background-color: green;
+    color: white;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.view-resume:hover {
+    background-color: darkgreen;
 }
 
 .form-labels-on-top .form-button{
@@ -398,10 +436,12 @@ body{
 .resume-name {
     text-transform: uppercase;
     font-weight: bold;
+    font-size: 16px;
 }
 
 .button-row {
     display:inline-block;
+    margin-top: 20px;
 }
 
 /*----------- Messages ----------- */
@@ -563,4 +603,16 @@ body{
 
 .bottom p {
     color: white;
+}
+
+/*----------- Bottom ----------- */
+
+.question-page{
+    text-align: left;
+}
+
+.question-box {
+    margin-left: 50px;
+    margin-bottom: 50px;
+    font-size: 16px;
 }
