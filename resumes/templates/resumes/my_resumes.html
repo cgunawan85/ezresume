@@ -9,11 +9,15 @@
                 <p class="resume-name">{{ resume.name }}</p>
                 <p>Created on {{ resume.created_at }}</p>
                 <div class="button-row">
+                    <!-- Why are these forms rather than links? -->
                     <form action="{% url 'resumes:delete-resume' pk=resume.id %}">
                         <input type="submit" class="confirm-delete" value="Delete" />
                     </form>
                     <form action="{% url 'resumes:edit-resume' pk=resume.id %}">
                         <input type="submit" class="edit-resume-button" value="Edit" />
+                    </form>
+                    <form action="{% url 'resumes:view-resume' pk=resume.id %}">
+                        <input type="submit" class="view-resume-button" value="View" />
                     </form>
                 </div>
             </div>
