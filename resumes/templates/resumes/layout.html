@@ -31,13 +31,27 @@
 	<header>
         <div class="header">
             <a href="{% url 'resumes:my-resumes' %}"><img src="{% static 'resumes/images/logo.png' %}" class="logo"></a>
-                <div class="header-left">
-                    <a href="{% url 'resumes:my-resumes' %}">My Resumes</a>
-                    <a href="{% url 'resumes:edit-profile' %}">Profile</a>
-                    <a href="{% url 'resumes:templates' %}">Templates</a>
+            <div class="header-left">
+                <a href="{% url 'resumes:my-resumes' %}">My Resumes</a>
+                <a href="{% url 'resumes:edit-profile' %}">Profile</a>
+                <a href="{% url 'resumes:templates' %}">Templates</a>
+            </div>
+            <div class="header-right">
+                <div class="dropdown">
+                    <div class="dropbtn">
+                        <span class="profile-pic-small">
+                            <img src="{{ user.profile.profile_pic.url }}">
+                        </span>
+                        <span class="username">
+                            {{ user.username }}  </span>
+                        <i class="fa fa-caret-down"></i>
+                    </div>
+                    <div class="dropdown-content">
                     <a href="{% url 'resumes:faq' %}">FAQ</a>
-                    <a href="{% url 'logout' %}" class="log-out-button">Logout</a>
+                    <a href="{% url 'logout' %}">Logout</a>
                 </div>
+                </div>
+            </div>
         </div>
     </header>
 

@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.linkedin',
+    'allauth.socialaccount.providers.facebook',
     'users',
     'resumes',
     'formtools',
