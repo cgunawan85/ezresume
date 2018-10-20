@@ -31,7 +31,8 @@ TEMPLATES = {'resumes': 'resumes/resumes.html',
 
 @login_required()
 def my_resumes(request):
-    resumes = Resume.objects.all()
+    user = request.user
+    resumes = Resume.objects.filter(user=user)
     return render(request, 'resumes/my_resumes.html', {'resumes': resumes})
 
 
