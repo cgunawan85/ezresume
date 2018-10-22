@@ -14,7 +14,7 @@ html{
 
 body{
 	font:14px/1.5 'Raleway', sans-serif;
-	margin:0;
+	margin: 0;
 }
 
 /*----------- Header ----------- */
@@ -166,7 +166,7 @@ body{
 */
 
 .main-content{
-    margin-bottom: 75px;
+    margin-bottom: 200px;
     text-align: center;
 }
 
@@ -419,6 +419,7 @@ body{
 .wrapper{
     text-align: center;
     padding-top: 50px;
+    padding-bottom: 200px;
 }
 
 .resume-box {
@@ -594,28 +595,6 @@ body{
     color: #5ba2d8;
 }
 
-/*----------- Bottom ----------- */
-
-.bottom {
-    overflow: hidden;
-    background-color: #111111;
-    bottom: 0;
-    width: 100%;
-    height: 200px;
-    text-align: center;
-}
-
-.bottom .logo {
-    display: inline-block;
-    margin-top: 100px;
-    width: 115px;
-    height: auto;
-}
-
-.bottom p {
-    color: white;
-}
-
 /*----------- FAQ ----------- */
 
 .question-page{
@@ -716,4 +695,15 @@ body{
     border: lightgreen solid 1px;
     margin-right: 20px;
     margin-left: 20px;
+}
+
+/*----------- Footer ----------- */
+
+.footer {
+    bottom: 0;
+    width: 100%;
+    height: 200px;
+    background-color: #111111;
+    color: white;
+    text-align: center;
 }
