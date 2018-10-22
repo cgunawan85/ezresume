@@ -704,6 +704,12 @@ body{
     width: 100%;
     height: 200px;
     background-color: #111111;
-    color: white;
+    color: gray;
     text-align: center;
+}
+
+.logo-footer {
+    padding-top: 20px;
+    width: 100px;
+    height: auto;
 }
