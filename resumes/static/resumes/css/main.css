@@ -144,6 +144,12 @@ body{
     padding-bottom: 30px;
 }
 
+.sub-header p {
+    margin-left: 18%;
+    margin-right: 18%;
+    margin-bottom: 25px;
+}
+
 /*
 @media (max-width: 1000px) {
 
@@ -322,7 +328,7 @@ body{
 .form-labels-on-top{
     box-sizing: border-box;
     font-weight: 600;
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 55px;
     background-color:  #ffffff;
@@ -697,4 +703,17 @@ body{
     margin: 0 auto;
     height: 100%;
     width: auto;
+}
+
+/*----------- Resume List ----------- */
+
+.resume-list img {
+    height: 40%;
+    width: 40%;
+    min-height: auto;
+    min-width: 350px;
+    display: inline-block;
+    border: lightgreen solid 1px;
+    margin-right: 20px;
+    margin-left: 20px;
 }
