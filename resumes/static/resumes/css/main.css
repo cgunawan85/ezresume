@@ -328,7 +328,7 @@ body{
 .form-labels-on-top{
     box-sizing: border-box;
     font-weight: 600;
-    max-width: 1000px;
+    max-width: 900px;
     margin: 0 auto;
     padding: 55px;
     background-color:  #ffffff;
@@ -686,15 +686,44 @@ body{
 
 /*----------- Resume List ----------- */
 
-.resume-list img {
-    height: 40%;
-    width: 40%;
-    min-height: auto;
-    min-width: 350px;
+.single-resume {
+    position: relative;
     display: inline-block;
-    border: lightpink solid 1px;
-    margin-right: 20px;
-    margin-left: 20px;
+    margin: 1em;
+}
+
+.resume-info {
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.8);
+    transition: .5s ease;
+}
+
+.resume-info:hover {
+    opacity: 1;
+}
+
+.resume-list img {
+    display: block;
+    width: 350px;
+    height: auto;
+    border: pink solid 1px;
+}
+
+.resume-info p {
+    color: white;
+    padding-top: 50px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.resume-name {
+    font-size: 18px;
 }
 
 /*----------- Footer ----------- */

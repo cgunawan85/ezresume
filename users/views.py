@@ -52,3 +52,12 @@ def activate(request, uidb64, token):
         return redirect('login')
     else:
         return HttpResponse('Activation link is invalid!')
+
+
+def paid(request, pk):
+    # does this work?
+    user = User.objects.get(pk=pk)
+    user.is_paying_customer = True
+    user.save()
+    messages.success(request, "Thank you for your purchase!")
+    return render(request, 'resumes/my_resumes.html')
