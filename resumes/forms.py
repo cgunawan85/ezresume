@@ -1,4 +1,6 @@
-from django.forms import ModelForm, Textarea, TextInput, NumberInput
+from django.conf import settings
+
+from django.forms import ModelForm, Textarea, TextInput, NumberInput, DateInput, DateField
 from django import forms
 from django.forms import BaseModelFormSet
 from django.forms import modelformset_factory
@@ -27,12 +29,15 @@ class ResumeForm(ModelForm):
 
 
 class WorkExperienceForm(ModelForm):
+    start_date = DateField(required=False, input_formats=settings.DATE_INPUT_FORMATS,
+                           widget=DateInput(format='%d/%m/%Y', attrs={'class': 'date-picker', 'placeholder': 'DD/MM/YYYY'}))
+    end_date = DateField(required=False, input_formats=settings.DATE_INPUT_FORMATS,
+                         widget=DateInput(format='%d/%m/%Y', attrs={'class': 'date-picker', 'placeholder': 'DD/MM/YYYY'}))
+
     class Meta:
         model = WorkExperience
         fields = ['position', 'company', 'city', 'start_date', 'end_date', 'achievements', 'resume', ]
-        widgets = {'start_date': TextInput(attrs={'class': 'date-picker', 'placeholder': 'MM/DD/YYYY'}),
-                   'end_date': TextInput(attrs={'class': 'date-picker', 'placeholder': 'MM/DD/YYYY'}),
-                   'achievements': Textarea(attrs={'class': 'objective-box', 'cols': 50, 'rows': 10}),
+        widgets = {'achievements': Textarea(attrs={'class': 'objective-box', 'cols': 50, 'rows': 10}),
                    'position': TextInput(attrs={'placeholder': 'For example: Bank Teller'}),
                    'company': TextInput(attrs={'placeholder': 'For example: Bank Central Asia'}),
                    'city': TextInput(attrs={'placeholder': 'For example: Jakarta'}),
@@ -44,12 +49,13 @@ WorkExperienceFormSet = modelformset_factory(WorkExperience, form=WorkExperience
 
 
 class CertificationForm(ModelForm):
+    date_obtained = DateField(required=False, input_formats=settings.DATE_INPUT_FORMATS,
+                              widget=DateInput(format='%d/%m/%Y', attrs={'class': 'date-picker', 'placeholder': 'DD/MM/YYYY'}))
+
     class Meta:
         model = Certification
         fields = ['name', 'date_obtained', 'city', 'resume', ]
-        widgets = {'date_obtained': TextInput(attrs={'class': 'date-picker',
-                                                     'placeholder': 'MM/DD/YYYY'}),
-                   'name': TextInput(attrs={'placeholder': 'For example: Certified Technical Architect'}),
+        widgets = {'name': TextInput(attrs={'placeholder': 'For example: Certified Technical Architect'}),
                    'city': TextInput(attrs={'placeholder': 'For example: New York'}),
                    'resume': forms.HiddenInput(), }
         labels = {'name': 'Certification name'}
@@ -59,12 +65,15 @@ CertificationFormSet = modelformset_factory(Certification, form=CertificationFor
 
 
 class EducationForm(ModelForm):
+    start_date = DateField(required=False, input_formats=settings.DATE_INPUT_FORMATS,
+                           widget=DateInput(format='%d/%m/%Y', attrs={'class': 'date-picker', 'placeholder': 'DD/MM/YYYY'}))
+    end_date = DateField(required=False, input_formats=settings.DATE_INPUT_FORMATS,
+                         widget=DateInput(format='%d/%m/%Y', attrs={'class': 'date-picker', 'placeholder': 'DD/MM/YYYY'}))
+
     class Meta:
         model = Education
         fields = ['school', 'degree', 'major', 'gpa', 'city', 'start_date', 'end_date', 'resume', ]
-        widgets = {'start_date': TextInput(attrs={'class': 'date-picker', 'placeholder': 'MM/DD/YYYY'}),
-                   'end_date': TextInput(attrs={'class': 'date-picker', 'placeholder': 'MM/DD/YYYY'}),
-                   'school': TextInput(attrs={'placeholder': 'For example: University of San Francisco'}),
+        widgets = {'school': TextInput(attrs={'placeholder': 'For example: University of San Francisco'}),
                    'degree': TextInput(attrs={'placeholder': 'For example: Bachelor of Science'}),
                    'major': TextInput(attrs={'placeholder': 'For example: Economics'}),
                    'gpa': NumberInput(attrs={'placeholder': 'For example: 3.7'}),

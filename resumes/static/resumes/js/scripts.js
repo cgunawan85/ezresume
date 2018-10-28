@@ -9,8 +9,10 @@ setTimeout(function(){
 $(document).on('focus', '.date-picker',function(){
     $(this).datepicker({
         todayHighlight:true,
-        format:'yyyy-mm-dd',
-        autoclose:true
+        dateFormat:'dd/mm/yy',
+        changeMonth: true,
+        changeYear: true,
+        autoclose:true,
     })
 });
 
