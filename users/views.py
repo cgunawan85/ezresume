@@ -69,25 +69,28 @@ def paid(request, pk):
 
 
 def payment(request):
-    AUTH_STRING = base64.b64encode(b'SB-Mid-server-ZTiZXa5L2pyYVdAUljABci8P:')
-    # server key with ":"
-    if request.method == 'GET':
+    if request.method == 'POST':
+        url = 'https://app.sandbox.midtrans.com/snap/v1/transactions/'
         user = request.user
         order = Order.objects.create(user=user, package='7 day', total=24000)
-        # TODO: This view will handle payment/post request to Midtrans
-        url = 'https://app.sandbox.midtrans.com/snap/v1/transactions/'
         order_id = str(order.id)
         order_total = order.total
+
         headers = {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Authorization': 'Basic {}'.format(AUTH_STRING)
         }
+
         payload = {
             "transaction_details": {
                 "order_id": "ORDER-{}".format(order_id),
                 "gross_amount": order_total
             }
         }
-        snap_token = requests.post(url, headers=headers, json=payload)
-        return render(request, 'users/payment.html', {'snap_token': snap_token})
+
+        snap_token = requests.post(url, auth=('SB-Mid-server-ZTiZXa5L2pyYVdAUljABci8P', ''),
+                                   headers=headers, json=payload)
+        # TODO: Need to convert this string response into a dictionary
+        print(snap_token.text)
+        # TODO: Redirect user to redirect_url
+    return render(request, 'users/payment.html')
