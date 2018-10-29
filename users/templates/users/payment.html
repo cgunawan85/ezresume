@@ -1,0 +1,25 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment</title>
+    <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
+            data-client-key="SB-Mid-client-d-MR0cZ5q86XY98I"></script>
+</head>
+<body>
+    <button id="pay-button">Pay!</button>
+    <script type="text/javascript">
+        var payButton = document.getElementById('pay-button');
+        payButton.addEventListener('click', function(){
+            snap.pay('{{ snap_token }}');
+        });
+    </script>
+
+
+<form method="" action="{% url 'resumes:payment' %}">
+    {% csrf_token %}
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>

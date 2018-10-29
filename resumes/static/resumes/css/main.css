@@ -27,7 +27,7 @@ body{
 
 /* Style the header links */
 .header a {
-    font-family: 'Montserrat Medium', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     float: left;
     color: white;
     padding: 12px;

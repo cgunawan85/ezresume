@@ -39,3 +39,15 @@ class Profile(models.Model):
             output_size = (100, 100)
             img.thumbnail(output_size)
             img.save(self.profile_pic.path)
+
+
+class Order(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True, editable=False)
+    # use choice field for package?
+    package = models.CharField(max_length=255)
+    total = models.IntegerField()
+    paid_status = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.package

@@ -1,3 +1,6 @@
+import base64
+import json
+
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.sites.shortcuts import get_current_site
@@ -10,7 +13,9 @@ from django.contrib.auth import login
 
 from .tokens import account_activation_token
 from .forms import CustomUserCreationForm
-from .models import User
+from .models import User, Order
+
+import requests
 
 
 def register(request):
@@ -61,3 +66,28 @@ def paid(request, pk):
     user.save()
     messages.success(request, "Thank you for your purchase!")
     return render(request, 'resumes/my_resumes.html')
+
+
+def payment(request):
+    AUTH_STRING = base64.b64encode(b'SB-Mid-server-ZTiZXa5L2pyYVdAUljABci8P:')
+    # server key with ":"
+    if request.method == 'GET':
+        user = request.user
+        order = Order.objects.create(user=user, package='7 day', total=24000)
+        # TODO: This view will handle payment/post request to Midtrans
+        url = 'https://app.sandbox.midtrans.com/snap/v1/transactions/'
+        order_id = str(order.id)
+        order_total = order.total
+        headers = {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Basic {}'.format(AUTH_STRING)
+        }
+        payload = {
+            "transaction_details": {
+                "order_id": "ORDER-{}".format(order_id),
+                "gross_amount": order_total
+            }
+        }
+        snap_token = requests.post(url, headers=headers, json=payload)
+        return render(request, 'users/payment.html', {'snap_token': snap_token})

@@ -1,6 +1,7 @@
 from django.urls import path
 
 from . import views
+from users import views as user_views
 
 urlpatterns = [
     path('', views.my_resumes, name='my-resumes'),
@@ -11,4 +12,5 @@ urlpatterns = [
     path('view/resume/<int:pk>/', views.view_resume, name='view-resume'),
     path('faq/', views.faq, name='faq'),
     path('templates/', views.templates, name='templates'),
+    path('payment/', user_views.payment, name='payment')
 ]

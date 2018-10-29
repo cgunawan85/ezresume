@@ -1,7 +1,7 @@
+from django import forms
 from django.conf import settings
 
 from django.forms import ModelForm, Textarea, TextInput, NumberInput, DateInput, DateField
-from django import forms
 from django.forms import BaseModelFormSet
 from django.forms import modelformset_factory
 
@@ -22,7 +22,7 @@ class ResumeForm(ModelForm):
     class Meta:
         model = Resume
         fields = ['name', 'user', 'id', ]
-        widgets = {'name': TextInput(attrs={'placeholder': 'For example: Data Scientist or Sales Manager'}),
+        widgets = {'name': forms.TextInput(attrs={'placeholder': 'For example: Data Scientist or Sales Manager'}),
                    'user': forms.HiddenInput(),
                    'id': forms.HiddenInput(), }
         labels = {'name': 'Resume name'}
