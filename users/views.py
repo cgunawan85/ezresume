@@ -1,6 +1,3 @@
-import base64
-import json
-
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.sites.shortcuts import get_current_site
@@ -72,6 +69,7 @@ def payment(request):
     if request.method == 'POST':
         url = 'https://app.sandbox.midtrans.com/snap/v1/transactions/'
         user = request.user
+        # TODO: Grab form from user to populate package and total price
         order = Order.objects.create(user=user, package='7 day', total=24000)
         order_id = str(order.id)
         order_total = order.total
@@ -90,7 +88,7 @@ def payment(request):
 
         snap_token = requests.post(url, auth=('SB-Mid-server-ZTiZXa5L2pyYVdAUljABci8P', ''),
                                    headers=headers, json=payload)
-        # TODO: Need to convert this string response into a dictionary
-        print(snap_token.text)
-        # TODO: Redirect user to redirect_url
+        response_dict = snap_token.json()
+        redirect_url = response_dict['redirect_url']
+        return redirect(redirect_url)
     return render(request, 'users/payment.html')
