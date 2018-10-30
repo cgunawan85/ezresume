@@ -86,8 +86,13 @@ def payment(request):
 
             payload = {
                 "transaction_details": {
-                    "order_id": "ORDER-{}".format(order_id),
+                    "order_id": order_id,
                     "gross_amount": order_total
+                },
+                "item_details": {
+                    "name": '{} package'.format(order.package),
+                    "price": order.total,
+                    "quantity": 1,
                 },
                 "customer_details": {
                     "first_name": user.first_name,
