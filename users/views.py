@@ -1,3 +1,6 @@
+import json
+import requests
+
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.sites.shortcuts import get_current_site
@@ -8,12 +11,11 @@ from django.contrib import messages
 from django.core.mail import EmailMessage
 from django.contrib.auth import login
 from django.contrib.auth.models import Group
+from django.views.decorators.csrf import csrf_exempt
 
 from .tokens import account_activation_token
 from .forms import CustomUserCreationForm, OrderForm
 from .models import User, Order
-
-import requests
 
 
 def register(request):
@@ -24,7 +26,7 @@ def register(request):
             user.is_active = False
             user.save()
             current_site = get_current_site(request)
-            mail_subject = 'Active your EZResume account'
+            mail_subject = 'Activate your EZResume account'
             message = render_to_string('users/acc_active_email.html', {
                 'user': user,
                 'domain': current_site.domain,
@@ -57,20 +59,23 @@ def activate(request, uidb64, token):
         return HttpResponse('Activation link is invalid!')
 
 
+@csrf_exempt
 def payment_notification(request):
-    # TODO: Needs to listen to HTTP Post request from Midtrans
+    # This is listens for HTTP post requests from Midtrans
     if request.method == "POST":
-        request_dict = request.json()
+        body_unicode = request.body.decode('utf-8')
+        request_dict = json.loads(body_unicode)
         if request_dict["status_code"] == "200" and request_dict["fraud_status"] == "accept":
             order_id = request_dict['order_id']
             order = Order.objects.get(pk=order_id)
             user = order.user
-            group = Group.objects.get('paying_user')
+            group = Group.objects.get(name='paying_user')
             group.user_set.add(user)
-            messages.success(request, "Thank you {}! You now have unlimited resume exports".format(user.username))
-            return render(request, 'resumes/my_resumes.html')
+            # messages.success(request, "Thank you {}! You now have unlimited resume exports".format(user.username))
+            # TODO: Need to figure out what to return/render/redirect
+            return HttpResponse('Hello')
         else:
-            return render(request, 'users/error.html')
+            return HttpResponse('Failed')
 
 
 def payment(request):
