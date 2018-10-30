@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import TextInput
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib.auth.forms import UserCreationForm
 from .models import User
 from django.contrib.auth.password_validation import validate_password
 
@@ -39,3 +39,8 @@ class CustomUserChangeForm(forms.ModelForm):
         fields = ('first_name', 'last_name', )
         widgets = {'first_name': TextInput(attrs={'placeholder': 'What is your first name?'}),
                    'last_name': TextInput(attrs={'placeholder': 'What is your last name?'}), }
+
+
+class OrderForm(forms.Form):
+    pass
+

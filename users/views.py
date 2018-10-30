@@ -9,7 +9,7 @@ from django.core.mail import EmailMessage
 from django.contrib.auth import login
 
 from .tokens import account_activation_token
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, OrderForm
 from .models import User, Order
 
 import requests
@@ -67,28 +67,35 @@ def paid(request, pk):
 
 def payment(request):
     if request.method == 'POST':
-        url = 'https://app.sandbox.midtrans.com/snap/v1/transactions/'
-        user = request.user
-        # TODO: Grab form from user to populate package and total price
-        order = Order.objects.create(user=user, package='7 day', total=24000)
-        order_id = str(order.id)
-        order_total = order.total
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            url = 'https://app.sandbox.midtrans.com/snap/v1/transactions/'
+            user = request.user
+            if '7-day' in request.POST:
+                order = Order.objects.create(user=user, package='7 day', total=24000)
+            elif '1-month' in request.POST:
+                order = Order.objects.create(user=user, package='1 month', total=48000)
 
-        headers = {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        }
+            order_id = str(order.id)
+            order_total = order.total
 
-        payload = {
-            "transaction_details": {
-                "order_id": "ORDER-{}".format(order_id),
-                "gross_amount": order_total
+            headers = {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
             }
-        }
 
-        snap_token = requests.post(url, auth=('SB-Mid-server-ZTiZXa5L2pyYVdAUljABci8P', ''),
-                                   headers=headers, json=payload)
-        response_dict = snap_token.json()
-        redirect_url = response_dict['redirect_url']
-        return redirect(redirect_url)
-    return render(request, 'users/payment.html')
+            payload = {
+                "transaction_details": {
+                    "order_id": "ORDER-{}".format(order_id),
+                    "gross_amount": order_total
+                }
+            }
+
+            snap_token = requests.post(url, auth=('SB-Mid-server-ZTiZXa5L2pyYVdAUljABci8P', ''),
+                                       headers=headers, json=payload)
+            response_dict = snap_token.json()
+            redirect_url = response_dict['redirect_url']
+            return redirect(redirect_url)
+    else:
+        form = OrderForm()
+    return render(request, 'users/payment.html', {'form': form})

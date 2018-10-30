@@ -26,7 +26,7 @@ class ProfileAdmin(admin.ModelAdmin):
 
 
 class OrderAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['package', 'user', 'created_at', ]
 
 
 admin.site.register(User, CustomUserAdmin)
