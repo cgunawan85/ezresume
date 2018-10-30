@@ -56,8 +56,9 @@ def activate(request, uidb64, token):
         return HttpResponse('Activation link is invalid!')
 
 
-def paid(request, pk):
-    # does this work?
+def payment_confirmed(request, pk):
+    # TODO: Needs to listen to HTTP Post request from Midtrans
+    # if something in post requests then add user to paying customer group
     user = User.objects.get(pk=pk)
     user.is_paying_customer = True
     user.save()
