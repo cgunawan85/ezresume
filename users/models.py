@@ -6,7 +6,6 @@ from tinymce.models import HTMLField
 
 
 class User(AbstractUser):
-    is_paying_customer = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True)
 

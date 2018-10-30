@@ -7,6 +7,7 @@ from django.template.loader import render_to_string
 from django.contrib import messages
 from django.core.mail import EmailMessage
 from django.contrib.auth import login
+from django.contrib.auth.models import Group
 
 from .tokens import account_activation_token
 from .forms import CustomUserCreationForm, OrderForm
@@ -56,14 +57,20 @@ def activate(request, uidb64, token):
         return HttpResponse('Activation link is invalid!')
 
 
-def payment_confirmed(request, pk):
+def payment_notification(request):
     # TODO: Needs to listen to HTTP Post request from Midtrans
-    # if something in post requests then add user to paying customer group
-    user = User.objects.get(pk=pk)
-    user.is_paying_customer = True
-    user.save()
-    messages.success(request, "Thank you for your purchase!")
-    return render(request, 'resumes/my_resumes.html')
+    if request.method == "POST":
+        request_dict = request.json()
+        if request_dict["status_code"] == "200" and request_dict["fraud_status"] == "accept":
+            order_id = request_dict['order_id']
+            order = Order.objects.get(pk=order_id)
+            user = order.user
+            group = Group.objects.get('paying_user')
+            group.user_set.add(user)
+            messages.success(request, "Thank you {}! You now have unlimited resume exports".format(user.username))
+            return render(request, 'resumes/my_resumes.html')
+        else:
+            return render(request, 'users/error.html')
 
 
 def payment(request):
