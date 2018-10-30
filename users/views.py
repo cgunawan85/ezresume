@@ -88,7 +88,17 @@ def payment(request):
                 "transaction_details": {
                     "order_id": "ORDER-{}".format(order_id),
                     "gross_amount": order_total
-                }
+                },
+                "customer_details": {
+                    "first_name": user.first_name,
+                    "last_name": user.last_name,
+                    "email": user.email,
+                },
+                "billing_address": {
+                    "first_name": user.first_name,
+                    "last_name": user.last_name,
+                    "email": user.email,
+                },
             }
 
             snap_token = requests.post(url, auth=('SB-Mid-server-ZTiZXa5L2pyYVdAUljABci8P', ''),
