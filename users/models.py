@@ -8,6 +8,7 @@ from tinymce.models import HTMLField
 class User(AbstractUser):
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True)
+    sub_expires_on = models.DateTimeField()
 
     def __str__(self):
         return self.email
