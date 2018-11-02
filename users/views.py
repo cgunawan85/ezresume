@@ -1,5 +1,6 @@
 import json
 import requests
+import datetime
 
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
@@ -71,7 +72,11 @@ def payment_notification(request):
             user = order.user
             group = Group.objects.get(name='paying_user')
             group.user_set.add(user)
-            # TODO: Need to set an expiration date for package, use gross_amount
+            # TODO: Need to test this
+            if request_dict['gross_amount'] == 24000:
+                user.profile.sub_expires_on = datetime.datetime.now() + datetime.timedelta(days=7)
+            elif request_dict['gross_amount'] == 72000:
+                user.profile.sub_expires_on = datetime.datetime.now() + datetime.timedelta(days=30)
             # messages.success(request, "Thank you {}! You now have unlimited resume exports".format(user.username))
             # TODO: Need to figure out what to return/render/redirect
             return HttpResponse('Hello')
@@ -88,7 +93,7 @@ def payment(request):
             if '7-day' in request.POST:
                 order = Order.objects.create(user=user, package='7 day', total=24000)
             elif '1-month' in request.POST:
-                order = Order.objects.create(user=user, package='1 month', total=48000)
+                order = Order.objects.create(user=user, package='1 month', total=72000)
 
             order_id = str(order.id)
             order_total = order.total

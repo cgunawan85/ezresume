@@ -9,7 +9,7 @@ class CustomUserAdmin(UserAdmin):
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm
     model = User
-    list_display = ['username', 'email', 'first_name', 'last_name', 'is_active']
+    list_display = ['username', 'email', 'first_name', 'last_name', 'is_active', ]
 
 
 class ProfileAdmin(admin.ModelAdmin):
@@ -22,6 +22,7 @@ class ProfileAdmin(admin.ModelAdmin):
         'objective',
         'linked_in',
         'profile_pic',
+        'sub_expires_on',
     )
 
 

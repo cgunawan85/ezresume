@@ -8,7 +8,6 @@ from tinymce.models import HTMLField
 class User(AbstractUser):
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True)
-    sub_expires_on = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
         return self.email
@@ -25,6 +24,7 @@ class Profile(models.Model):
     linked_in = models.CharField(max_length=255, blank=True)
     objective = HTMLField(blank=True)
     profile_pic = models.ImageField(default="profile-pics/default.jpg/", upload_to="profile-pics")
+    sub_expires_on = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
         return self.user.email
