@@ -68,6 +68,7 @@ class Skill(models.Model):
 class Language(models.Model):
     resume = models.ForeignKey(Resume, on_delete=models.CASCADE, blank=True)
     name = models.CharField(max_length=255, blank=True)
+    # TODO: Change this to choice field
     competency = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
