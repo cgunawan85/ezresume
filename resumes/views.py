@@ -39,7 +39,7 @@ def my_resumes(request):
 @login_required()
 def view_resume(request, pk):
     resume = Resume.objects.get(pk=pk)
-    return render(request, 'resumes/jakarta.html', {'resume': resume})
+    return render(request, 'resumes/rome.html', {'resume': resume})
 
 
 @login_required()

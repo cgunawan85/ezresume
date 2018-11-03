@@ -1,7 +1,9 @@
 from django.db import models
-from users.models import User
-from tinymce.models import HTMLField
+
 from .choices import LANGUAGE_COMPETENCY_CHOICES, SKILL_COMPETENCY_CHOICES
+from users.models import User
+
+from tinymce.models import HTMLField
 
 
 class Resume(models.Model):
