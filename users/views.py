@@ -73,10 +73,12 @@ def payment_notification(request):
             group = Group.objects.get(name='paying_user')
             group.user_set.add(user)
             # TODO: Need to test this
+            """
             if request_dict['gross_amount'] == 24000:
                 user.profile.sub_expires_on = datetime.datetime.now() + datetime.timedelta(days=7)
             elif request_dict['gross_amount'] == 72000:
                 user.profile.sub_expires_on = datetime.datetime.now() + datetime.timedelta(days=30)
+            """
             # messages.success(request, "Thank you {}! You now have unlimited resume exports".format(user.username))
             # TODO: Need to figure out what to return/render/redirect
             return HttpResponse('Hello')

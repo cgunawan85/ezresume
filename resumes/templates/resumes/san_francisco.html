@@ -1,0 +1,344 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Harnods - Resume San Fransisco</title>
+    <meta name="description" content=""/>
+          <style>/* main css v1.0.0 */
+      /* ------------------------------------------------------------------------------------------------ */
+      /* Core style */
+      /* ------------------------------------------------------------------------------------------------ */
+      /* ------------------------------------------------------------------------------------------------ */
+      /* Fonts */
+      /* ------------------------------------------------------------------------------------------------ */
+      @font-face { font-family: "RobotoCondensed"; src: local("RobotoCondensed"); src: url("assets/fonts/RobotoCondensed-Light.eot"); src: url("assets/fonts/RobotoCondensed-Light.svg") format("svg"), url("assets/fonts/RobotoCondensed-Light.eot#iefix") format("embedded-opentype"), url("assets/fonts/RobotoCondensed-Light.ttf") format("truetype"), url("assets/fonts/RobotoCondensed-Light.woff") format("woff"); font-style: normal; font-weight: 200; }
+
+      @font-face { font-family: "RobotoCondensed"; src: local("RobotoCondensed"); src: url("assets/fonts/RobotoCondensed-Regular.eot"); src: url("assets/fonts/RobotoCondensed-Regular.svg") format("svg"), url("assets/fonts/RobotoCondensed-Regular.eot#iefix") format("embedded-opentype"), url("assets/fonts/RobotoCondensed-Regular.ttf") format("truetype"), url("assets/fonts/RobotoCondensed-Regular.woff") format("woff"); font-style: normal; font-weight: 400; }
+
+      @font-face { font-family: "RobotoCondensed"; src: local("RobotoCondensed"); src: url("assets/fonts/RobotoCondensed-Regular.eot"); src: url("assets/fonts/RobotoCondensed-Regular.svg") format("svg"), url("assets/fonts/RobotoCondensed-Regular.eot#iefix") format("embedded-opentype"), url("assets/fonts/RobotoCondensed-Regular.ttf") format("truetype"), url("assets/fonts/RobotoCondensed-Regular.woff") format("woff"); font-style: normal; font-weight: 600; }
+
+      @font-face { font-family: "RobotoCondensed"; src: local("RobotoCondensed"); src: url("assets/fonts/RobotoCondensed-Bold.eot"); src: url("assets/fonts/RobotoCondensed-Bold.svg") format("svg"), url("assets/fonts/RobotoCondensed-Bold.eot#iefix") format("embedded-opentype"), url("assets/fonts/RobotoCondensed-Bold.ttf") format("truetype"), url("assets/fonts/RobotoCondensed-Bold.woff") format("woff"); font-style: normal; font-weight: 800; }
+
+      @font-face { font-family: "Roboto"; src: local("roboto"); src: url("assets/fonts/roboto-regular.eot"); src: url("assets/fonts/roboto-regular.svg") format("svg"), url("assets/fonts/roboto-regular.eot#iefix") format("embedded-opentype"), url("assets/fonts/roboto-regular.ttf") format("truetype"), url("assets/fonts/roboto-regular.woff") format("woff"); font-style: normal; font-weight: 400; }
+
+      @font-face { font-family: "Roboto"; src: local("roboto"); src: url("assets/fonts/roboto-semibold.eot"); src: url("assets/fonts/roboto-semibold.svg") format("svg"), url("assets/fonts/roboto-semibold.eot#iefix") format("embedded-opentype"), url("assets/fonts/roboto-semibold.ttf") format("truetype"), url("assets/fonts/roboto-semibold.woff") format("woff"); font-style: normal; font-weight: 600; }
+
+      @font-face { font-family: "Roboto"; src: local("roboto"); src: url("assets/fonts/roboto-bold.eot"); src: url("assets/fonts/roboto-bold.svg") format("svg"), url("assets/fonts/roboto-bold.eot#iefix") format("embedded-opentype"), url("assets/fonts/roboto-bold.ttf") format("truetype"), url("assets/fonts/roboto-bold.woff") format("woff"); font-style: normal; font-weight: 800; }
+
+      /* -------------- */
+      /*      BASE      */
+      /* -------------- */
+
+      *, *:after, *:before { box-sizing: border-box; }
+
+      img { max-width: 100%; }
+
+      hr { border-top: 1px solid #E2E2E2; }
+
+      /* -------------------- */
+      /*      TYPOGRAPHY      */
+      /* -------------------- */
+
+      a:not(.btn) { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; color: #2C3A47; text-decoration: none; transition: color .4s; }
+
+      a:not(.btn):focus { text-decoration: none; color: #BBB8B6; }
+
+      a:not(.btn):hover { color: #BBB8B6; opacity: 1; text-decoration: none; }
+
+      p { margin: 0 0 30px; padding: 0; font-size: 0.875rem; }
+
+      p strong, p b { font-weight: bold; }
+
+      p em, p i { font-style: italic; }
+
+      p u { text-decoration: underline; }
+
+      p a:hover { text-decoration: underline; }
+
+      p:last-child { margin-bottom: 0; }
+
+      h1, h2, h3, h4 { margin: 0 0 20px; color: #1E1E1E; font-weight: 600; }
+
+      html, body { font-size: 16px; line-height: 1.5em; font-family: "Open Sans", sans-serif; font-weight: 400; margin: 0px; color: #2C3A47; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; }
+
+      body { background-color: #DADADA; }
+
+      /* ---------------- */
+      /*     CONTENT      */
+      /* ---------------- */
+
+      .clearfix, .jakarta .content .timeline > ul > li, .tokyo .content-r .lang .experience > ul > li, .tokyo .content-r .skills .experience > ul > li, .tokyo .experience > ul > li, .rome .exp-lang > ul > li, .san-fransisco .experience > ul > li, .new-york .we > ul > li, .new-york .box-skills .lang > ul > li, .new-york .box-skills .skills > ul > li { display: block; width: 100%; }
+
+      .clearfix:before, .jakarta .content .timeline > ul > li:before, .tokyo .content-r .lang .experience > ul > li:before, .tokyo .content-r .skills .experience > ul > li:before, .tokyo .experience > ul > li:before, .rome .exp-lang > ul > li:before, .san-fransisco .experience > ul > li:before, .new-york .we > ul > li:before, .new-york .box-skills .lang > ul > li:before, .new-york .box-skills .skills > ul > li:before, .clearfix:after, .jakarta .content .timeline > ul > li:after, .tokyo .content-r .lang .experience > ul > li:after, .tokyo .content-r .skills .experience > ul > li:after, .tokyo .experience > ul > li:after, .rome .exp-lang > ul > li:after, .san-fransisco .experience > ul > li:after, .new-york .we > ul > li:after, .new-york .box-skills .lang > ul > li:after, .new-york .box-skills .skills > ul > li:after { content: " "; display: table; }
+
+      .clearfix:after, .jakarta .content .timeline > ul > li:after, .tokyo .content-r .lang .experience > ul > li:after, .tokyo .content-r .skills .experience > ul > li:after, .tokyo .experience > ul > li:after, .rome .exp-lang > ul > li:after, .san-fransisco .experience > ul > li:after, .new-york .we > ul > li:after, .new-york .box-skills .lang > ul > li:after, .new-york .box-skills .skills > ul > li:after { clear: both; }
+
+      /* --------SAN FRANSISCO-------- */
+
+      .san-fransisco { font-family: "Roboto", Open Sans, sans-serif; color: #212121; }
+
+      .san-fransisco main.preview .index-card { padding-top: 60px; }
+
+      .san-fransisco .index-card, .san-fransisco table { position: relative; }
+
+      .san-fransisco .index-card:before, .san-fransisco table:before { content: ""; width: 100%; height: 20px; position: absolute; top: 0; left: 0; background: #4788C7; z-index: 1; border-radius: 10px 10px 0 0; }
+
+      .san-fransisco table { box-shadow: 0px 34px 37px -7px rgba(0, 0, 0, 0.4); margin: 80px auto; border-radius: 10px; }
+
+      .san-fransisco table tr td { padding: 80px; }
+
+      .san-fransisco a { color: #444C52; }
+
+      .san-fransisco ul { list-style: none; padding-left: 0; margin: 0; }
+
+      .san-fransisco p { font-size: 16px; line-height: 22px; text-align: justify; }
+
+      .san-fransisco .title { font-family: "RobotoCondensed", Open Sans, sans-serif; font-size: 22px; line-height: 33px; color: #4788C7; font-weight: bold; margin-bottom: 20px; text-transform: uppercase; }
+
+      .san-fransisco .icon { width: 30px; height: 30px; display: inline-block; background-position: center; background-size: contain; vertical-align: top; }
+
+      .san-fransisco .profile { padding-bottom: 110px; }
+
+      .san-fransisco .profile .photo .photo-box { width: 100px; height: 100px; position: relative; border-radius: 50%; overflow: hidden; margin: 0 auto 20px; }
+
+      .san-fransisco .profile .photo .photo-box .img { width: 100%; height: 100%; position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
+
+      .san-fransisco .profile .name-post { text-align: center; font-family: "RobotoCondensed", Open Sans, sans-serif; }
+
+      .san-fransisco .profile .name-post h1 { font-size: 38px; line-height: 48px; color: #4788C7; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 0; }
+
+      .san-fransisco .profile .name-post .position { font-size: 22px; line-height: 30px; margin-bottom: 20px; }
+
+      .san-fransisco .profile .text { text-align: center; }
+
+      .san-fransisco .profile .text p { text-align: center; }
+
+      .san-fransisco .profile .text .icon { margin-right: 20px; vertical-align: middle; }
+
+      .san-fransisco .profile .text .linkedin a { color: #212121; }
+
+      .san-fransisco .profile .text .linkedin a:hover { text-decoration: underline; }
+
+      .san-fransisco .content-l, .san-fransisco .content-r { float: left; position: relative; width: 100%; min-height: 1px; z-index: 5; }
+
+      .san-fransisco .content-l { width: 350px; }
+
+      .san-fransisco .content-r { width: calc(100% - 400px); margin-left: 50px; }
+
+      .san-fransisco .contact { margin-bottom: 30px; border-bottom: 1px solid #E2E2E2; padding-bottom: 30px; }
+
+      .san-fransisco .contact ul { margin-top: 5px; }
+
+      .san-fransisco .contact ul li { margin-bottom: 20px; }
+
+      .san-fransisco .contact ul li .icon { margin-top: 5px; }
+
+      .san-fransisco .contact ul li:last-child { margin-bottom: 0; }
+
+      .san-fransisco .contact a, .san-fransisco .contact p { font-size: 14px; line-height: 18px; }
+
+      .san-fransisco .contact .text { display: inline-block; vertical-align: top; padding-left: 20px; }
+
+      .san-fransisco .contact .text span { display: block; text-transform: uppercase; font-weight: 500; color: #858585; font-size: 14px; }
+
+      .san-fransisco .education, .san-fransisco .lang { padding-bottom: 30px; margin-bottom: 30px; border-bottom: 1px solid #E2E2E2; }
+
+      .san-fransisco .education ul li, .san-fransisco .lang ul li { margin-bottom: 20px; }
+
+      .san-fransisco .education ul li:last-child, .san-fransisco .lang ul li:last-child { margin-bottom: 0; }
+
+      .san-fransisco .education ul li p:last-child, .san-fransisco .lang ul li p:last-child { margin-bottom: 0; }
+
+      .san-fransisco .education h3, .san-fransisco .lang h3 { margin-bottom: 15px; color: #3D3D3D; }
+
+      .san-fransisco .education p, .san-fransisco .education .time, .san-fransisco .lang p, .san-fransisco .lang .time { color: #858585; }
+
+      .san-fransisco .education p:last-of-type, .san-fransisco .lang p:last-of-type { margin-bottom: 10px; }
+
+      .san-fransisco .lang h3 { margin-bottom: 10px; }
+
+      .san-fransisco .skills .name p { font-size: 20px; line-height: 28px; font-weight: 500; }
+
+      .san-fransisco .skills ul li { margin-bottom: 20px; }
+
+      .san-fransisco .bar { width: 250px; height: 6px; border-radius: 3px; background: #D2DAE2; position: relative; overflow: hidden; margin: 10px 0; }
+
+      .san-fransisco .bar span { border-radius: 3px; display: inline-block; height: 6px; background: #4788C7; margin-bottom: 0; font-size: 0; position: absolute; left: 0; bottom: 0; }
+
+      .san-fransisco .experience > ul > li { margin-bottom: 60px; }
+
+      .san-fransisco .experience > ul > li .left { float: left; }
+
+      .san-fransisco .experience > ul > li .right { float: right; }
+
+      .san-fransisco .experience > ul > li ul { padding-left: 30px; }
+
+      .san-fransisco .experience > ul > li ul li { list-style: disc; padding-left: 15px; }
+
+      .san-fransisco .experience .clearfix, .san-fransisco .experience .jakarta .content .timeline > ul > li, .jakarta .content .san-fransisco .experience .timeline > ul > li, .san-fransisco .tokyo .content-r .lang .experience > ul > li, .tokyo .content-r .lang .san-fransisco .experience > ul > li, .san-fransisco .tokyo .content-r .skills .experience > ul > li, .tokyo .content-r .skills .san-fransisco .experience > ul > li, .san-fransisco .tokyo .experience > ul > li, .tokyo .san-fransisco .experience > ul > li, .san-fransisco .experience .rome .exp-lang > ul > li, .rome .san-fransisco .experience .exp-lang > ul > li, .san-fransisco .experience > ul > li, .san-fransisco .experience .new-york .we > ul > li, .new-york .san-fransisco .experience .we > ul > li, .san-fransisco .experience .new-york .box-skills .lang > ul > li, .new-york .box-skills .san-fransisco .experience .lang > ul > li, .san-fransisco .experience .new-york .box-skills .skills > ul > li, .new-york .box-skills .san-fransisco .experience .skills > ul > li { margin-bottom: 20px; }
+
+      .san-fransisco .experience .clearfix span, .san-fransisco .experience .jakarta .content .timeline > ul > li span, .jakarta .content .san-fransisco .experience .timeline > ul > li span, .san-fransisco .tokyo .content-r .lang .experience > ul > li span, .tokyo .content-r .lang .san-fransisco .experience > ul > li span, .san-fransisco .tokyo .content-r .skills .experience > ul > li span, .tokyo .content-r .skills .san-fransisco .experience > ul > li span, .san-fransisco .tokyo .experience > ul > li span, .tokyo .san-fransisco .experience > ul > li span, .san-fransisco .experience .rome .exp-lang > ul > li span, .rome .san-fransisco .experience .exp-lang > ul > li span, .san-fransisco .experience > ul > li span, .san-fransisco .experience .new-york .we > ul > li span, .new-york .san-fransisco .experience .we > ul > li span, .san-fransisco .experience .new-york .box-skills .lang > ul > li span, .new-york .box-skills .san-fransisco .experience .lang > ul > li span, .san-fransisco .experience .new-york .box-skills .skills > ul > li span, .new-york .box-skills .san-fransisco .experience .skills > ul > li span { color: #858585; }
+
+      .san-fransisco .experience h3 { color: #3D3D3D; font-size: 20px; line-height: 28px; font-weight: 600; margin-bottom: 0; }
+
+      @page{
+        size: A4;
+        margin: 0;
+      }
+
+      @media print { .san-fransisco table { margin: 0 auto; border-radius: 0; box-shadow: none; }
+        body{background-color: transparent;}
+        .san-fransisco table:before { border-radius: 0; }
+        .san-fransisco table tr td { padding-top: 50px;}
+        .san-fransisco .title { margin-bottom: 15px; }
+        .san-fransisco .profile { padding-bottom: 60px; } }
+
+      /*# sourceMappingURL=main.css.map */
+
+    </style>
+  </head>
+</html>
+<body class="san-fransisco">
+  <main>
+    <div class="section" style="page-break-after: auto;">
+      <table style="width: 1170px; font-family: 'Roboto', RobotoCondensed, san-serif; font-size: 14px; line-height: 20px;background: #FFFFFF; color: #212121;">
+        <tr>
+          <td>
+            <div class="profile">
+              <div class="photo">
+                <div class="photo-box"><img class="img" src="assets/images/photo-01.png"/></div>
+              </div>
+              <div class="name-post">
+                <h1>Pam Beesly</h1>
+                <div class="position">Sales Representative</div>
+              </div>
+              <div class="text">
+                <p>Pamela Morgan Halpert is a fictional character on the U.S. television sitcom The Office, played by Jenna Fischer. Her counterpart in the original UK series of The Office is Dawn Tinsley. Her character is initially the receptionist at the paper distribution company Dunder Mifflin, before becoming a saleswoman and eventually office administrator until she left in the series finale. Her character is shy, growing assertive but amiable, and artistically inclined, and shares romantic interest with Jim Halpert, whom she begins dating in the fourth season and marries and starts a family with as the series continues.</p>
+                <div class="linkedin">
+                  <u class="icon" style="background-image: url(assets/images/sf-linkedin-icon.png);"></u><a href="https://www.linkedin.com/in/pam.b/" target="_blank">https://www.linkedin.com/in/pam.b/</a>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix">
+              <div class="content-l">
+                <div class="contact">
+                  <ul>
+                    <li>
+                      <u class="icon" style="background-image: url(assets/images/sf-email-icon.png);"></u>
+                      <div class="text"><span>Email</span><a href="mailto:pam.b@gmail.com" target="_blank">pam.b@gmail.com</a></div>
+                    </li>
+                    <li>
+                      <u class="icon" style="background-image: url(assets/images/sf-phone-icon.png);"></u>
+                      <div class="text"><span>Phone number</span><a href="tel:pam.b@gmail.com" target="_blank">+62 878 9999 9999</a></div>
+                    </li>
+                    <li>
+                      <u class="icon" style="background-image: url(assets/images/sf-address-icon.png);"></u>
+                      <div class="text"><span>Address</span>
+                        <p>128 Pending Road #03-330 <br>Jakarta, DKI Jakarta <br>Indonesia 11470</p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="education">
+                  <h2 class="title">Education</h2>
+                  <ul>
+                    <li>
+                      <h3>Bachelor of Business Administration</h3>
+                      <p>Cornell University, New York <br> Business Administration</p>
+                      <div class="time">Jun 2000 - Jan 2004</div>
+                    </li>
+                    <li>
+                      <h3>High School</h3>
+                      <p>The Darrow School, New York</p>
+                      <div class="time">Jun 1997 - May 2000</div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="lang">
+                  <h2 class="title">Language</h2>
+                  <ul>
+                    <li>
+                      <h3>Bahasa Indonesia</h3>
+                      <p>Fluent</p>
+                    </li>
+                    <li>
+                      <h3>English</h3>
+                      <p>Basic Knowledge</p>
+                    </li>
+                  </ul>
+                </div>
+                <div class="skills">
+                  <h2 class="title">Skills</h2>
+                  <ul>
+                    <li>
+                      <div class="name">
+                        <p>Creativity</p>
+                      </div>
+                      <div class="exp">
+                        <div class="bar"><span style="width:60%;"></span></div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="name">
+                        <p>Communication</p>
+                      </div>
+                      <div class="exp">
+                        <div class="bar"><span style="width:60%;"></span></div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="name">
+                        <p>Personality</p>
+                      </div>
+                      <div class="exp">
+                        <div class="bar"><span style="width:60%;"></span></div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="content-r">
+                <h2 class="title">Experience</h2>
+                <div class="experience">
+                  <ul>
+                    <li>
+                      <div class="clearfix">
+                        <h3>Sales Representative</h3>
+                        <div class="left"><span>Dunder Mifflin, Jakarta </span></div>
+                        <div class="right"><span>May 2012 - Now</span></div>
+                      </div>
+                      <p>At the beginning of the series, Pam and Roy have been dating for eight years and engaged for three years. Their open-ended engagement has become one of Michael's running gags and a sore spot for Pam.</p>
+                    </li>
+                    <li>
+                      <div class="clearfix">
+                        <h3>Receptionist</h3>
+                        <div class="left"><span>Dunder Mifflin, Jakarta</span></div>
+                        <div class="right"><span>Dec 2010 - Apr 2012</span></div>
+                      </div>
+                      <p>While engaged to Roy, Pam denies, or is in denial about, having any romantic feelings for Jim. When Jim confesses his love for her at the Dunder Mifflin "Casino Night" she turns him down.</p>
+                    </li>
+                    <li>
+                      <div class="clearfix">
+                        <h3>Office Administrator</h3>
+                        <div class="left"><span>Michael Scott Paper Company, Jakarta</span></div>
+                        <div class="right"><span>Aug 200 - Oct 2010</span></div>
+                      </div>
+                      <p>At the beginning of Season 8, Pam is revealed to be pregnant with her and Jim's second child, Philip Halpert. The child coincided with Jenna Fischer's actual pregnancy.</p>
+                      <ul>
+                        <li>Early in season 9, Jim is restless about his life in Scranton and helps a friend start a Sports Marketing business, Athlead, in Philadelphia but he keeps it a secret from Pam until the third episode Andy’s Ancestry.</li>
+                        <li>Although Pam is happy for his decision, she is concerned about the fact that he had kept it a secret from her and she is later disturbed to hear about just how much of their money he had invested.</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </main>
+</body>
