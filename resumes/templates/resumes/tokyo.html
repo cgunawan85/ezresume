@@ -1,0 +1,301 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>EZResume | {{ resume.name }}</title>
+    <meta name="description" content=""/>
+    <style>/* main css v1.0.0 */
+      /* ------------------------------------------------------------------------------------------------ */
+      /* Fonts */
+      /* ------------------------------------------------------------------------------------------------ */
+      @font-face { font-family: "Sfprotext"; src: local("Sfprotext"); src: url("{% static 'resumes/fonts/sfprotext-regular.eot' %}"); src: url("{% static 'resumes/fonts/sfprotext-regular.svg' %}") format("svg"), url("{% static 'resumes/fonts/sfprotext-regular.eot#iefix' %}") format("embedded-opentype"), url("{% static 'resumes/fonts/sfprotext-regular.ttf' %}") format("truetype"), url("{% static 'resumes/fonts/sfprotext-regular.woff' %}") format("woff"); font-style: normal; font-weight: 400; }
+
+      @font-face { font-family: "Sfprotext"; src: local("Sfprotext"); src: url("{% static 'resumes/fonts/sfprotext-medium.eot' %}"); src: url("{% static 'resumes/fonts/sfprotext-medium.svg' %}") format("svg"), url("{% static 'resumes/fonts/sfprotext-medium.eot#iefix' %}") format("embedded-opentype"), url("{% static 'resumes/fonts/sfprotext-medium.ttf' %}") format("truetype"), url("{% static 'resumes/fonts/sfprotext-medium.woff' %}") format("woff"); font-style: normal; font-weight: 600; }
+
+      @font-face { font-family: "Sfprotext"; src: local("Sfprotext"); src: url("{% static 'resumes/fonts/sfprotext-bold.eot' %}"); src: url("{% static 'resumes/fonts/sfprotext-bold.svg' %}") format("svg"), url("{% static 'resumes/fonts/sfprotext-bold.eot#iefix' %}") format("embedded-opentype"), url("{% static 'resumes/fonts/sfprotext-bold.ttf' %}") format("truetype"), url("{% static 'resumes/fonts/sfprotext-bold.woff' %}") format("woff"); font-style: normal; font-weight: 800; }
+
+      /* -------------- */
+      /*      BASE      */
+      /* -------------- */
+
+      *, *:after, *:before { box-sizing: border-box; }
+
+      img { max-width: 100%; }
+
+      hr { border-top: 1px solid #E2E2E2; }
+
+      /* -------------------- */
+      /*      TYPOGRAPHY      */
+      /* -------------------- */
+
+      a:not(.btn) { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; color: #2C3A47; text-decoration: none; transition: color .4s; }
+
+      a:not(.btn):focus { text-decoration: none; color: #BBB8B6; }
+
+      a:not(.btn):hover { color: #BBB8B6; opacity: 1; text-decoration: none; }
+
+      p { margin: 0 0 30px; padding: 0; font-size: 0.875rem; }
+
+      p strong, p b { font-weight: bold; }
+
+      p em, p i { font-style: italic; }
+
+      p u { text-decoration: underline; }
+
+      p a:hover { text-decoration: underline; }
+
+      p:last-child { margin-bottom: 0; }
+
+      h1, h2, h3, h4 { margin: 0 0 20px; color: #1E1E1E; font-weight: 600; }
+
+      html, body { font-size: 16px; line-height: 1.5em; font-family: "Open Sans", sans-serif; font-weight: 400; margin: 0px; color: #2C3A47; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; }
+
+      body { background-color: #DADADA; }
+
+      /* ---------------- */
+      /*     CONTENT      */
+      /* ---------------- */
+
+      .clearfix, .jakarta .content .timeline > ul > li, .tokyo .content-r .lang .experience > ul > li, .tokyo .content-r .skills .experience > ul > li, .tokyo .experience > ul > li, .rome .exp-lang > ul > li, .san-fransisco .experience > ul > li, .new-york .we > ul > li, .new-york .box-skills .lang > ul > li, .new-york .box-skills .skills > ul > li { display: block; width: 100%; }
+
+      .clearfix:before, .jakarta .content .timeline > ul > li:before, .tokyo .content-r .lang .experience > ul > li:before, .tokyo .content-r .skills .experience > ul > li:before, .tokyo .experience > ul > li:before, .rome .exp-lang > ul > li:before, .san-fransisco .experience > ul > li:before, .new-york .we > ul > li:before, .new-york .box-skills .lang > ul > li:before, .new-york .box-skills .skills > ul > li:before, .clearfix:after, .jakarta .content .timeline > ul > li:after, .tokyo .content-r .lang .experience > ul > li:after, .tokyo .content-r .skills .experience > ul > li:after, .tokyo .experience > ul > li:after, .rome .exp-lang > ul > li:after, .san-fransisco .experience > ul > li:after, .new-york .we > ul > li:after, .new-york .box-skills .lang > ul > li:after, .new-york .box-skills .skills > ul > li:after { content: " "; display: table; }
+
+      .clearfix:after, .jakarta .content .timeline > ul > li:after, .tokyo .content-r .lang .experience > ul > li:after, .tokyo .content-r .skills .experience > ul > li:after, .tokyo .experience > ul > li:after, .rome .exp-lang > ul > li:after, .san-fransisco .experience > ul > li:after, .new-york .we > ul > li:after, .new-york .box-skills .lang > ul > li:after, .new-york .box-skills .skills > ul > li:after { clear: both; }
+
+      /* --------TOKYO-------- */
+
+      .tokyo { font-family: "Sfprotext", Open Sans, sans-serif; color: #413F3A; }
+
+      .tokyo .index-card { position: relative; }
+
+      .tokyo .index-card:after { content: ""; width: 480px; min-height: 100%; position: absolute; top: 0; right: 0; background: #F5F5F5; z-index: 1; }
+
+      .tokyo table { margin: 60px auto; position: relative; padding-top: 80px; border-radius: 10px; min-height: 600px; box-shadow: 0px 34px 37px -7px rgba(0, 0, 0, 0.4); }
+
+      .tokyo table:after { content: ""; width: 480px; min-height: 100%; position: absolute; top: 0; right: 0; background: #F5F5F5; z-index: 1; border-radius: 0 10px 10px 0; }
+
+      .tokyo table tr td { padding: 0 80px; }
+
+      .tokyo ul { list-style: none; padding-left: 0; }
+
+      .tokyo p { font-size: 16px; line-height: 22px; }
+
+      .tokyo .title { font-size: 22px; line-height: 33px; color: #574F3D; font-weight: 600; margin-bottom: 30px; }
+
+      .tokyo .content-l, .tokyo .content-r { position: relative; width: 100%; min-height: 1px; z-index: 5; }
+
+      .tokyo .content-l { float: left; max-width: 490px; }
+
+      .tokyo .content-l .profile { margin-bottom: 60px; }
+
+      .tokyo .content-l .profile h1 { color: #574F3D; font-size: 36px; line-height: 46px; text-transform: uppercase; font-weight: bold; text-align: center; margin-bottom: 5px; }
+
+      .tokyo .content-l .profile .position { color: #413F3A; font-size: 21px; line-height: 30px; font-weight: 600; text-align: center; margin-bottom: 30px; }
+
+      .tokyo .content-l .profile p { text-align: justify; }
+
+      .tokyo .content-r { float: right; width: 360px; margin-left: 150px; }
+
+      .tokyo .content-r .contact { margin-bottom: 60px; }
+
+      .tokyo .content-r .contact ul { margin-top: 0; }
+
+      .tokyo .content-r .contact ul li { margin-bottom: 20px; }
+
+      .tokyo .content-r .contact ul li:last-child a:hover { text-decoration: underline; }
+
+      .tokyo .content-r .contact a, .tokyo .content-r .contact p { font-size: 14px; line-height: 18px; }
+
+      .tokyo .content-r .contact .icon { width: 30px; height: 30px; display: inline-block; background-position: center; background-size: contain; vertical-align: top; }
+
+      .tokyo .content-r .contact .text { display: inline-block; vertical-align: top; padding-left: 20px; max-width: calc(100% - 50px); }
+
+      .tokyo .content-r .contact .text span { display: block; text-transform: uppercase; font-weight: 600; font-size: 14px; }
+
+      .tokyo .content-r .photo { margin-bottom: 40px; }
+
+      .tokyo .content-r .photo .photo-box { width: 170px; height: 170px; position: relative; }
+
+      .tokyo .content-r .photo .photo-box .img { width: 100%; height: auto; position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
+
+      .tokyo .content-r .education .experience > ul > li .time{ width: 70px;}
+      .tokyo .content-r .education .experience > ul > li .exp{ margin-left: 100px; width: calc(100% - 170px);}
+
+      .tokyo .content-r .lang .experience > ul > li, .tokyo .content-r .skills .experience > ul > li { margin-bottom: 10px; }
+
+      .tokyo .content-r .lang .experience .time, .tokyo .content-r .skills .experience .time { width: 140px; text-align: left; }
+
+      .tokyo .content-r .lang .experience .exp, .tokyo .content-r .skills .experience .exp { width: calc(100% - 175px); }
+
+      .tokyo .experience > ul > li { margin-bottom: 60px; }
+
+      .tokyo .experience .time, .tokyo .experience .exp { float: left; }
+
+      .tokyo .experience .time { width: 115px; text-align: center; font-weight: 600; }
+
+      .tokyo .experience .exp { width: calc(100% - 145px); margin-left: 30px; }
+
+      .tokyo .experience .exp h3 { font-size: 21px; line-height: 28px; margin-bottom: 10px; color: #413F3A; }
+
+      .tokyo .experience .exp span { display: block; margin-bottom: 10px; }
+
+      .tokyo .experience .exp ul { list-style: disc; padding-left: 30px; }
+
+      .tokyo .experience .exp ul li { margin-bottom: 20px; padding-left: 20px; }
+
+      .tokyo .bar { width: 170px; height: 6px; position: relative; overflow: hidden; margin: 10px 0; }
+
+      .tokyo .bar:after { content: ""; width: 100%; height: 2px; background: #D8D8D8; position: absolute; left: 0; bottom: 0; z-index: 1; }
+
+      .tokyo .bar span { display: block; position: absolute; bottom: -2px; left: 0; height: 6px; background: #84817A; margin-bottom: 0 !important; font-size: 0; z-index: 3; }
+
+      .skills { margin-top: 60px; margin-bottom: 60px; }
+      
+      @page{
+        size: A4;
+        margin: 0;
+      }
+
+      @media print { .tokyo table { margin: 0; padding-top: 80px; padding-bottom: 50px; min-height: 600px; height: 100%;  box-shadow: none;}
+        body{background-color: transparent; }
+        .tokyo table:after { width: 540px;}
+        .tokyo .content-r { float: left; margin-left: 100px; } }
+
+      /*# sourceMappingURL=main.css.map */
+
+    </style>
+  </head>
+</html>
+<body class="tokyo">
+  <main>
+    <div class="section" style="page-break-after: auto;">
+      <table style="width: 1170px; font-family: 'Sfprotext', Open Sans, sans-serif; font-size: 14px; line-height: 20px;background: #FFFFFF; color: #413F3A;">
+        <tr>
+          <td>
+            <div class="content-l">
+              <div class="profile">
+                <h1>{{ resume.user.first_name }} {{ resume.user.last_name }}</h1>
+                <div class="position">{{ resume.user.profile.job_title }}</div>
+                <p>{{ resume.user.profile.objective|safe }}</p>
+              </div>
+              <div class="experience">
+                <h2 class="title">Work Experience</h2>
+                <ul>
+                    {% for work_experience in resume.workexperience_set.all %}
+                        <li>
+                            <div class="time">
+                                {{ work_experience.start_date|date:'M Y' }}<br>
+                                -<br>
+                                {{ work_experience.end_date|date:'M Y' }}
+                            </div>
+                            <div class="exp">
+                                <h3>{{ work_experience.position }}</h3><span>{{ work_experience.company }}, {{ work_experience.city }}</span>
+                                <p>{{ work_experience.achievements|safe }}</p>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            <div class="content-r">
+              <div class="contact">
+                <ul>
+                  <li>
+                    <u class="icon" style="background-image: url({% static 'resumes/images/resume_templates/tokyo-email-icon.png' %});"></u>
+                    <div class="text"><span>Email</span><a href="#" target="_blank">{{ resume.user.email }}</a></div>
+                  </li>
+                  <li>
+                    <u class="icon" style="background-image: url({% static 'resumes/images/resume_templates/tokyo-phone-icon.png' %});"></u>
+                    <div class="text"><span>Phone number</span><a href="#" target="_blank">{{ resume.user.profile.phone_number }}</a></div>
+                  </li>
+                  <li>
+                    <u class="icon" style="background-image: url({% static 'resumes/images/resume_templates/tokyo-address-icon.png' %});"></u>
+                    <div class="text"><span>Address</span>
+                      <p>{{ resume.user.profile.address }} <br>{{ resume.user.profile.address2 }} <br>{{ resume.user.profile.city }}, {{ resume.user.profile.country.name }}</p>
+                    </div>
+                  </li>
+                    {% if resume.user.profile.linked_in %}
+                          <li>
+                            <u class="icon" style="background-image: url({% static 'resumes/images/resume_templates/tokyo-linkedin-icon.png' %});"></u>
+                            <div class="text"><span>LinkedIn</span><a href="#" target="_blank">{{ resume.user.profile.linked_in }}</a></div>
+                          </li>
+                    {% endif %}
+                </ul>
+              </div>
+              <div class="photo">
+                <div class="photo-box"><img class="img" src="{{ user.profile.profile_pic.url }}"/></div>
+              </div>
+              <div class="education">
+                <div class="experience">
+                  <h2 class="title">Education</h2>
+                  <ul>
+                  {% for education in resume.education_set.all %}
+                      <li>
+                          <div class="time">
+                              {{ education.start_date|date:'M Y' }}<br>
+                              -<br>
+                              {{ education.end_date|date:'M Y' }}
+                          </div>
+                          <div class="exp">
+                              <h3>{{ education.degree }}</h3>
+                              <p>{{ education.school }} <br> {{ education.city }} <br>{{ education.degree }}</p>
+                          </div>
+                      </li>
+                  {% endfor %}
+                  </ul>
+                </div>
+              </div>
+              <div class="lang">
+                <h2 class="title">Languages</h2>
+                <div class="experience">
+                  <ul>
+                      {% for language in resume.language_set.all %}
+                          <li>
+                              <div class="time">
+                                  <p>{{ language.name }}</p>
+                              </div>
+                              <div class="exp">
+                                  <p>{{ language.get_competency_display }}</p>
+                              </div>
+                          </li>
+                      {% endfor %}
+                  </ul>
+                </div>
+              </div>
+              <div class="skills">
+                <h2 class="title">Skills</h2>
+                <div class="experience">
+                  <ul>
+                      {% for skill in resume.skill_set.all %}
+                          <li>
+                              <div class="time">
+                                  <p>{{ skill.name }}</p>
+                              </div>
+                              <div class="exp">
+                                  {% if skill.competency == 4 %}
+                                      <div class="bar"><span style="width:100%;"></span></div>
+                                  {% elif skill.competency == 3 %}
+                                      <div class="bar"><span style="width:75%;"></span></div>
+                                  {% elif skill.competency == 2 %}
+                                      <div class="bar"><span style="width:50%;"></span></div>
+                                  {% elif skill.competency == 1 %}
+                                      <div class="bar"><span style="width:25%;"></span></div>
+                                  {% endif %}
+                              </div>
+                          </li>
+                      {% endfor %}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </main>
+</body>
