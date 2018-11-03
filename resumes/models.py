@@ -1,6 +1,7 @@
 from django.db import models
 from users.models import User
 from tinymce.models import HTMLField
+from .choices import LANGUAGE_COMPETENCY_CHOICES, SKILL_COMPETENCY_CHOICES
 
 
 class Resume(models.Model):
@@ -59,7 +60,7 @@ class Education(models.Model):
 class Skill(models.Model):
     resume = models.ForeignKey(Resume, on_delete=models.CASCADE, blank=True)
     name = models.CharField(max_length=255, blank=True)
-    competency = models.IntegerField(null=True, blank=True)
+    competency = models.IntegerField(choices=SKILL_COMPETENCY_CHOICES, null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -68,8 +69,7 @@ class Skill(models.Model):
 class Language(models.Model):
     resume = models.ForeignKey(Resume, on_delete=models.CASCADE, blank=True)
     name = models.CharField(max_length=255, blank=True)
-    # TODO: Change this to choice field
-    competency = models.IntegerField(null=True, blank=True)
+    competency = models.IntegerField(choices=LANGUAGE_COMPETENCY_CHOICES, null=True, blank=True)
 
     def __str__(self):
         return self.name

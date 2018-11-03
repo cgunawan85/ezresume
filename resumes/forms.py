@@ -5,7 +5,7 @@ from django.forms import ModelForm, Textarea, TextInput, NumberInput, DateInput,
 from django.forms import BaseModelFormSet
 from django.forms import modelformset_factory
 
-from .choices import COMPETENCY_CHOICES
+from .choices import LANGUAGE_COMPETENCY_CHOICES, SKILL_COMPETENCY_CHOICES
 from users.models import Profile
 from .models import Certification, Education, Language, Resume, Skill, WorkExperience
 
@@ -100,7 +100,7 @@ class SkillForm(ModelForm):
     class Meta:
         model = Skill
         fields = ['name', 'competency', 'resume', ]
-        widgets = {'competency': forms.Select(choices=COMPETENCY_CHOICES, attrs={'class': 'form-control'}),
+        widgets = {'competency': forms.Select(attrs={'class': 'form-control'}),
                    'name': TextInput(attrs={'placeholder': 'For example: Microsoft Excel'}),
                    'resume': forms.HiddenInput(), }
         labels = {'name': 'Skill name'}
@@ -124,7 +124,7 @@ class LanguageForm(ModelForm):
     class Meta:
         model = Language
         fields = ['name', 'competency', 'resume', ]
-        widgets = {'competency': forms.Select(choices=COMPETENCY_CHOICES, attrs={'class': 'form-control'}),
+        widgets = {'competency': forms.Select(attrs={'class': 'form-control'}),
                    'name': TextInput(attrs={'placeholder': 'For example: English or Mandarin'}),
                    'resume': forms.HiddenInput(), }
         labels = {'name': 'Language name'}

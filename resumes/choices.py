@@ -1,8 +1,14 @@
 # choices for skills and languages
-COMPETENCY_CHOICES = (
+SKILL_COMPETENCY_CHOICES = (
     ('', '-----'),
-    (1, 'Poor'),
-    (2, 'Below Average'),
-    (3, 'Average'),
-    (4, 'Good'),
-    (5, 'Excellent'), )
+    (1, 'Below Average'),
+    (2, 'Average'),
+    (3, 'Good'),
+    (4, 'Excellent'), )
+
+LANGUAGE_COMPETENCY_CHOICES = (
+    ('', '-----'),
+    (1, 'Beginner Level'),
+    (2, 'Conversational Level'),
+    (3, 'Business Level'),
+    (4, 'Fluent Level'), )
