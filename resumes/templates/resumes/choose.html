@@ -9,8 +9,7 @@
 
     input#id_resume_template_0[type=radio]+label {
         background-image: url("{% static 'resumes/images/jakarta-resume-small.jpg' %}");
-        border-color: white;
-        border-style: solid;
+        border: lightslategray solid 1px;
         height: 253px;
         width: 223px;
         display: inline-block;
@@ -19,8 +18,7 @@
 
     input#id_resume_template_1[type=radio]+label {
         background-image: url("{% static 'resumes/images/new-york-resume-small.jpg' %}");
-        border-color: white;
-        border-style: solid;
+        border: lightslategray solid 1px;
         height: 253px;
         width: 223px;
         display: inline-block;
@@ -29,8 +27,7 @@
 
     input#id_resume_template_2[type=radio]+label {
         background-image: url("{% static 'resumes/images/tokyo-resume-small.jpg' %}");
-        border-color: white;
-        border-style: solid;
+        border: lightslategray solid 1px;
         height: 253px;
         width: 223px;
         display: inline-block;
@@ -39,8 +36,7 @@
 
     input#id_resume_template_3[type=radio]+label {
         background-image: url("{% static 'resumes/images/rome-resume-small.jpg' %}");
-        border-color: white;
-        border-style: solid;
+        border: lightslategray solid 1px;
         height: 253px;
         width: 223px;
         display: inline-block;
@@ -49,8 +45,7 @@
 
     input#id_resume_template_4[type=radio]+label {
         background-image: url("{% static 'resumes/images/sf-resume-small.jpg' %}");
-        border-color: white;
-        border-style: solid;
+        border: lightslategray solid 1px;
         height: 253px;
         width: 223px;
         display: inline-block;
@@ -58,8 +53,7 @@
     }
 
     input#id_resume_template_0[type=radio]:checked+label {
-        border-color: red;
-        border-style: solid;
+        border: deeppink solid 4px;
         height: 253px;
         width: 223px;
         display: inline-block;
@@ -67,8 +61,7 @@
     }
 
     input#id_resume_template_1[type=radio]:checked+label {
-        border-color: red;
-        border-style: solid;
+        border: deeppink solid 4px;
         height: 253px;
         width: 223px;
         display: inline-block;
@@ -76,8 +69,7 @@
     }
 
     input#id_resume_template_2[type=radio]:checked+label {
-        border-color: red;
-        border-style: solid;
+        border: deeppink solid 4px;
         height: 253px;
         width: 223px;
         display: inline-block;
@@ -85,8 +77,7 @@
     }
 
     input#id_resume_template_3[type=radio]:checked+label {
-        border-color: red;
-        border-style: solid;
+        border: deeppink solid 4px;
         height: 253px;
         width: 223px;
         display: inline-block;
@@ -94,8 +85,7 @@
     }
 
     input#id_resume_template_4[type=radio]:checked+label {
-        border-color: red;
-        border-style: solid;
+        border: deeppink solid 4px;
         height: 253px;
         width: 223px;
         display: inline-block;
@@ -108,7 +98,7 @@
 {% block title %}<title>EZResume | Templates</title>{% endblock %}
 {% block subheader %}
     <div class="sub-header">
-        <h1>Choose Your Template</h1>
+        <h1>Choose Your Resume Template</h1>
         <p>
             The type of resume you use to apply for a job is very important. You wouldn't use a banker's resume to apply for a
             graphic design job right? Here are samples of the resumes that you can create using EZResume. Each template is
@@ -119,7 +109,7 @@
 {% endblock %}
 {% block content %}
     <div class="form-labels-on-top-small templates-page">
-        <form>
+        <form method="post" action="{% url 'resumes:your-resume' pk=resume.id %}">
             {% csrf_token %}
             <input type="radio" name='resume_template' id="id_resume_template_0" value="jakarta" /><label for="id_resume_template_0"></label>
             <input type="radio" name='resume_template' id="id_resume_template_1" value="new_york" /><label for="id_resume_template_1"></label>

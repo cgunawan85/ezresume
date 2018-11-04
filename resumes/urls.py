@@ -14,5 +14,6 @@ urlpatterns = [
     path('templates/', views.templates, name='templates'),
     path('payment/', user_views.payment, name='payment'),
     path('payment/notification/', user_views.payment_notification, name='payment-notif'),
-    path('templates/choose/<int:pk>/', views.choose, name='choose'),
+    path('resume/<int:pk>/choose/', views.choose, name='choose'),
+    path('resume/<int:pk>/your-resume/', views.choose, name='your-resume'),
 ]
