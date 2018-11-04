@@ -13,6 +13,7 @@ from django.core.mail import EmailMessage
 from django.contrib.auth import login
 from django.contrib.auth.models import Group
 from django.views.decorators.csrf import csrf_exempt
+from django.utils import timezone
 
 from .tokens import account_activation_token
 from .forms import CustomUserCreationForm, OrderForm
@@ -62,7 +63,6 @@ def activate(request, uidb64, token):
 
 @csrf_exempt
 def payment_notification(request):
-    # This is listens for HTTP post requests from Midtrans
     if request.method == "POST":
         body_unicode = request.body.decode('utf-8')
         request_dict = json.loads(body_unicode)
@@ -70,15 +70,13 @@ def payment_notification(request):
             order_id = request_dict['order_id']
             order = Order.objects.get(pk=order_id)
             user = order.user
+            if order.package == '7 day':
+                user.profile.sub_expires_on = timezone.now() + datetime.timedelta(days=7)
+            elif order.package == '1 month':
+                user.profile.sub_expires_on = timezone.now() + datetime.timedelta(days=30)
+            user.save()
             group = Group.objects.get(name='paying_user')
             group.user_set.add(user)
-            # TODO: Need to test this
-            """
-            if request_dict['gross_amount'] == 24000:
-                user.profile.sub_expires_on = datetime.datetime.now() + datetime.timedelta(days=7)
-            elif request_dict['gross_amount'] == 72000:
-                user.profile.sub_expires_on = datetime.datetime.now() + datetime.timedelta(days=30)
-            """
             # messages.success(request, "Thank you {}! You now have unlimited resume exports".format(user.username))
             # TODO: Need to figure out what to return/render/redirect
             return HttpResponse('Hello')

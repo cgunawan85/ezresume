@@ -27,6 +27,7 @@ class ProfileAdmin(admin.ModelAdmin):
 
 
 class OrderAdmin(admin.ModelAdmin):
+    readonly_fields = ('id',)
     list_display = ['package', 'user', 'created_at', ]
 
 
