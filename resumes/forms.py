@@ -5,9 +5,17 @@ from django.forms import ModelForm, Textarea, TextInput, NumberInput, DateInput,
 from django.forms import BaseModelFormSet
 from django.forms import modelformset_factory
 
-from .choices import LANGUAGE_COMPETENCY_CHOICES, SKILL_COMPETENCY_CHOICES
 from users.models import Profile
 from .models import Certification, Education, Language, Resume, Skill, WorkExperience
+
+from .choices import RESUME_CHOICES
+
+
+class ChooseForm(forms.Form):
+    resume_template = forms.ChoiceField(choices=RESUME_CHOICES, widget=forms.RadioSelect())
+
+    class Meta:
+        pass
 
 
 # allows validation on empty forms for ResumeWizard

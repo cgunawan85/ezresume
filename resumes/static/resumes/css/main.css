@@ -336,6 +336,17 @@ body{
     text-align: center;
 }
 
+.form-labels-on-top-small {
+    box-sizing: border-box;
+    font-weight: 600;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 55px;
+    background-color:  #ffffff;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
 .form-labels-on-top .form-row{
     text-align: left;
     max-width: 315px;

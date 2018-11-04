@@ -1,6 +1,6 @@
+import datetime
 import json
 import requests
-import datetime
 
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
@@ -17,7 +17,7 @@ from django.utils import timezone
 
 from .tokens import account_activation_token
 from .forms import CustomUserCreationForm, OrderForm
-from .models import User, Order
+from .models import Order, User
 
 
 def register(request):

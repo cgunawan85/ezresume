@@ -12,3 +12,10 @@ LANGUAGE_COMPETENCY_CHOICES = (
     (2, 'Conversational Level'),
     (3, 'Business Level'),
     (4, 'Fluent Level'), )
+
+RESUME_CHOICES = (
+    ('jakarta', 'Jakarta'),
+    ('new_york', 'New York'),
+    ('tokyo', 'Tokyo'),
+    ('rome', 'Rome'),
+    ('sf', 'San Francisco'), )

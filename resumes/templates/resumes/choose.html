@@ -1,0 +1,134 @@
+{% extends 'resumes/layout.html' %}
+{% load static %}
+{% block style %}
+    <style>
+
+    input[type=radio] {
+        display: none;
+    }
+
+    input#id_resume_template_0[type=radio]+label {
+        background-image: url("{% static 'resumes/images/jakarta-resume-small.jpg' %}");
+        border-color: white;
+        border-style: solid;
+        height: 253px;
+        width: 223px;
+        display: inline-block;
+        margin: 1.5em;
+    }
+
+    input#id_resume_template_1[type=radio]+label {
+        background-image: url("{% static 'resumes/images/new-york-resume-small.jpg' %}");
+        border-color: white;
+        border-style: solid;
+        height: 253px;
+        width: 223px;
+        display: inline-block;
+        margin: 1.5em;
+    }
+
+    input#id_resume_template_2[type=radio]+label {
+        background-image: url("{% static 'resumes/images/tokyo-resume-small.jpg' %}");
+        border-color: white;
+        border-style: solid;
+        height: 253px;
+        width: 223px;
+        display: inline-block;
+        margin: 1.5em;
+    }
+
+    input#id_resume_template_3[type=radio]+label {
+        background-image: url("{% static 'resumes/images/rome-resume-small.jpg' %}");
+        border-color: white;
+        border-style: solid;
+        height: 253px;
+        width: 223px;
+        display: inline-block;
+        margin: 1.5em;
+    }
+
+    input#id_resume_template_4[type=radio]+label {
+        background-image: url("{% static 'resumes/images/sf-resume-small.jpg' %}");
+        border-color: white;
+        border-style: solid;
+        height: 253px;
+        width: 223px;
+        display: inline-block;
+        margin: 1.5em;
+    }
+
+    input#id_resume_template_0[type=radio]:checked+label {
+        border-color: red;
+        border-style: solid;
+        height: 253px;
+        width: 223px;
+        display: inline-block;
+        margin: 1.5em;
+    }
+
+    input#id_resume_template_1[type=radio]:checked+label {
+        border-color: red;
+        border-style: solid;
+        height: 253px;
+        width: 223px;
+        display: inline-block;
+        margin: 1.5em;
+    }
+
+    input#id_resume_template_2[type=radio]:checked+label {
+        border-color: red;
+        border-style: solid;
+        height: 253px;
+        width: 223px;
+        display: inline-block;
+        margin: 1.5em;
+    }
+
+    input#id_resume_template_3[type=radio]:checked+label {
+        border-color: red;
+        border-style: solid;
+        height: 253px;
+        width: 223px;
+        display: inline-block;
+        margin: 1.5em;
+    }
+
+    input#id_resume_template_4[type=radio]:checked+label {
+        border-color: red;
+        border-style: solid;
+        height: 253px;
+        width: 223px;
+        display: inline-block;
+        margin: 1.5em;
+    }
+
+    </style>
+
+{% endblock %}
+{% block title %}<title>EZResume | Templates</title>{% endblock %}
+{% block subheader %}
+    <div class="sub-header">
+        <h1>Choose Your Template</h1>
+        <p>
+            The type of resume you use to apply for a job is very important. You wouldn't use a banker's resume to apply for a
+            graphic design job right? Here are samples of the resumes that you can create using EZResume. Each template is
+            expertly designed and follows the exact “resume rules” hiring managers look for. Our research revealed that these
+            templates were the most appealing. We named the resume templates after cities from which they were inspired from.
+        </p>
+    </div>
+{% endblock %}
+{% block content %}
+    <div class="form-labels-on-top-small templates-page">
+        <form>
+            {% csrf_token %}
+            <input type="radio" name='resume_template' id="id_resume_template_0" value="jakarta" /><label for="id_resume_template_0"></label>
+            <input type="radio" name='resume_template' id="id_resume_template_1" value="new_york" /><label for="id_resume_template_1"></label>
+            <input type="radio" name='resume_template' id="id_resume_template_2" value="tokyo"/><label for="id_resume_template_2"></label>
+            <input type="radio" name='resume_template' id="id_resume_template_3" value="rome" /><label for="id_resume_template_3"></label>
+            <input type="radio" name='resume_template' id="id_resume_template_4" value="sf" /><label for="id_resume_template_4"></label>
+            <div>
+                <button type="submit">View my resume</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

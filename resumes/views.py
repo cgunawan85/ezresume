@@ -4,12 +4,13 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse
+from formtools.wizard.views import SessionWizardView
 
 from users.forms import CustomUserChangeForm
 from .forms import (ResumeForm, ProfileUpdateForm, WorkExperienceFormSet, CertificationFormSet,
                     EducationFormSet, SkillFormSet, LanguageFormSet)
 from .models import Resume
-from formtools.wizard.views import SessionWizardView
+from .forms import ChooseForm
 
 
 FORMS = [('resumes', ResumeForm),
@@ -27,6 +28,13 @@ TEMPLATES = {'resumes': 'resumes/resumes.html',
              'education': 'resumes/education.html',
              'skills': 'resumes/skills.html',
              'languages': 'resumes/languages.html', }
+
+
+@login_required()
+def choose(request, pk):
+    form = ChooseForm()
+    request.session['resume_id'] = pk
+    return render(request, 'resumes/choose.html', {'form': form})
 
 
 @login_required()
