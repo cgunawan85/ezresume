@@ -190,6 +190,14 @@ body{
 
 /*----------- Buttons ----------- */
 
+button {
+    border: 0;
+}
+
+.form-button-row {
+    margin-top: 20px;
+}
+
 .button {
     text-decoration: none;
     font: bold 14px/1 'Raleway-Medium', sans-serif;

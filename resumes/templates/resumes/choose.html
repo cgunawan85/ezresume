@@ -99,12 +99,6 @@
 {% block subheader %}
     <div class="sub-header">
         <h1>Choose Your Resume Template</h1>
-        <p>
-            The type of resume you use to apply for a job is very important. You wouldn't use a banker's resume to apply for a
-            graphic design job right? Here are samples of the resumes that you can create using EZResume. Each template is
-            expertly designed and follows the exact “resume rules” hiring managers look for. Our research revealed that these
-            templates were the most appealing. We named the resume templates after cities from which they were inspired from.
-        </p>
     </div>
 {% endblock %}
 {% block content %}
@@ -116,8 +110,8 @@
             <input type="radio" name='resume_template' id="id_resume_template_2" value="tokyo"/><label for="id_resume_template_2"></label>
             <input type="radio" name='resume_template' id="id_resume_template_3" value="rome" /><label for="id_resume_template_3"></label>
             <input type="radio" name='resume_template' id="id_resume_template_4" value="sf" /><label for="id_resume_template_4"></label>
-            <div>
-                <button type="submit">View my resume</button>
+            <div class="form-button-row">
+                <button type="submit" class="button">View my resume</button>
             </div>
         </form>
     </div>

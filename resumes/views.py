@@ -35,10 +35,17 @@ def choose(request, pk):
     resume = Resume.objects.get(pk=pk)
     if request.method == 'POST':
         form = ChooseForm(request.POST)
-        # request.session['resume_id'] = pk
-        # TODO: Need to repeat for other resumes
-        if form.is_valid() and form.cleaned_data['resume_template'] == 'jakarta':
-            return render(request, 'resumes/jakarta.html', {'form': form, 'resume': resume})
+        if form.is_valid():
+            if form.cleaned_data['resume_template'] == 'jakarta':
+                return render(request, 'resumes/jakarta.html', {'form': form, 'resume': resume})
+            if form.cleaned_data['resume_template'] == 'new_york':
+                return render(request, 'resumes/new_york.html', {'form': form, 'resume': resume})
+            if form.cleaned_data['resume_template'] == 'tokyo':
+                return render(request, 'resumes/tokyo.html', {'form': form, 'resume': resume})
+            if form.cleaned_data['resume_template'] == 'rome':
+                return render(request, 'resumes/rome.html', {'form': form, 'resume': resume})
+            if form.cleaned_data['resume_template'] == 'sf':
+                return render(request, 'resumes/san_francisco.html', {'form': form, 'resume': resume})
     else:
         form = ChooseForm()
     return render(request, 'resumes/choose.html', {'form': form, 'resume': resume})
@@ -106,10 +113,12 @@ def dict_has_data(input_dict):
 class ResumeWizard(LoginRequiredMixin, SessionWizardView):
     login_url = '/login/'
 
+    """
     def get_form_initial(self, step):
         if 'pk' in self.kwargs:
             return {}
         return self.initial_dict.get(step, {})
+    """
 
     def get_form_instance(self, step):
         if 'pk' in self.kwargs:
