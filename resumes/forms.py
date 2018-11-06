@@ -7,6 +7,7 @@ from django.forms import modelformset_factory
 
 from users.models import Profile
 from .models import Certification, Education, Language, Resume, Skill, WorkExperience
+from tinymce.widgets import TinyMCE
 
 from .choices import RESUME_CHOICES
 
@@ -45,7 +46,7 @@ class WorkExperienceForm(ModelForm):
     class Meta:
         model = WorkExperience
         fields = ['position', 'company', 'city', 'start_date', 'end_date', 'achievements', 'resume', ]
-        widgets = {'achievements': Textarea(attrs={'class': 'objective-box', 'cols': 50, 'rows': 10}),
+        widgets = {'achievements': TinyMCE(attrs={'class': 'objective-box', 'cols': 50, 'rows': 10}),
                    'position': TextInput(attrs={'placeholder': 'For example: Bank Teller'}),
                    'company': TextInput(attrs={'placeholder': 'For example: Bank Central Asia'}),
                    'city': TextInput(attrs={'placeholder': 'For example: Jakarta'}),
