@@ -35,8 +35,6 @@ def choose(request, pk):
     resume = Resume.objects.get(pk=pk)
     if request.method == 'POST':
         form = ChooseForm(request.POST)
-        # request.session['resume_id'] = pk
-        # TODO: Need to repeat for other resumes
         if form.is_valid() and form.cleaned_data['resume_template'] == 'jakarta':
             return render(request, 'resumes/jakarta.html', {'form': form, 'resume': resume})
         if form.is_valid() and form.cleaned_data['resume_template'] == 'new_york':

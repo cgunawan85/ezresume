@@ -117,7 +117,8 @@
             <input type="radio" name='resume_template' id="id_resume_template_3" value="rome" /><label for="id_resume_template_3"></label>
             <input type="radio" name='resume_template' id="id_resume_template_4" value="sf" /><label for="id_resume_template_4"></label>
             <div>
-                <button type="submit">View my resume</button>
+                {{ form.errors.resume_template }}
+                <button type="submit" class="button">View my resume</button>
             </div>
         </form>
     </div>
