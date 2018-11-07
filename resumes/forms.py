@@ -15,13 +15,6 @@ from .choices import RESUME_CHOICES
 class ChooseForm(forms.Form):
     resume_template = forms.ChoiceField(choices=RESUME_CHOICES)
 
-    def clean_resume_template(self):
-        # TODO: This validation does not work yet
-        data = self.cleaned_data['resume_template']
-        if not data:
-            raise forms.ValidationError("Oops! Please choose a template!")
-        return data
-
     class Meta:
         pass
 
