@@ -39,6 +39,14 @@ def choose(request, pk):
         # TODO: Need to repeat for other resumes
         if form.is_valid() and form.cleaned_data['resume_template'] == 'jakarta':
             return render(request, 'resumes/jakarta.html', {'form': form, 'resume': resume})
+        if form.is_valid() and form.cleaned_data['resume_template'] == 'new_york':
+            return render(request, 'resumes/new_york.html', {'form': form, 'resume': resume})
+        if form.is_valid() and form.cleaned_data['resume_template'] == 'tokyo':
+            return render(request, 'resumes/tokyo.html', {'form': form, 'resume': resume})
+        if form.is_valid() and form.cleaned_data['resume_template'] == 'rome':
+            return render(request, 'resumes/rome.html', {'form': form, 'resume': resume})
+        if form.is_valid() and form.cleaned_data['resume_template'] == 'sf':
+            return render(request, 'resumes/san_francisco.html', {'form': form, 'resume': resume})
     else:
         form = ChooseForm()
     return render(request, 'resumes/choose.html', {'form': form, 'resume': resume})
