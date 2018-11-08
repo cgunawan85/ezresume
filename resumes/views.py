@@ -9,7 +9,7 @@ from formtools.wizard.views import SessionWizardView
 from users.forms import CustomUserChangeForm
 from .forms import (ResumeForm, ProfileUpdateForm, WorkExperienceFormSet, CertificationFormSet,
                     EducationFormSet, SkillFormSet, LanguageFormSet)
-from .models import Resume
+from .models import Resume, WorkExperience, Certification, Education, Skill, Language
 from .forms import ChooseForm
 
 
@@ -139,6 +139,25 @@ class ResumeWizard(LoginRequiredMixin, SessionWizardView):
 
             if step == 'languages':
                 return resume.language_set.all()
+        else:
+            if step == 'resumes':
+                return None
+
+            if step == 'work_experience':
+                return WorkExperience.objects.none()
+
+            if step == 'certifications':
+                return Certification.objects.none()
+
+            if step == 'education':
+                return Education.objects.none()
+
+            if step == 'skills':
+                return Skill.objects.none()
+
+            if step == 'languages':
+                return Language.objects.none()
+
         return None
 
     def get_template_names(self):
