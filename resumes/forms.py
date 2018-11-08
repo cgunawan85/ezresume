@@ -1,7 +1,7 @@
 from django import forms
 from django.conf import settings
 
-from django.forms import ModelForm, Textarea, TextInput, NumberInput, DateInput, DateField
+from django.forms import ModelForm, TextInput, NumberInput, DateInput, DateField
 from django.forms import BaseModelFormSet
 from django.forms import modelformset_factory
 

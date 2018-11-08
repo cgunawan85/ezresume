@@ -58,12 +58,6 @@ def my_resumes(request):
 
 
 @login_required()
-def view_resume(request, pk):
-    resume = Resume.objects.get(pk=pk)
-    return render(request, 'resumes/tokyo.html', {'resume': resume})
-
-
-@login_required()
 def faq(request):
     return render(request, 'resumes/faq.html')
 
@@ -157,7 +151,6 @@ class ResumeWizard(LoginRequiredMixin, SessionWizardView):
 
             if step == 'languages':
                 return Language.objects.none()
-
         return None
 
     def get_template_names(self):
