@@ -9,7 +9,7 @@ from formtools.wizard.views import SessionWizardView
 from users.forms import CustomUserChangeForm
 from .forms import (ResumeForm, ProfileUpdateForm, WorkExperienceFormSet, CertificationFormSet,
                     EducationFormSet, SkillFormSet, LanguageFormSet)
-from .models import Resume
+from .models import Resume, WorkExperience, Certification, Education, Skill, Language
 from .forms import ChooseForm
 
 
@@ -35,17 +35,16 @@ def choose(request, pk):
     resume = Resume.objects.get(pk=pk)
     if request.method == 'POST':
         form = ChooseForm(request.POST)
-        if form.is_valid():
-            if form.cleaned_data['resume_template'] == 'jakarta':
-                return render(request, 'resumes/jakarta.html', {'form': form, 'resume': resume})
-            if form.cleaned_data['resume_template'] == 'new_york':
-                return render(request, 'resumes/new_york.html', {'form': form, 'resume': resume})
-            if form.cleaned_data['resume_template'] == 'tokyo':
-                return render(request, 'resumes/tokyo.html', {'form': form, 'resume': resume})
-            if form.cleaned_data['resume_template'] == 'rome':
-                return render(request, 'resumes/rome.html', {'form': form, 'resume': resume})
-            if form.cleaned_data['resume_template'] == 'sf':
-                return render(request, 'resumes/san_francisco.html', {'form': form, 'resume': resume})
+        if form.is_valid() and form.cleaned_data['resume_template'] == 'jakarta':
+            return render(request, 'resumes/jakarta.html', {'form': form, 'resume': resume})
+        if form.is_valid() and form.cleaned_data['resume_template'] == 'new_york':
+            return render(request, 'resumes/new_york.html', {'form': form, 'resume': resume})
+        if form.is_valid() and form.cleaned_data['resume_template'] == 'tokyo':
+            return render(request, 'resumes/tokyo.html', {'form': form, 'resume': resume})
+        if form.is_valid() and form.cleaned_data['resume_template'] == 'rome':
+            return render(request, 'resumes/rome.html', {'form': form, 'resume': resume})
+        if form.is_valid() and form.cleaned_data['resume_template'] == 'sf':
+            return render(request, 'resumes/san_francisco.html', {'form': form, 'resume': resume})
     else:
         form = ChooseForm()
     return render(request, 'resumes/choose.html', {'form': form, 'resume': resume})
@@ -56,12 +55,6 @@ def my_resumes(request):
     user = request.user
     resumes = Resume.objects.filter(user=user)
     return render(request, 'resumes/my_resumes.html', {'resumes': resumes})
-
-
-@login_required()
-def view_resume(request, pk):
-    resume = Resume.objects.get(pk=pk)
-    return render(request, 'resumes/tokyo.html', {'resume': resume})
 
 
 @login_required()
@@ -113,12 +106,10 @@ def dict_has_data(input_dict):
 class ResumeWizard(LoginRequiredMixin, SessionWizardView):
     login_url = '/login/'
 
-    """
     def get_form_initial(self, step):
         if 'pk' in self.kwargs:
             return {}
         return self.initial_dict.get(step, {})
-    """
 
     def get_form_instance(self, step):
         if 'pk' in self.kwargs:
@@ -142,6 +133,24 @@ class ResumeWizard(LoginRequiredMixin, SessionWizardView):
 
             if step == 'languages':
                 return resume.language_set.all()
+        else:
+            if step == 'resumes':
+                return None
+
+            if step == 'work_experience':
+                return WorkExperience.objects.none()
+
+            if step == 'certifications':
+                return Certification.objects.none()
+
+            if step == 'education':
+                return Education.objects.none()
+
+            if step == 'skills':
+                return Skill.objects.none()
+
+            if step == 'languages':
+                return Language.objects.none()
         return None
 
     def get_template_names(self):

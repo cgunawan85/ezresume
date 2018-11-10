@@ -103,14 +103,15 @@
 {% endblock %}
 {% block content %}
     <div class="form-labels-on-top-small templates-page">
-        <form method="post" action="{% url 'resumes:your-resume' pk=resume.id %}">
+        <form method="post" action="{% url 'resumes:view-resume' pk=resume.id %}">
             {% csrf_token %}
             <input type="radio" name='resume_template' id="id_resume_template_0" value="jakarta" /><label for="id_resume_template_0"></label>
             <input type="radio" name='resume_template' id="id_resume_template_1" value="new_york" /><label for="id_resume_template_1"></label>
             <input type="radio" name='resume_template' id="id_resume_template_2" value="tokyo"/><label for="id_resume_template_2"></label>
             <input type="radio" name='resume_template' id="id_resume_template_3" value="rome" /><label for="id_resume_template_3"></label>
             <input type="radio" name='resume_template' id="id_resume_template_4" value="sf" /><label for="id_resume_template_4"></label>
-            <div class="form-button-row">
+            <div>
+                {{ form.errors.resume_template }}
                 <button type="submit" class="button">View my resume</button>
             </div>
         </form>
