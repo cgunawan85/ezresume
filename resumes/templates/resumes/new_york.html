@@ -86,7 +86,7 @@
 
       .new-york .section table tr td { vertical-align: top; }
 
-      .new-york .section table tr td .content, .new-york .section table tr td .header { padding-top: 40px; padding-left: 80px; padding-right: 80px; }
+      .new-york .section table tr td .content, .new-york .section table tr td .header { padding-top: 50px; padding-left: 80px; padding-right: 80px; }
 
       .new-york a { color: #444C52; }
 
@@ -128,7 +128,7 @@
 
       .new-york .about .linkedin a:hover { text-decoration: underline; }
 
-      .new-york .we { padding: 35px 0 0; }
+      .new-york .we { padding: 0px 0 0; }
 
       .new-york .we h2 { text-align: center; position: relative; color: #212121; font-size: 28px; line-height: 36px; vertical-align: middle; text-transform: uppercase; }
 
@@ -235,7 +235,7 @@
                 </ul>
               </div>
             </div>
-            <div class="content" style="padding-top: 60px;">
+            <div class="content" style="padding-top: 45px;">
               <div class="about">
                 <div class="text" style="font-family: 'Times', san-serif;">
                   {{ resume.user.profile.objective|safe }}
@@ -284,23 +284,6 @@
                   </div>
                 </div>
                 <div class="right">
-                  <div class="box certif">
-                    <div class="title">
-                      <h2>Certifications</h2>
-                    </div>
-                    <ul>
-                        {% for certification in resume.certification_set.all %}
-                            <li>
-                                <h3>{{ certification.name }}</h3>
-                                <p>{{ certification.date_obtained|date:'d M Y' }}</p>
-                                <p>{{ certification.city }}</p>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                  </div>
-                </div>
-              <div class="box-skills clearfix">
-                <div class="left">
                   <div class="box lang">
                     <div class="title">
                       <h2>Language</h2>
@@ -317,7 +300,8 @@
                     </ul>
                   </div>
                 </div>
-                <div class="right">
+              <div class="box-skills clearfix">
+                <div class="left">
                   <div class="box skills">
                     <div class="title">
                       <h2>Skills</h2>
@@ -344,12 +328,30 @@
                     </ul>
                   </div>
                 </div>
+              {% if resume.certification_set.exists %}
+                  <div class="right">
+                      <div class="box certif">
+                          <div class="title">
+                              <h2>Certifications</h2>
+                          </div>
+                          <ul>
+                              {% for certification in resume.certification_set.all %}
+                                  <li>
+                                      <h3>{{ certification.name }}</h3>
+                                      <p>{{ certification.date_obtained|date:'d M Y' }}</p>
+                                      <p>{{ certification.city }}</p>
+                                  </li>
+                              {% endfor %}
+                          </ul>
+                      </div>
+                  </div>
+              {% endif %}
+              </div>
               </div>
             </div>
-        </div>
-      </td>
-    </tr>
-  </table>
-</div>
-</main>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </main>
 </body>
