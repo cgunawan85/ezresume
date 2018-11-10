@@ -130,7 +130,7 @@
 
       .tokyo .content-r .lang .experience .exp, .tokyo .content-r .skills .experience .exp { width: calc(100% - 175px); }
 
-      .tokyo .experience > ul > li { margin-bottom: 60px; }
+      .tokyo .experience > ul > li { margin-bottom: 20px;}
 
       .tokyo .experience .time, .tokyo .experience .exp { float: left; }
 
@@ -144,7 +144,7 @@
 
       .tokyo .experience .exp ul { list-style: disc; padding-left: 30px; }
 
-      .tokyo .experience .exp ul li { margin-bottom: 20px; padding-left: 20px; }
+      .tokyo .experience .exp ul li { margin-bottom: 10px; padding-left: 20px; }
 
       .tokyo .bar { width: 170px; height: 6px; position: relative; overflow: hidden; margin: 10px 0; }
 
@@ -193,15 +193,13 @@
                             </div>
                             <div class="exp">
                                 <h3>{{ work_experience.position }}</h3><span>{{ work_experience.company }}, {{ work_experience.city }}</span>
-                                <p>{{ work_experience.achievements|safe }}</p>
+                                {{ work_experience.achievements|safe }}
                             </div>
                         </li>
                     {% endfor %}
                 </ul>
-                    </div>
-                  </li>
-                </ul>
               </div>
+            </div>
             <div class="content-r">
               <div class="contact">
                 <ul>
@@ -243,13 +241,35 @@
                           </div>
                           <div class="exp">
                               <h3>{{ education.degree }}</h3>
-                              <p>{{ education.school }} <br> {{ education.city }} <br>{{ education.degree }}</p>
+                              <p>
+                                  {{ education.school }}, {{ education.city }}<br>{{ education.degree }}<br>{{ education.major }} major
+                              </p>
                           </div>
                       </li>
                   {% endfor %}
                   </ul>
                 </div>
               </div>
+                {% if resume.certification_set.exists %}
+                    <div class="education">
+                        <div class="experience">
+                          <h2 class="title">Certifications</h2>
+                          <ul>
+                          {% for certification in resume.certification_set.all %}
+                              <li>
+                                  <div class="time">
+                                      {{ certification.date_obtained|date:'M Y' }}
+                                  </div>
+                                  <div class="exp">
+                                      <h3>{{ certification.name }}</h3>
+                                      <p>{{ certification.city }}</p>
+                                  </div>
+                              </li>
+                          {% endfor %}
+                          </ul>
+                        </div>
+                      </div>
+                {% endif %}
               <div class="lang">
                 <h2 class="title">Languages</h2>
                 <div class="experience">

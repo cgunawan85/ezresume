@@ -374,16 +374,32 @@
                                 </div>
                                 <div class="right">
                                     <h3>{{ work_experience.company }}, {{ work_experience.city }}</h3><span>{{ work_experience.position }}</span>
-                                    <p>{{ work_experience.achievements|safe }}</p>
+                                    {{ work_experience.achievements|safe }}
                                 </div>
                             </li>
                         {% endfor %}
                     </ul>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
+                    </div>
                 </div>
+                {% if resume.certification_set.exists %}
+                    <div class="experience">
+                      <div class="exp-lang">
+                        <h2 class="title">Certifications</h2>
+                        <ul>
+                            {% for certification in resume.certification_set.all %}
+                                <li>
+                                    <div class="left">
+                                        <p>{{ certification.date_obtained|date:'M Y' }}</p>
+                                    </div>
+                                    <div class="right">
+                                        <h3>{{ certification.name }}</h3><span>{{ certification.city }}</span>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                      </div>
+                    </div>
+                {% endif %}
               </div>
             </div>
           </td>
