@@ -13,6 +13,8 @@ $(document).on('focus', '.date-picker',function(){
         changeMonth: true,
         changeYear: true,
         autoclose:true,
+        yearRange: '1969:2019',
+        defaultDate: '01/01/2018',
     })
 });
 
