@@ -107,11 +107,12 @@
                 </div>
 
                 <div class="home-image-right">
-                    <img src="{% static 'images/iphone-app-470.png' %}">
+                    <img src="{% static 'images/resume-846.png' %}">
                 </div>
             </div>
 
-        </div> <!-- end home-content -->
+        </div>
+       <!--
         <ul class="home-social-list">
             <li>
                 <a href="#"><i class="fa fa-facebook-square"></i></a>
@@ -120,7 +121,6 @@
                 <a href="#"><i class="fa fa-instagram"></i></a>
             </li>
         </ul>
-        <!-- end home-social-list -->
 
         <div class="home-scrolldown">
             <a href="#about" class="scroll-icon smoothscroll">
@@ -128,7 +128,8 @@
                 <i class="icon-arrow-right" aria-hidden="true"></i>
             </a>
         </div>
-    </section> <!-- end home -->
+       -->
+    </section>
 
 
     <!-- about
@@ -257,8 +258,9 @@
                 <p>We don't want your business for long. Choose a subscription plan that's right for you.
                 </p>
                 <p>&nbsp</p> <!-- Ugly, figure this out later -->
-                <p>We accept all major payment methods and process payments with MidTrans SSL Secure / 256-bit SSL secure checkout.
+                <p>We accept all major payment methods and process payments with Midtrans SSL Secure / 256-bit SSL secure checkout.
                 </p>
+                <p><img src="{% static 'images/go-pay-logo.png' %}" class="payment-logo"></p>
             </div>
 
             <div class="col-eight pricing-table">
@@ -283,7 +285,7 @@
                                     <li><span>One Time</span> Payment</li>
                                 </ul>
 
-                                <a class="button button-primary large" href="">Get Started</a>
+                                <a class="button button-primary large" href="{% url 'register' %}">Get Started</a>
                             </div>
 
                         </div>
@@ -308,7 +310,7 @@
                                     <li><span>One Time</span> Payment</li>
                                 </ul>
 
-                                <a class="button button-primary large" href="">Get Started</a>
+                                <a class="button button-primary large" href="{% url 'register' %}">Get Started</a>
                             </div>
 
                         </div>
@@ -338,9 +340,8 @@
                 <div class="slides owl-carousel">
                     <div>
                         <p>
-                        Your work is going to fill a large part of your life, and the only way to be truly satisfied is
-                        to do what you believe is great work. And the only way to do great work is to love what you do.
-                        If you haven't found it yet, keep looking. Don't settle. As with all matters of the heart, you'll know when you find it.
+                            Aim for the stars and sell yourself with facts and numbers.
+                            Be professional at all times. And most importantly, never be late for an appointment.
                         </p>
 
                         <div class="testimonial-author">

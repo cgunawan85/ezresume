@@ -1532,7 +1532,7 @@ h1.intro-header::before {
   display: block;
   position: absolute;
   right: 0px;
-  top: 50%;	margin: 0px;
+  top: 35%;	margin: 0px;
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
@@ -1544,9 +1544,6 @@ h1.intro-header::before {
 
 .home-image-right img {
   vertical-align: bottom;
-  width: 70%;
-  max-height: 846px;
-  max-width: 470px;
 }
 
 
@@ -1734,7 +1731,7 @@ html[data-useragent*='MSIE 10.0'] .home-scrolldown,
   }
   .home-image-right img {
 	vertical-align: top;
-	width: 70%;
+	width: 90%;
   }
 }
 
@@ -1792,7 +1789,7 @@ html[data-useragent*='MSIE 10.0'] .home-scrolldown,
 	right: auto;
 	top: auto;
 	left: 50%;
-	bottom: 0;
+	bottom: 175px;
 	-webkit-transform: translateX(-50%);
 	-ms-transform: translateX(-50%);
 	transform: translateX(-50%);
@@ -2225,6 +2222,12 @@ html[data-useragent*='MSIE 10.0'] .home-scrolldown,
 
 .pricing-table .plan-bottom-part {
   margin-top: 3rem;
+}
+
+.payment-logo {
+  width: 50%;
+  height: auto;
+  padding-top: 25px;
 }
 
 

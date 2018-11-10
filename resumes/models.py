@@ -30,6 +30,7 @@ class WorkExperience(models.Model):
 
     class Meta:
         verbose_name_plural = "Work Experience"
+        ordering = ['-end_date', ]
 
 
 class Certification(models.Model):
@@ -40,6 +41,9 @@ class Certification(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        ordering = ['-date_obtained', ]
 
 
 class Education(models.Model):
@@ -57,6 +61,7 @@ class Education(models.Model):
 
     class Meta:
         verbose_name_plural = "Education"
+        ordering = ['-end_date', ]
 
 
 class Skill(models.Model):

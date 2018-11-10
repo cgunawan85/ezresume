@@ -53,7 +53,7 @@ def choose(request, pk):
 @login_required()
 def my_resumes(request):
     user = request.user
-    resumes = Resume.objects.filter(user=user)
+    resumes = Resume.objects.filter(user=user).order_by('-created_at')
     return render(request, 'resumes/my_resumes.html', {'resumes': resumes})
 
 
