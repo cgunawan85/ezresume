@@ -5,7 +5,7 @@
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>EZResume | {{ resume.name }}</title>
+    <title>EZResume - {{ resume.name }}</title>
     <meta name="description" content=""/>
     <style>/* main css v1.0.0 */
 
@@ -13,17 +13,17 @@
       /* Fonts */
       /* ------------------------------------------------------------------------------------------------ */
 
-      @font-face { font-family: "Times"; src: local("Times"); src: url("{% static 'resumes/fonts/Times.eot' %}"); src: url("{% static 'resumes/fonts/Times.svg' %}") format("svg"), url("{% static 'resumes/fonts/Times.eot#iefix' %}") format("embedded-opentype"), url("{% static 'resumes/fonts/Times.ttf' %}") format("truetype"), url("{% static 'resumes/fonts/Times.woff' %}") format("woff"); font-style: normal; font-weight: 400; }
+        @font-face { font-family: "Times"; src: local("Times"); src: url("{% static 'resumes/fonts/Times.eot' %}"); src: url("{% static 'resumes/fonts/Times.svg' %}") format("svg"), url("{% static 'resumes/fonts/Times.eot#iefix' %}") format("embedded-opentype"), url("{% static 'resumes/fonts/Times.ttf' %}") format("truetype"), url("{% static 'resumes/fonts/Times.woff' %}") format("woff"); font-style: normal; font-weight: 400; }
 
-      @font-face { font-family: "Times"; src: local("Times"); src: url("{% static 'resumes/fonts/Times.eot' %}"); src: url("{% static 'resumes/fonts/Times.svg' %}") format("svg"), url("{% static 'resumes/fonts/Times.eot#iefix' %}") format("embedded-opentype"), url("{% static 'resumes/fonts/Times.ttf' %}") format("truetype"), url("{% static 'resumes/fonts/Times.woff' %}") format("woff"); font-style: normal; font-weight: 600; }
+        @font-face { font-family: "Times"; src: local("Times"); src: url("{% static 'resumes/fonts/Times.eot' %}"); src: url("{% static 'resumes/fonts/Times.svg' %}") format("svg"), url("{% static 'resumes/fonts/Times.eot#iefix' %}") format("embedded-opentype"), url("{% static 'resumes/fonts/Times.ttf' %}") format("truetype"), url("{% static 'resumes/fonts/Times.woff' %}") format("woff"); font-style: normal; font-weight: 600; }
 
-      @font-face { font-family: "Times"; src: local("Times"); src: url("{% static 'resumes/fonts/Times.eot' %}"); src: url("{% static 'resumes/fonts/Times.svg' %}") format("svg"), url("{% static 'resumes/fonts/Times.eot#iefix' %}") format("embedded-opentype"), url("{% static 'resumes/fonts/Times.ttf' %}") format("truetype"), url("{% static 'resumes/fonts/Times.woff' %}") format("woff"); font-style: normal; font-weight: 800; }
+        @font-face { font-family: "Times"; src: local("Times"); src: url("{% static 'resumes/fonts/Times.eot' %}"); src: url("{% static 'resumes/fonts/Times.svg' %}") format("svg"), url("{% static 'resumes/fonts/Times.eot#iefix' %}") format("embedded-opentype"), url("{% static 'resumes/fonts/Times.ttf' %}") format("truetype"), url("{% static 'resumes/fonts/Times.woff' %}") format("woff"); font-style: normal; font-weight: 800; }
 
-      @font-face { font-family: "Bodoni"; src: local("Bodoni"); src: url("{% static 'resumes/fonts/bodoni-roman.eot' %}"); src: url("{% static 'resumes/fonts/bodoni-roman.svg' %}") format("svg"), url("{% static 'resumes/fonts/bodoni-roman.eot#iefix' %}") format("embedded-opentype"), url("{% static 'resumes/fonts/bodoni-roman.ttf' %}") format("truetype"), url("{% static 'resumes/fonts/bodoni-roman.woff' %}") format("woff"); font-style: normal; font-weight: 400; }
+        @font-face { font-family: "Bodoni"; src: local("Bodoni"); src: url("{% static 'resumes/fonts/bodoni-roman.eot' %}"); src: url("{% static 'resumes/fonts/bodoni-roman.svg' %}") format("svg"), url("{% static 'resumes/fonts/bodoni-roman.eot#iefix' %}") format("embedded-opentype"), url("{% static 'resumes/fonts/bodoni-roman.ttf' %}") format("truetype"), url("{% static 'resumes/fonts/bodoni-roman.woff' %}") format("woff"); font-style: normal; font-weight: 400; }
 
-      @font-face { font-family: "Bodoni"; src: local("Bodoni"); src: url("{% static 'resumes/fonts/bodoni-roman.eot' %}"); src: url("{% static 'resumes/fonts/bodoni-roman.svg' %}") format("svg"), url("{% static 'resumes/fonts/bodoni-roman.eot#iefix' %}") format("embedded-opentype"), url("{% static 'resumes/fonts/bodoni-roman.ttf' %}") format("truetype"), url("{% static 'resumes/fonts/bodoni-roman.woff' %}") format("woff"); font-style: normal; font-weight: 600; }
+        @font-face { font-family: "Bodoni"; src: local("Bodoni"); src: url("{% static 'resumes/fonts/bodoni-roman.eot' %}"); src: url("{% static 'resumes/fonts/bodoni-roman.svg' %}") format("svg"), url("{% static 'resumes/fonts/bodoni-roman.eot#iefix' %}") format("embedded-opentype"), url("{% static 'resumes/fonts/bodoni-roman.ttf' %}") format("truetype"), url("{% static 'resumes/fonts/bodoni-roman.woff' %}") format("woff"); font-style: normal; font-weight: 600; }
 
-      @font-face { font-family: "Bodoni"; src: local("Bodoni"); src: url("{% static 'resumes/fonts/bodoni-bold.eot' %}"); src: url("{% static 'resumes/fonts/bodoni-bold.svg' %}") format("svg"), url("{% static 'resumes/fonts/bodoni-bold.eot#iefix' %}") format("embedded-opentype"), url("{% static 'resumes/fonts/bodoni-bold.ttf' %}") format("truetype"), url("{% static 'resumes/fonts/bodoni-bold.woff' %}") format("woff"); font-style: normal; font-weight: 800; }
+        @font-face { font-family: "Bodoni"; src: local("Bodoni"); src: url("{% static 'resumes/fonts/bodoni-bold.eot' %}"); src: url("{% static 'resumes/fonts/bodoni-bold.svg' %}") format("svg"), url("{% static 'resumes/fonts/bodoni-bold.eot#iefix' %}") format("embedded-opentype"), url("{% static 'resumes/fonts/bodoni-bold.ttf' %}") format("truetype"), url("{% static 'resumes/fonts/bodoni-bold.woff' %}") format("woff"); font-style: normal; font-weight: 800; }
 
       /* -------------- */
       /*      BASE      */
@@ -86,7 +86,7 @@
 
       .new-york .section table tr td { vertical-align: top; }
 
-      .new-york .section table tr td .content, .new-york .section table tr td .header { padding-top: 50px; padding-left: 80px; padding-right: 80px; }
+      .new-york .section table tr td .content, .new-york .section table tr td .header { padding-top: 40px; padding-left: 80px; padding-right: 80px; }
 
       .new-york a { color: #444C52; }
 
@@ -128,7 +128,7 @@
 
       .new-york .about .linkedin a:hover { text-decoration: underline; }
 
-      .new-york .we { padding: 0px 0 0; }
+      .new-york .we { padding: 35px 0 0; }
 
       .new-york .we h2 { text-align: center; position: relative; color: #212121; font-size: 28px; line-height: 36px; vertical-align: middle; text-transform: uppercase; }
 
@@ -136,7 +136,7 @@
 
       .new-york .we h2:after { content: ""; position: relative; width: calc(35% - 70px); height: 2px; background: #D8D8D8; display: inline-block; margin-left: 70px; vertical-align: middle; }
 
-      .new-york .we > ul > li { margin-bottom: 40px; line-height: 0.25em; }
+      .new-york .we > ul > li { margin-bottom: 40px; }
 
       .new-york .we > ul > li:last-child { margin-bottom: 0; }
 
@@ -199,7 +199,7 @@
       .new-york .box-skills .bar span { border-radius: 3px; display: inline-block; height: 6px; background: #777777; margin-bottom: 0; font-size: 0; position: absolute; left: 0; bottom: 0; }
 
       @page{
-        size: a4 portrait;
+        size: A4;
         margin: 40px 0;
       }
 
@@ -235,10 +235,10 @@
                 </ul>
               </div>
             </div>
-            <div class="content" style="padding-top: 45px;">
+            <div class="content" style="padding-top: 60px;">
               <div class="about">
                 <div class="text" style="font-family: 'Times', san-serif;">
-                  {{ resume.user.profile.objective|safe }}
+                    {{ resume.user.profile.objective|safe }}
                     {% if resume.user.profile.linked_in %}
                         <div class="linkedin">
                         <u class="icon" style="background-image: url({% static 'resumes/images/resume_templates/ny-linkedin-icon.png' %});"></u><a href="#" target="_blank">{{ resume.user.profile.linked_in }}</a>
@@ -270,83 +270,102 @@
                 <div class="left">
                   <div class="box education">
                     <div class="title">
-                      <h2>Education</h2>
+                      <h2>Education </h2>
                     </div>
                     <ul>
-                        {% for education in resume.education_set.all %}
-                            <li>
-                                <h3>{{ education.degree }}</h3>
-                                <p>{{ education.school }}, {{ education.city }}</p>
-                                <p>{{ education.start_date|date:'M Y' }} - {{ education.end_date|date:'M Y' }}</p>
-                            </li>
-                        {% endfor %}
+                      <li>
+                        <h3>Bachelor of Business Administration</h3>
+                        <p>Cornell University, New York</p>
+                        <p>Jun 2000 - Jan 2004</p>
+                      </li>
+                      <li>
+                        <h3>High School</h3>
+                        <p>The Darrow School, New York</p>
+                        <p>Jun 1997 - May 2000</p>
+                      </li>
                     </ul>
                   </div>
                 </div>
                 <div class="right">
+                  <div class="box certif">
+                    <div class="title">
+                      <h2>Certifications</h2>
+                    </div>
+                    <ul>
+                      <li>
+                        <h3>Certificate Name</h3>
+                        <p>20 Jun 2000</p>
+                        <p>Jakarta</p>
+                      </li>
+                      <li>
+                        <h3>Certificate Name</h3>
+                        <p>20 Jun 2000</p>
+                        <p>Jakarta</p>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              <div class="box-skills clearfix">
+                <div class="left">
                   <div class="box lang">
                     <div class="title">
                       <h2>Language</h2>
                     </div>
                     <ul>
-                        {% for language in resume.language_set.all %}
-                            <li>
-                                <div class="left">
-                                    <h3>{{ language.name }}</h3>
-                                </div>
-                                <div class="right"><span>{{ language.get_competency_display }}</span></div>
-                            </li>
-                        {% endfor %}
+                      <li>
+                        <div class="left">
+                          <h3>Bahasa Indonesia</h3>
+                        </div>
+                        <div class="right"><span>Fluent</span></div>
+                      </li>
+                      <li>
+                        <div class="left">
+                          <h3>English</h3>
+                        </div>
+                        <div class="right"><span>Basic Knowledge</span></div>
+                      </li>
+                      <li>
+                        <div class="left">
+                          <h3>French</h3>
+                        </div>
+                        <div class="right"><span>Basic Knowledge</span></div>
+                      </li>
                     </ul>
                   </div>
                 </div>
-              <div class="box-skills clearfix">
-                      <div class="right">
-                  {% if resume.certification_set.exists %}
-                          <div class="box certif">
-                              <div class="title">
-                                  <h2>Certifications</h2>
-                              </div>
-                              <ul>
-                                  {% for certification in resume.certification_set.all %}
-                                      <li>
-                                          <h3>{{ certification.name }}</h3>
-                                          <p>{{ certification.date_obtained|date:'d M Y' }}</p>
-                                          <p>{{ certification.city }}</p>
-                                      </li>
-                                  {% endfor %}
-                              </ul>
-                          </div>
-                      </div>
-                  {% endif %}
-                  <div class="left">
+                <div class="right">
                   <div class="box skills">
-                      <div class="title">
+                    <div class="title">
                       <h2>Skills</h2>
-                      </div>
+                    </div>
                     <ul>
-                        {% for skill in resume.skill_set.all %}
-                            <li>
-                            <div class="left">
-                                <h3>{{ skill.name }}</h3>
-                            </div>
-                            <div class="right">
-                                {% if skill.competency == 4 %}
-                                    <div class="bar"><span style="width:100%;"></span></div>
-                                {% elif skill.competency == 3 %}
-                                    <div class="bar"><span style="width:75%;"></span></div>
-                                {% elif skill.competency == 2 %}
-                                    <div class="bar"><span style="width:50%;"></span></div>
-                                {% elif skill.competency == 1 %}
-                                    <div class="bar"><span style="width:25%;"></span></div>
-                                {% endif %}
-                            </div>
-                            </li>
-                        {% endfor %}
+                      <li>
+                        <div class="left">
+                          <h3>Creative</h3>
+                        </div>
+                        <div class="right">
+                          <div class="bar"><span style="width:60%;"></span></div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="left">
+                          <h3>Communication</h3>
+                        </div>
+                        <div class="right">
+                          <div class="bar"><span style="width:75%;"></span></div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="left">
+                          <h3>Personality</h3>
+                        </div>
+                        <div class="right">
+                          <div class="bar"><span style="width:70%;"></span></div>
+                        </div>
+                      </li>
                     </ul>
                   </div>
                 </div>
-              </div>
               </div>
             </div>
           </td>

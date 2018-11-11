@@ -20,11 +20,13 @@
       /* -------------------- */
       /*      TYPOGRAPHY      */
       /* -------------------- */
+      /* xhtml2pdf cannot parse 'not'
       a:not(.btn) { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; color: #2C3A47; text-decoration: none; transition: color .4s; }
 
       a:not(.btn):focus { text-decoration: none; color: #BBB8B6; }
 
       a:not(.btn):hover { color: #BBB8B6; opacity: 1; text-decoration: none; }
+      */
 
       p { margin: 0 0 30px; padding: 0; font-size: 0.875rem; }
 
@@ -140,7 +142,7 @@
 
       @page{
         size: a4 portrait;
-        margin: 0;
+        margin: 50px;
       }
 
       @media print { .jakarta table { margin: 0 auto; box-shadow: none; }
@@ -156,7 +158,6 @@
         .jakarta .content .timeline > ul > li .exp { float: left; margin-left: 40px; width: 500px; }
         /*.jakarta .content .timeline > ul > li .exp p {word-break: break-all;}*/
       }
-
     </style>
   </head>
 </html>
