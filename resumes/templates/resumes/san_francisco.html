@@ -302,7 +302,7 @@
                               <div class="left"><span>{{ work_experience.company }}, {{ work_experience.city }} </span></div>
                               <div class="right"><span>{{ work_experience.start_date|date:'M Y' }} - {{ work_experience.end_date|date:'M Y' }}</span></div>
                           </div>
-                          <p>{{ work_experience.achievements|safe }}</p>
+                          {{ work_experience.achievements|safe }}
                       </li>
                   {% endfor %}
                   </ul>
