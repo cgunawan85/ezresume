@@ -5,21 +5,21 @@
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>Harnods - Resume Jakarta</title>
+    <title>EZResume - {{ resume.name }}</title>
     <meta name="description" content=""/>
     <style>
       /* ------------------------------------------------------------------------------------------------ */
       /* Fonts */
       /* ------------------------------------------------------------------------------------------------ */
-      @font-face { font-family: "Proxima Nova"; src: local("Proxima Nova"); src: url("../fonts/proximanova-light.eot"); src: url("../fonts/proximanova-light.svg") format("svg"), url("../fonts/proximanova-light.eot#iefix") format("embedded-opentype"), url("../fonts/proximanova-light.ttf") format("truetype"), url("../fonts/proximanova-light.woff") format("woff"); font-style: normal; font-weight: 300; }
+      @font-face { font-family: "Proxima Nova"; src: local("Proxima Nova"); src: url("{% static 'resumes/fonts/proximanova-light.eot' %}"); src: url("{% static 'resumes/fonts/proximanova-light.svg' %}") format("svg"), url("{% static 'resumes/fonts/proximanova-light.eot#iefix' %}") format("embedded-opentype"), url("{% static 'resumes/fonts/proximanova-light.ttf' %}") format("truetype"), url("{% static 'resumes/fonts/proximanova-light.woff' %}") format("woff"); font-style: normal; font-weight: 300; }
 
-      @font-face { font-family: "Proxima Nova"; src: local("Proxima Nova"); src: url("../fonts/proximanova-reguler.eot"); src: url("../fonts/proximanova-reguler.svg") format("svg"), url("../fonts/proximanova-reguler.eot#iefix") format("embedded-opentype"), url("../fonts/proximanova-reguler.ttf") format("truetype"), url("../fonts/proximanova-reguler.woff") format("woff"); font-style: normal; font-weight: 400; }
+      @font-face { font-family: "Proxima Nova"; src: local("Proxima Nova"); src: url("{% static 'resumes/fonts/proximanova-regular.eot' %}"); src: url("{% static 'resumes/fonts/proximanova-regular.svg' %}") format("svg"), url("{% static 'resumes/fonts/proximanova-reguler.eot#iefix' %}") format("embedded-opentype"), url("{% static 'resumes/fonts/proximanova-regular.ttf' %}") format("truetype"), url("{% static 'resumes/fonts/proximanova-regular.woff' %}") format("woff"); font-style: normal; font-weight: 400; }
 
-      @font-face { font-family: "Proxima Nova"; src: local("Proxima Nova"); src: url("../fonts/proximanova-semibold.eot"); src: url("../fonts/proximanova-semibold.svg") format("svg"), url("../fonts/proximanova-semibold.eot#iefix") format("embedded-opentype"), url("../fonts/proximanova-semibold.ttf") format("truetype"), url("../fonts/proximanova-semibold.woff") format("woff"); font-style: normal; font-weight: 600; }
+      @font-face { font-family: "Proxima Nova"; src: local("Proxima Nova"); src: url("{% static 'resumes/fonts/proximanova-semibold.eot' %}"); src: url("{% static 'resumes/fonts/proximanova-semibold.svg' %}") format("svg"), url("{% static 'resumes/fonts/proximanova-semibold.eot#iefix' %}") format("embedded-opentype"), url("{% static 'resumes/fonts/proximanova-semibold.ttf' %}") format("truetype"), url("{% static 'resumes/fonts/proximanova-semibold.woff' %}") format("woff"); font-style: normal; font-weight: 600; }
 
-      @font-face { font-family: "Proxima Nova"; src: local("Proxima Nova"); src: url("../fonts/proximanova-bold.eot"); src: url("../fonts/proximanova-bold.svg") format("svg"), url("../fonts/proximanova-bold.eot#iefix") format("embedded-opentype"), url("../fonts/proximanova-bold.ttf") format("truetype"), url("../fonts/proximanova-bold.woff") format("woff"); font-style: normal; font-weight: 800; }
+      @font-face { font-family: "Proxima Nova"; src: local("Proxima Nova"); src: url("{% static 'resumes/fonts/proximanova-bold.eot' %}"); src: url("{% static 'resumes/fonts/proximanova-bold.svg' %}") format("svg"), url("{% static 'resumes/fonts/proximanova-bold.eot#iefix' %}") format("embedded-opentype"), url("{% static 'resumes/fonts/proximanova-bold.ttf' %}") format("truetype"), url("{% static 'resumes/fonts/proximanova-bold.woff' %}") format("woff"); font-style: normal; font-weight: 800; }
 
-      @font-face { font-family: "Proxima Nova"; src: local("Proxima Nova"); src: url("../fonts/proximanova-extrabold.eot"); src: url("../fonts/proximanova-extrabold.svg") format("svg"), url("../fonts/proximanova-extrabold.eot#iefix") format("embedded-opentype"), url("../fonts/proximanova-extrabold.ttf") format("truetype"), url("../fonts/proximanova-extrabold.woff") format("woff"); font-style: normal; font-weight: 900; }
+      @font-face { font-family: "Proxima Nova"; src: local("Proxima Nova"); src: url("{% static 'resumes/fonts/proximanova-extrabold.eot' %}"); src: url("{% static 'resumes/fonts/proximanova-extrabold.svg' %}") format("svg"), url("{% static 'resumes/fonts/proximanova-extrabold.eot#iefix' %}") format("embedded-opentype"), url("{% static 'resumes/fonts/proximanova-extrabold.ttf' %}") format("truetype"), url("{% static 'resumes/fonts/proximanova-extrabold.woff' %}") format("woff"); font-style: normal; font-weight: 900; }
 
 
 
@@ -127,7 +127,7 @@
 
       .jakarta .content .content-r .skills .timeline { border-bottom: 0; margin-bottom: 0; }
 
-      .jakarta .content .education .timeline > ul > li .time p { font-weight: 500; }
+      .jakarta .content .education .timeline > ul > li .time p { font-weight: 600; }
 
       .jakarta .content .timeline { padding-bottom: 30px; margin-bottom: 30px; border-bottom: 2px solid #E8E8E8; }
 
@@ -181,10 +181,10 @@
         <tr>
           <td>
             <div class="header">
-              <div class="photo"><img class="img" src="assets/images/photo-01.png"/></div>
+              <div class="photo"><img class="img" src="{{ user.profile.profile_pic.url }}"/></div>
               <div class="name">
-                <h1>Pam Beesly</h1>
-                <p class="position">Sales Representative</p>
+                <h1>{{ resume.user.first_name }} {{ resume.user.last_name }}</h1>
+                <p class="position">{{ resume.user.profile.job_title }}</p>
               </div>
               <div class="line"></div>
             </div>
@@ -192,30 +192,31 @@
               <div class="content-l">
                 <div class="profile" style="page-break-after: auto;">
                   <h2 class="title">Profile</h2>
-                  <p>Pamela Morgan Halpert is a fictional character on the U.S. television sitcom The Office, played by Jenna Fischer. Her counterpart in the original UK series of The Office is Dawn Tinsley.</p>
-                  <p>Her character is initially the receptionist at the paper distribution company Dunder Mifflin, before becoming a saleswoman and eventually office administrator until she left in the series finale. Her character is shy, growing assertive but amiable, and artistically inclined, and shares romantic interest with Jim Halpert, whom she begins dating in the fourth season and marries and starts a family with as the series continues.</p>
+                    {{ resume.user.profile.objective|safe }}
                 </div>
                 <div class="contact">
                   <h2 class="title">Contact</h2>
                   <ul>
                     <li>
-                      <u class="icon" style="background-image: url(assets/images/email-icon.png);"></u>
-                      <div class="text"><span>Email</span><a href="mailto:pam.b@gmail.com" target="_blank">pam.b@gmail.com</a></div>
+                      <u class="icon" style="background-image: url({% static 'resumes/images/resume_templates/jakarta-email-icon.png' %});"></u>
+                      <div class="text"><span>Email</span><a href="mailto:pam.b@gmail.com" target="_blank">{{ resume.user.email }}</a></div>
                     </li>
                     <li>
-                      <u class="icon" style="background-image: url(assets/images/phone-icon.png);"></u>
-                      <div class="text"><span>Phone number</span><a href="tel:pam.b@gmail.com" target="_blank">+62 878 9999 9999</a></div>
+                      <u class="icon" style="background-image: url({% static 'resumes/images/resume_templates/jakarta-phone-icon.png' %});"></u>
+                      <div class="text"><span>Phone number</span><a href="#" target="_blank">{{ resume.user.profile.phone_number }}</a></div>
                     </li>
                     <li>
-                      <u class="icon" style="background-image: url(assets/images/address-icon.png);"></u>
+                      <u class="icon" style="background-image: url({% static 'resumes/images/resume_templates/jakarta-address-icon.png' %});"></u>
                       <div class="text"><span>Address</span>
-                        <p>128 Pending Road #03-330 <br>Jakarta, DKI Jakarta <br>Indonesia 11470</p>
+                        <p>{{ resume.user.profile.address }} <br>{{ resume.user.profile.address2 }} <br>{{ resume.user.profile.city }}, {{ resume.user.profile.country.name }}</p>
                       </div>
                     </li>
-                    <li>
-                      <u class="icon" style="background-image: url(assets/images/linkedin-icon.png);"></u>
-                      <div class="text"><span>LinkedIn</span><a href="https://linkedin.com/in/pam.b/" target="_blank" style="color: #808E9B;">https://linkedin.com/in/pam.b/</a></div>
-                    </li>
+                      {% if resume.user.profile.linked_in %}
+                            <li>
+                            <u class="icon" style="background-image: url({% static 'resumes/images/resume_templates/jakarta-linkedin-icon.png' %});"></u>
+                            <div class="text"><span>LinkedIn</span><a href="#" target="_blank" style="color: #808E9B;">{{ resume.user.profile.linked_in }}</a></div>
+                            </li>
+                      {% endif %}
                   </ul>
                 </div>
               </div>
@@ -224,41 +225,18 @@
                   <h2 class="title">Work Experience</h2>
                   <div class="timeline">
                     <ul>
-                      <li>
-                        <div class="time">
-                          <p>May 2012 - Now</p><span>May 2012 - Now</span>
-                        </div>
-                        <div class="exp">
-                          <h3>Dunder Mifflin, Jakarta</h3><span>Sales Representative</span>
-                          <p>At the beginning of the series, Pam and Roy have been dating for eight years and engaged for three years. Their open-ended engagement has become one of Michael's running gags and a sore spot for Pam.</p>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="time">
-                          <p>Dec 2010 - Apr 2012</p><span>2 years 6 months</span>
-                        </div>
-                        <div class="exp">
-                          <h3>Dunder Mifflin, Jakarta</h3><span>Receptionist</span>
-                          <p>While engaged to Roy, Pam denies, or is in denial about, having any romantic feelings for Jim. When Jim confesses his love for her at the Dunder Mifflin "Casino Night" she turns him down.</p>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="time">
-                          <p>Aug 2001 - Oct 2010</p><span>9 years 1 month</span>
-                        </div>
-                        <div class="exp">
-                          <h3>Michael Scott Paper Company, Jakarta</h3><span>Office Administrator</span>
-                          <p>At the beginning of Season 8, Pam is revealed to be pregnant with her and Jim's second child, Philip Halpert. The child coincided with Jenna Fischer's actual pregnancy.</p>
-                          <ul>
+                        {% for work_experience in resume.workexperience_set.all %}
                             <li>
-                              <p>Early in season 9, Jim is restless about his life in Scranton and helps a friend start a Sports Marketing business, Athlead, in Philadelphia but he keeps it a secret from Pam until the third episode Andy's Ancestry.</p>
+                            <div class="time">
+                              <p>{{ work_experience.start_date|date:'M Y' }} - {{ work_experience.end_date|date:'M Y' }}</p>
+                                <p>{{ work_experience.city }}</p>
+                            </div>
+                            <div class="exp">
+                              <h3>{{ work_experience.company }}</h3><span>{{ work_experience.position }}</span>
+                              {{ work_experience.achievements|safe }}
+                            </div>
                             </li>
-                            <li>
-                              <p>Although Pam is happy for his decision, she is concerned about the fact that he had kept it a secret from her and she is later disturbed to hear about just how much of their money he had invested. </p>
-                            </li>
-                          </ul>
-                        </div>
-                      </li>
+                        {% endfor %}
                     </ul>
                   </div>
                 </div>
@@ -266,55 +244,55 @@
                   <h2 class="title">Education</h2>
                   <div class="timeline">
                     <ul>
-                      <li>
-                        <div class="time">
-                          <p>Jun 2000 - Jan 2004</p>
-                        </div>
-                        <div class="exp">
-                          <h3>Cornell University, New York</h3>
-                          <p>Bachelor of Business Administration, Business Administration</p>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="time">
-                          <p>Jun 1997 - May 2000</p>
-                        </div>
-                        <div class="exp">
-                          <h3>The Darrow School, New York</h3>
-                          <p>High School</p>
-                        </div>
-                      </li>
+                        {% for education in resume.education_set.all %}
+                            <li>
+                            <div class="time">
+                              <p>{{ education.start_date|date:'M Y' }} - {{ education.end_date|date:'M Y' }}</p>
+                                <p>{{ education.city }}</p>
+                            </div>
+                            <div class="exp">
+                              <h3>{{ education.school }}</h3>
+                              <p>{{ education.degree }}, {{ education.major }} major</p>
+                            </div>
+                            </li>
+                        {% endfor %}
                     </ul>
                   </div>
                 </div>
+                {% if resume.certification_set.exists %}
+                    <div class="education certification">
+                        <h2 class="title">Certifications</h2>
+                        <div class="timeline">
+                            <ul>
+                                {% for certification in resume.certification_set.all %}
+                                    <li>
+                                    <div class="time">
+                                      <p>{{ certification.date_obtained|date:'M Y' }}</p>
+                                        <p>{{ certification.city }}</p>
+                                    </div>
+                                    <div class="exp">
+                                      <h3>{{ certification.name }}</h3>
+                                    </div>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                {% endif %}
                 <div class="lang">
-                  <h2 class="title">Language</h2>
+                  <h2 class="title">Languages</h2>
                   <div class="timeline">
                     <ul>
-                      <li>
-                        <div class="time">
-                          <p>Bahasa Indonesia</p>
-                        </div>
-                        <div class="exp">
-                          <p>Fluent</p>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="time">
-                          <p>English</p>
-                        </div>
-                        <div class="exp">
-                          <p>Basic Knowledge</p>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="time">
-                          <p>French</p>
-                        </div>
-                        <div class="exp">
-                          <p>Basic Knowledge</p>
-                        </div>
-                      </li>
+                        {% for language in resume.language_set.all %}
+                            <li>
+                            <div class="time">
+                              <p>{{ language.name }}</p>
+                            </div>
+                            <div class="exp">
+                              <p>{{ language.get_competency_display }}</p>
+                            </div>
+                            </li>
+                        {% endfor %}
                     </ul>
                   </div>
                 </div>
@@ -322,30 +300,24 @@
                   <h2 class="title">Skills</h2>
                   <div class="timeline">
                     <ul>
-                      <li>
-                        <div class="time">
-                          <p>Creativity</p>
-                        </div>
-                        <div class="exp">
-                          <div class="bar"><span style="width:60%;"></span></div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="time">
-                          <p>Communication</p>
-                        </div>
-                        <div class="exp">
-                          <div class="bar"><span style="width:90%;"></span></div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="time">
-                          <p>Personality</p>
-                        </div>
-                        <div class="exp">
-                          <div class="bar"><span style="width:60%;"></span></div>
-                        </div>
-                      </li>
+                        {% for skill in resume.skill_set.all %}
+                            <li>
+                                <div class="time">
+                                  <p>{{ skill.name }}</p>
+                                </div>
+                                <div class="exp">
+                                  {% if skill.competency == 4 %}
+                                      <div class="bar"><span style="width:100%;"></span></div>
+                                  {% elif skill.competency == 3 %}
+                                      <div class="bar"><span style="width:75%;"></span></div>
+                                  {% elif skill.competency == 2 %}
+                                      <div class="bar"><span style="width:50%;"></span></div>
+                                  {% elif skill.competency == 1 %}
+                                      <div class="bar"><span style="width:25%;"></span></div>
+                                  {% endif %}
+                                </div>
+                            </li>
+                        {% endfor %}
                     </ul>
                   </div>
                 </div>

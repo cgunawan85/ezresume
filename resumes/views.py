@@ -1,13 +1,10 @@
-from django.http import HttpResponse, HttpResponseRedirect
-from django.template import RequestContext, loader
+from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse
 from formtools.wizard.views import SessionWizardView
-
-from weasyprint import HTML
 
 from users.forms import CustomUserChangeForm
 from .forms import (ResumeForm, ProfileUpdateForm, WorkExperienceFormSet, CertificationFormSet,
@@ -39,11 +36,7 @@ def choose(request, pk):
     if request.method == 'POST':
         form = ChooseForm(request.POST)
         if form.is_valid() and form.cleaned_data['resume_template'] == 'jakarta':
-            data = {'form': form, 'resume': resume, }
-            template = loader.get_template('resumes/jakarta.html').render(data)
-            response = HttpResponse(content_type='application/pdf')
-            HTML(string=template, base_url=request.build_absolute_uri()).write_pdf(response)
-            return response
+            return render(request, 'resumes/jakarta.html', {'form': form, 'resume': resume})
         if form.is_valid() and form.cleaned_data['resume_template'] == 'new_york':
             return render(request, 'resumes/new_york2.html', {'form': form, 'resume': resume})
         if form.is_valid() and form.cleaned_data['resume_template'] == 'tokyo':
