@@ -317,8 +317,9 @@
                       {% for certification in resume.certification_set.all %}
                           <li>
                               <h3>{{ certification.name }}</h3>
-                              <div class="left"><span>{{ certification.city }} </span></div>
-                              <div class="right"><span>{{ certification.date_obtained|date:'M Y' }}</span></div>
+                              <div class="left">
+                                  <span>{{ certification.city }}<p>{{ certification.date_obtained|date:'M Y' }}</p></span>
+                              </div>
                           </li>
                       {% endfor %}
                       </ul>

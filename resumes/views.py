@@ -38,7 +38,7 @@ def choose(request, pk):
         if form.is_valid() and form.cleaned_data['resume_template'] == 'jakarta':
             return render(request, 'resumes/jakarta.html', {'form': form, 'resume': resume})
         if form.is_valid() and form.cleaned_data['resume_template'] == 'new_york':
-            return render(request, 'resumes/new_york3.html', {'form': form, 'resume': resume})
+            return render(request, 'resumes/new_york.html', {'form': form, 'resume': resume})
         if form.is_valid() and form.cleaned_data['resume_template'] == 'tokyo':
             return render(request, 'resumes/tokyo.html', {'form': form, 'resume': resume})
         if form.is_valid() and form.cleaned_data['resume_template'] == 'rome':
