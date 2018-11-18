@@ -18,6 +18,7 @@ html5lib==1.0.1
 idna==2.7
 markdown2==2.3.5
 oauthlib==2.1.0
+pdfcrowd==4.3.5
 peewee==3.6.4
 Pillow==5.2.0
 pycparser==2.18
@@ -34,5 +35,4 @@ tinycss2==0.6.1
 urllib3==1.24
 virtualenv==16.0.0
 virtualenvwrapper-win==1.2.5
-WeasyPrint==43
 webencodings==0.5.1

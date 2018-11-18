@@ -112,7 +112,8 @@
             <input type="radio" name='resume_template' id="id_resume_template_4" value="sf" /><label for="id_resume_template_4"></label>
             <div>
                 {{ form.errors.resume_template }}
-                <button type="submit" class="button">View my resume</button>
+                <button type="submit" name="view-resume" class="button">View my resume</button>
+                <button type="submit" name="export-resume" class="button">PDF my resume</button>
             </div>
         </form>
     </div>

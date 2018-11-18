@@ -33,7 +33,7 @@ TEMPLATES = {'resumes': 'resumes/resumes.html',
 @login_required()
 def choose(request, pk):
     resume = Resume.objects.get(pk=pk)
-    if request.method == 'POST':
+    if request.method == 'POST' and 'view-resume' in request.POST:
         form = ChooseForm(request.POST)
         if form.is_valid() and form.cleaned_data['resume_template'] == 'jakarta':
             return render(request, 'resumes/jakarta.html', {'form': form, 'resume': resume})
@@ -45,6 +45,9 @@ def choose(request, pk):
             return render(request, 'resumes/rome.html', {'form': form, 'resume': resume})
         if form.is_valid() and form.cleaned_data['resume_template'] == 'sf':
             return render(request, 'resumes/san_francisco.html', {'form': form, 'resume': resume})
+    elif request.method == 'POST' and 'export-resume' in request.POST:
+        pass
+        # code for exporting pdfcrowd goes here
     else:
         form = ChooseForm()
     return render(request, 'resumes/choose.html', {'form': form, 'resume': resume})
