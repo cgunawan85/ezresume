@@ -1,4 +1,6 @@
-from django.http import HttpResponseRedirect
+import logging
+
+from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -12,6 +14,10 @@ from .forms import (ResumeForm, ProfileUpdateForm, WorkExperienceFormSet, Certif
 from .models import Resume, WorkExperience, Certification, Education, Skill, Language
 from .forms import ChooseForm
 
+import pdfcrowd
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 FORMS = [('resumes', ResumeForm),
          ('work_experience', WorkExperienceFormSet),
@@ -46,8 +52,23 @@ def choose(request, pk):
         if form.is_valid() and form.cleaned_data['resume_template'] == 'sf':
             return render(request, 'resumes/san_francisco.html', {'form': form, 'resume': resume})
     elif request.method == 'POST' and 'export-resume' in request.POST:
-        pass
         # code for exporting pdfcrowd goes here
+        response = render(request, 'resumes/jakarta.html', {'resume': resume})
+        client = pdfcrowd.HtmlToPdfClient('chrisgunawan85', 'ea5734a7dc5aabbded5e65d8a32de8a4')
+        client.setUsePrintMedia(True)
+        logger.info('running Pdfcrowd HTML to PDF conversion')
+        pdf = client.convertString(response.content)
+
+        # set HTTP response headers
+        pdf_response = HttpResponse(content_type='application/pdf')
+        pdf_response['Cache-Control'] = 'max-age=0'
+        pdf_response['Accept-Ranges'] = 'none'
+        content_disp = 'attachment' if 'asAttachment' in request.POST else 'inline'
+        pdf_response['Content-Disposition'] = content_disp + '; filename=demo_django.pdf'
+
+        # send the generated PDF
+        pdf_response.write(pdf)
+        return pdf_response
     else:
         form = ChooseForm()
     return render(request, 'resumes/choose.html', {'form': form, 'resume': resume})
