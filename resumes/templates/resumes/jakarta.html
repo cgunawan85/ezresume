@@ -7,20 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>EZResume - {{ resume.name }}</title>
     <meta name="description" content=""/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
     <style>
-      /* ------------------------------------------------------------------------------------------------ */
-      /* Fonts */
-      /* ------------------------------------------------------------------------------------------------ */
-      @font-face { font-family: "Proxima Nova"; src: local("Proxima Nova"); src: url("{% static 'resumes/fonts/proximanova-light.eot' %}"); src: url("{% static 'resumes/fonts/proximanova-light.svg' %}") format("svg"), url("{% static 'resumes/fonts/proximanova-light.eot#iefix' %}") format("embedded-opentype"), url("{% static 'resumes/fonts/proximanova-light.ttf' %}") format("truetype"), url("{% static 'resumes/fonts/proximanova-light.woff' %}") format("woff"); font-style: normal; font-weight: 300; }
-
-      @font-face { font-family: "Proxima Nova"; src: local("Proxima Nova"); src: url("{% static 'resumes/fonts/proximanova-regular.eot' %}"); src: url("{% static 'resumes/fonts/proximanova-regular.svg' %}") format("svg"), url("{% static 'resumes/fonts/proximanova-reguler.eot#iefix' %}") format("embedded-opentype"), url("{% static 'resumes/fonts/proximanova-regular.ttf' %}") format("truetype"), url("{% static 'resumes/fonts/proximanova-regular.woff' %}") format("woff"); font-style: normal; font-weight: 400; }
-
-      @font-face { font-family: "Proxima Nova"; src: local("Proxima Nova"); src: url("{% static 'resumes/fonts/proximanova-semibold.eot' %}"); src: url("{% static 'resumes/fonts/proximanova-semibold.svg' %}") format("svg"), url("{% static 'resumes/fonts/proximanova-semibold.eot#iefix' %}") format("embedded-opentype"), url("{% static 'resumes/fonts/proximanova-semibold.ttf' %}") format("truetype"), url("{% static 'resumes/fonts/proximanova-semibold.woff' %}") format("woff"); font-style: normal; font-weight: 600; }
-
-      @font-face { font-family: "Proxima Nova"; src: local("Proxima Nova"); src: url("{% static 'resumes/fonts/proximanova-bold.eot' %}"); src: url("{% static 'resumes/fonts/proximanova-bold.svg' %}") format("svg"), url("{% static 'resumes/fonts/proximanova-bold.eot#iefix' %}") format("embedded-opentype"), url("{% static 'resumes/fonts/proximanova-bold.ttf' %}") format("truetype"), url("{% static 'resumes/fonts/proximanova-bold.woff' %}") format("woff"); font-style: normal; font-weight: 800; }
-
-      @font-face { font-family: "Proxima Nova"; src: local("Proxima Nova"); src: url("{% static 'resumes/fonts/proximanova-extrabold.eot' %}"); src: url("{% static 'resumes/fonts/proximanova-extrabold.svg' %}") format("svg"), url("{% static 'resumes/fonts/proximanova-extrabold.eot#iefix' %}") format("embedded-opentype"), url("{% static 'resumes/fonts/proximanova-extrabold.ttf' %}") format("truetype"), url("{% static 'resumes/fonts/proximanova-extrabold.woff' %}") format("woff"); font-style: normal; font-weight: 900; }
-
 
       /* -------------- */
       /*      BASE      */
@@ -54,7 +42,7 @@
 
       h1, h2, h3, h4 { margin: 0 0 20px; color: #1E1E1E; font-weight: 600; }
 
-      html, body { font-size: 16px; line-height: 1.5em; font-family: "Proxima Nova", sans-serif; font-weight: 400; margin: 0px; color: #2C3A47; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; }
+      html, body { font-size: 16px; line-height: 1.5em; font-family: "Montserrat", sans-serif; font-weight: 400; margin: 0px; color: #2C3A47; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; }
 
       body { background-color: #DADADA; }
 
@@ -70,7 +58,7 @@
 
       /* --------JAKARTA-------- */
 
-      .jakarta { font-family: "Proxima Nova", sans-serif; text-align: justify; }
+      .jakarta { font-family: "Montserrat", sans-serif; text-align: justify; }
 
       .jakarta table { box-shadow: 0px 34px 37px -7px rgba(0, 0, 0, 0.4); margin: 80px auto; border-radius: 10px; }
 
@@ -86,7 +74,7 @@
 
       .jakarta ul li:last-child { margin-bottom: 0 !important; }
 
-      .jakarta .title { font-size: 24px; line-height: 33px; letter-spacing: 5px; font-weight: bold; color: #2C3A47; text-transform: uppercase; }
+      .jakarta .title { font-size: 24px; line-height: 33px; letter-spacing: 3px; font-weight: bold; color: #2C3A47; text-transform: uppercase; }
 
       .jakarta .header { display: -webkit-flex; display: -ms-flexbox; display: flex; -webkit-align-items: center; -ms-flex-align: center; align-items: center; padding-bottom: 50px; margin-bottom: 50px; position: relative; }
 
@@ -96,7 +84,7 @@
 
       .jakarta .header .name { margin-left: 60px; }
 
-      .jakarta .header .name h1 { text-transform: uppercase; color: #2C3A47; font-size: 38px; line-height: 48px; letter-spacing: 5px; font-weight: bold; margin-bottom: 0; }
+      .jakarta .header .name h1 { text-transform: uppercase; color: #2C3A47; font-size: 38px; line-height: 48px; letter-spacing: 3px; font-weight: bold; margin-bottom: 0; }
 
       .jakarta .header .name .position { color: #808E9B; font-size: 22px; line-height: 32px; font-weight: 600; }
 

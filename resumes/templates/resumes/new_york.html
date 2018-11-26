@@ -7,23 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>EZResume - {{ resume.name }}</title>
     <meta name="description" content=""/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tinos">
     <style>/* main css v1.0.0 */
-
-      /* ------------------------------------------------------------------------------------------------ */
-      /* Fonts */
-      /* ------------------------------------------------------------------------------------------------ */
-
-      @font-face { font-family: "Times"; src: local("Times"); src: url("{% static 'resumes/fonts/Times.eot' %}"); src: url("{% static 'resumes/fonts/Times.svg' %}") format("svg"), url("{% static 'resumes/fonts/Times.eot#iefix' %}") format("embedded-opentype"), url("{% static 'resumes/fonts/Times.ttf' %}") format("truetype"), url("{% static 'resumes/fonts/Times.woff' %}") format("woff"); font-style: normal; font-weight: 400; }
-
-      @font-face { font-family: "Times"; src: local("Times"); src: url("{% static 'resumes/fonts/Times.eot' %}"); src: url("{% static 'resumes/fonts/Times.svg' %}") format("svg"), url("{% static 'resumes/fonts/Times.eot#iefix' %}") format("embedded-opentype"), url("{% static 'resumes/fonts/Times.ttf' %}") format("truetype"), url("{% static 'resumes/fonts/Times.woff' %}") format("woff"); font-style: normal; font-weight: 600; }
-
-      @font-face { font-family: "Times"; src: local("Times"); src: url("{% static 'resumes/fonts/Times.eot' %}"); src: url("{% static 'resumes/fonts/Times.svg' %}") format("svg"), url("{% static 'resumes/fonts/Times.eot#iefix' %}") format("embedded-opentype"), url("{% static 'resumes/fonts/Times.ttf' %}") format("truetype"), url("{% static 'resumes/fonts/Times.woff' %}") format("woff"); font-style: normal; font-weight: 800; }
-
-      @font-face { font-family: "Bodoni"; src: local("Bodoni"); src: url("{% static 'resumes/fonts/bodoni-roman.eot' %}"); src: url("{% static 'resumes/fonts/bodoni-roman.svg' %}") format("svg"), url("{% static 'resumes/fonts/bodoni-roman.eot#iefix' %}") format("embedded-opentype"), url("{% static 'resumes/fonts/bodoni-roman.ttf' %}") format("truetype"), url("{% static 'resumes/fonts/bodoni-roman.woff' %}") format("woff"); font-style: normal; font-weight: 400; }
-
-      @font-face { font-family: "Bodoni"; src: local("Bodoni"); src: url("{% static 'resumes/fonts/bodoni-roman.eot' %}"); src: url("{% static 'resumes/fonts/bodoni-roman.svg' %}") format("svg"), url("{% static 'resumes/fonts/bodoni-roman.eot#iefix' %}") format("embedded-opentype"), url("{% static 'resumes/fonts/bodoni-roman.ttf' %}") format("truetype"), url("{% static 'resumes/fonts/bodoni-roman.woff' %}") format("woff"); font-style: normal; font-weight: 600; }
-
-      @font-face { font-family: "Bodoni"; src: local("Bodoni"); src: url("{% static 'resumes/fonts/bodoni-bold.eot' %}"); src: url("{% static 'resumes/fonts/bodoni-bold.svg' %}") format("svg"), url("{% static 'resumes/fonts/bodoni-bold.eot#iefix' %}") format("embedded-opentype"), url("{% static 'resumes/fonts/bodoni-bold.ttf' %}") format("truetype"), url("{% static 'resumes/fonts/bodoni-bold.woff' %}") format("woff"); font-style: normal; font-weight: 800; }
 
       /* -------------- */
       /*      BASE      */
@@ -76,7 +61,7 @@
 
       /* --------NEW YORK-------- */
 
-      .new-york { font-family: "Times", Open Sans, sans-serif; color: #212121; }
+      .new-york { font-family: "Tinos", serif; color: #212121; }
 
       .new-york main.preview .index-card { min-height: 90vh; }
 
@@ -86,7 +71,7 @@
 
       .new-york .section table tr td { vertical-align: top; max-width: 1170px;}
 
-      .new-york .section table tr td .content, .new-york .section table tr td .header { padding-top: 30px; padding-left: 80px; padding-right: 80px; padding-bottom: 30px;}
+      .new-york .section table tr td .content, .new-york .section table tr td .header { padding-top: 30px; padding-left: 90px; padding-right: 90px; padding-bottom: 30px;}
 
       .new-york a { color: #444C52; }
 
@@ -98,7 +83,7 @@
 
       .new-york p:last-child { margin-bottom: 0px;}
 
-      .new-york .bodoni { font-family: "Bodoni", Open Sans, sans-serif; }
+      .new-york .tinos { font-family: "Tinos", serif; }
 
       .new-york .title { font-size: 22px; line-height: 33px; color: #4788C7; font-weight: bold; margin-bottom: 20px; text-transform: uppercase; }
 
@@ -208,7 +193,7 @@
         size: A4;
       }
 
-      @media print { .new-york .section table { box-shadow: none; margin-top: 0;}
+      @media print { .new-york .section table { box-shadow: none; margin-top: 0; }
         body {background: transparent !important;}
         .new-york .section table tr td { vertical-align: top; padding-top: 0; padding-bottom: 0;}
         .new-york .section table tr td .content {padding-bottom: 0;}
@@ -225,12 +210,12 @@
 <body class="new-york">
   <main>
     <div class="section" style="page-break-after: auto;border: 0;">
-      <table style="width: 1170px; font-family: 'Bodoni', san-serif; font-size: 14px; line-height: 20px;background: #FFFFFF; color: #212121;">
+      <table style="width: 1170px; font-family: 'Tinos', serif; font-size: 14px; line-height: 20px;background: #FFFFFF; color: #212121;">
         <tr>
           <td>
             <div class="header" >
               <div class="name">
-                <h1 class="bodoni">{{ resume.user.first_name }} {{ resume.user.last_name }}</h1>
+                <h1 class="tinos">{{ resume.user.first_name }} {{ resume.user.last_name }}</h1>
                 <p class="position">{{ resume.user.profile.job_title }}</p>
               </div>
               <div class="contact">
@@ -243,7 +228,7 @@
             </div>
             <div class="content" style="padding-top: 60px;">
               <div class="about">
-                <div class="text" style="font-family: 'Times', san-serif;">
+                <div class="text">
                     {{ resume.user.profile.objective|safe }}
                     {% if resume.user.profile.linked_in %}
                         <div class="linkedin">
@@ -253,7 +238,7 @@
                 </div>
               </div>
             </div>
-            <div class="content" style="font-family: 'Times', san-serif;">
+            <div class="content">
               <div class="we">
                 <h2>Work Experience</h2>
                 <ul>
@@ -271,7 +256,7 @@
                 </ul>
               </div>
             </div>
-            <div class="content" style="font-family: 'Times', san-serif;">
+            <div class="content">
               <div class="box-skills clearfix">
                 <div class="box education left">
                   <div class="title">
