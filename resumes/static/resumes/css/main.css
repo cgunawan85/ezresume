@@ -762,3 +762,70 @@ button {
     width: 100px;
     height: auto;
 }
+
+/*----------- Payment page ----------- */
+
+.payment-page {
+    max-width: 1150px;
+}
+
+.plan-block {
+    border: 1px solid black;
+    padding: 50px;
+    max-width: 313px;
+}
+
+.payment-page .plan-block-title {
+    font-size: 24px;
+}
+
+.payment-page .plan-block-price {
+    padding-top: 25px;
+    padding-bottom: 25px;
+    font-size: 50px;
+    border-bottom: 1px solid lightgray;
+}
+
+.payment-page #long-photo {
+    width: 200px;
+    height: 200px;
+    padding-bottom: 50px;
+}
+
+.payment-page #short-photo {
+    width: 200px;
+    height: 200px;
+}
+
+.payment-page .plan-bottom-part .plan-block-features li {
+    list-style: none;
+    padding-bottom: 10px;
+    font-size: 18px;
+    color: dimgray;
+    border-bottom: 1px solid lightgray;
+}
+
+.payment-page .plan-bottom-part span {
+    color: green;
+}
+
+.payment-page button {
+    background-color: green;
+    color: white;
+    padding: 15px;
+    margin-top: 30px;
+    font: bold 16px/1 'Raleway-Medium', sans-serif;
+}
+
+.payment-page button:hover {
+    background-color: darkgreen;
+}
+
+.payment-page sup {
+    font-size: 18px;
+}
+
+.plan-wrap {
+    display: inline-block;
+    margin: 0 50px;
+}

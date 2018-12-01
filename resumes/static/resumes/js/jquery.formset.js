@@ -214,6 +214,7 @@
         return $$;
     };
 
+
     /* Setup plugin defaults */
     $.fn.formset.defaults = {
         prefix: 'form',                  // The form prefix for your django formset

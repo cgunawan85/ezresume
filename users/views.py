@@ -77,11 +77,9 @@ def payment_notification(request):
             user.save()
             group = Group.objects.get(name='paying_user')
             group.user_set.add(user)
-            # messages.success(request, "Thank you {}! You now have unlimited resume exports".format(user.username))
-            # TODO: Need to figure out what to return/render/redirect
-            return HttpResponse('Hello')
-        else:
-            return HttpResponse('Failed')
+            messages.success(request, "Thank you {}! You now have unlimited resume exports".format(user.username))
+            return redirect('resumes:my-resumes')
+    return redirect('home')
 
 
 def payment(request):

@@ -1,18 +1,63 @@
+{% extends 'resumes/layout.html' %}
 {% load staticfiles %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Payment</title>
-    <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
-            data-client-key="SB-Mid-client-d-MR0cZ5q86XY98I"></script>
-</head>
-<body>
-<form method="post" action="{% url 'resumes:payment' %}">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" name="7-day">7 day</button>
-    <button type="submit" name="1-month">1 month</button>
-</form>
-</body>
-</html>
+{% block title %}<title>EZResume | Buy a Package</title>{% endblock %}
+{% block subheader %}
+    <div class="sub-header">
+        <h1>Buy a Package</h1>
+    </div>
+{% endblock %}
+{% block content %}
+    <div class="form-labels-on-top payment-page">
+        <div class="col-six plan-wrap">
+            <div class="plan-block primary">
+                <div class="plan-top-part">
+                    <img src="{% static 'images/espresso-short.png' %}" id="short-photo" alt="espresso">
+                    <h3 class="plan-block-title">7 Day Package</h3>
+                    <p class="plan-block-price"><sup>IDR</sup>24,000</p>
+                    <!--
+                    <p class="plan-block-per">Per Month</p>
+                    -->
+                </div>
+                <div class="plan-bottom-part">
+                    <ul class="plan-block-features">
+                        <li><span>Unlimited</span> PDF Exports</li>
+                        <li><span>Access</span> To All Templates</li>
+                        <li><span>One Time</span> Payment</li>
+                    </ul>
+                    <form method="post" action="{% url 'resumes:payment' %}">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" name="7-day">BUY NOW</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-six plan-wrap">
+            <div class="plan-block primary">
+                <div class="plan-top-part">
+                    <div class="recommended">
+                    </div>
+                    <img src="{% static 'images/coffee-long.png' %}" id="long-photo" alt="long-black">
+                    <h3 class="plan-block-title">1 Month Package</h3>
+                    <p class="plan-block-price"><sup>IDR</sup>72,000</p>
+                    <!--
+                    <p class="plan-block-per">Per Month</p>
+                    -->
+                </div>
+                <div class="plan-bottom-part">
+                    <ul class="plan-block-features">
+                        <li><span>Unlimited</span> PDF Exports</li>
+                        <li><span>Access</span> To All Templates</li>
+                        <li><span>One Time</span> Payment</li>
+                    </ul>
+                    <form method="post" action="{% url 'resumes:payment' %}">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" name="1-month">BUY NOW</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
