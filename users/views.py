@@ -1,6 +1,7 @@
 import datetime
 import json
 import requests
+import hashlib
 
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
@@ -14,7 +15,6 @@ from django.contrib.auth import login
 from django.contrib.auth.models import Group
 from django.views.decorators.csrf import csrf_exempt
 from django.utils import timezone
-from hashlib import sha512
 
 from .tokens import account_activation_token
 from .forms import CustomUserCreationForm, OrderForm
@@ -75,7 +75,12 @@ def payment_notification(request):
             gross_amount = request_dict['gross_amount']
             serverkey = 'SB-Mid-server-ZTiZXa5L2pyYVdAUljABci8P'
 
-            if sha512(order_id + status_code + gross_amount + serverkey) == request_dict['signature_key']:
+            # does this work yet?
+            signature_key_encoded = (order_id + status_code + gross_amount + serverkey).encode('utf-8')
+            m = hashlib.sha512()
+            signature_key = m.update(signature_key_encoded)
+
+            if signature_key == request_dict['signature_key']:
                 order = Order.objects.get(pk=order_id)
                 user = order.user
                 if order.package == '7 day':
@@ -88,9 +93,9 @@ def payment_notification(request):
                 messages.success(request, "Thank you {}! You now have unlimited resume exports".format(user.username))
                 return redirect('resumes:my-resumes')
             else:
-                HttpResponse('Incorrect signature hash in notification!')
+                return HttpResponse('Error!')
         else:
-            return HttpResponse('Status error!')
+            return HttpResponse('Error!')
     return redirect('home')
 
 
