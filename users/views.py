@@ -14,6 +14,7 @@ from django.contrib.auth import login
 from django.contrib.auth.models import Group
 from django.views.decorators.csrf import csrf_exempt
 from django.utils import timezone
+from hashlib import sha512
 
 from .tokens import account_activation_token
 from .forms import CustomUserCreationForm, OrderForm
@@ -63,22 +64,33 @@ def activate(request, uidb64, token):
 
 @csrf_exempt
 def payment_notification(request):
+    # TODO: Not all payment methods return fraud_status parameter, need split up payment types
     if request.method == "POST":
         body_unicode = request.body.decode('utf-8')
         request_dict = json.loads(body_unicode)
-        if request_dict["status_code"] == "200" and request_dict["fraud_status"] == "accept":
+        if request_dict["status_code"] == "200" and request_dict["transaction_status"] == "settlement":
+            # for SHA512 decoding
             order_id = request_dict['order_id']
-            order = Order.objects.get(pk=order_id)
-            user = order.user
-            if order.package == '7 day':
-                user.profile.sub_expires_on = timezone.now() + datetime.timedelta(days=7)
-            elif order.package == '1 month':
-                user.profile.sub_expires_on = timezone.now() + datetime.timedelta(days=30)
-            user.save()
-            group = Group.objects.get(name='paying_user')
-            group.user_set.add(user)
-            messages.success(request, "Thank you {}! You now have unlimited resume exports".format(user.username))
-            return redirect('resumes:my-resumes')
+            status_code = request_dict['status_code']
+            gross_amount = request_dict['gross_amount']
+            serverkey = 'SB-Mid-server-ZTiZXa5L2pyYVdAUljABci8P'
+
+            if sha512(order_id + status_code + gross_amount + serverkey) == request_dict['signature_key']:
+                order = Order.objects.get(pk=order_id)
+                user = order.user
+                if order.package == '7 day':
+                    user.profile.sub_expires_on = timezone.now() + datetime.timedelta(days=7)
+                elif order.package == '1 month':
+                    user.profile.sub_expires_on = timezone.now() + datetime.timedelta(days=30)
+                user.save()
+                group = Group.objects.get(name='paying_user')
+                group.user_set.add(user)
+                messages.success(request, "Thank you {}! You now have unlimited resume exports".format(user.username))
+                return redirect('resumes:my-resumes')
+            else:
+                HttpResponse('Incorrect signature hash in notification!')
+        else:
+            return HttpResponse('Status error!')
     return redirect('home')
 
 
