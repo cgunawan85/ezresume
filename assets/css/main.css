@@ -2092,7 +2092,7 @@ html[data-useragent*='MSIE 10.0'] .home-scrolldown,
 	display: none;
   }
   .about-how-content .step {
-	padding: 60px 0 0 0;
+	padding: 80px 0 0 0;
   }
   .about-how-content .step::before {
 	top: 0;
