@@ -88,6 +88,8 @@ def payment_notification(request):
                 elif order.package == '1 month':
                     user.profile.sub_expires_on = timezone.now() + datetime.timedelta(days=30)
                 user.save()
+                order.paid_status = True
+                order.save()
                 group = Group.objects.get(name='paying_user')
                 group.user_set.add(user)
                 messages.success(request, "Thank you {}! You now have unlimited resume exports".format(user.username))
