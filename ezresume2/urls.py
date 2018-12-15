@@ -28,6 +28,7 @@ urlpatterns = [
     path('', views.home_view, name='home'),
     path('activate/<uidb64>/<token>/', user_views.activate, name='activate'),
     path('payment-notification/', user_views.payment_notification, name='payment-notif'),
+    path('privacy/', views.privacy, name='privacy')
 ]
 
 if settings.DEBUG:

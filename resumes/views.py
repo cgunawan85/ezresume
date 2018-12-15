@@ -1,5 +1,6 @@
 import logging
 
+from django.contrib.auth.models import Group
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -41,6 +42,7 @@ TEMPLATES = {'resumes': 'resumes/resumes.html',
 def choose(request, pk):
     resume = Resume.objects.get(pk=pk)
     form = ChooseForm(request.POST)
+    group = Group.objects.get(name='paying_user')
     if request.method == 'POST' and 'view-resume' in request.POST:
         if form.is_valid() and form.cleaned_data['resume_template'] == 'jakarta':
             return render(request, 'resumes/jakarta.html', {'form': form, 'resume': resume})
@@ -54,31 +56,35 @@ def choose(request, pk):
             return render(request, 'resumes/san_francisco.html', {'form': form, 'resume': resume})
     # two buttons on one page
     elif request.method == 'POST' and 'export-resume' in request.POST:
-        # code for exporting pdfcrowd goes here
-        client = pdfcrowd.HtmlToPdfClient('chrisgunawan85', 'ea5734a7dc5aabbded5e65d8a32de8a4')
-        client.setUsePrintMedia(True)
-        client.setPageHeight('-1')
-        # set HTTP response headers
-        pdf_response = HttpResponse(content_type='application/pdf')
-        pdf_response['Cache-Control'] = 'max-age=0'
-        pdf_response['Accept-Ranges'] = 'none'
-        content_disp = 'attachment' if 'asAttachment' in request.POST else 'inline'
-        pdf_response['Content-Disposition'] = content_disp + '; filename=demo_django.pdf'
+        if request.user.groups.filter(name='paying_user').exists():
+            # code for exporting pdfcrowd goes here
+            client = pdfcrowd.HtmlToPdfClient('chrisgunawan85', 'ea5734a7dc5aabbded5e65d8a32de8a4')
+            client.setUsePrintMedia(True)
+            client.setPageHeight('-1')
+            # set HTTP response headers
+            pdf_response = HttpResponse(content_type='application/pdf')
+            pdf_response['Cache-Control'] = 'max-age=0'
+            pdf_response['Accept-Ranges'] = 'none'
+            content_disp = 'attachment' if 'asAttachment' in request.POST else 'inline'
+            pdf_response['Content-Disposition'] = content_disp + '; filename=demo_django.pdf'
 
-        if form.is_valid() and form.cleaned_data['resume_template'] == 'jakarta':
-            html = render_to_string('resumes/jakarta.html', {'resume': resume})
-        if form.is_valid() and form.cleaned_data['resume_template'] == 'new_york':
-            html = render_to_string('resumes/new_york.html', {'resume': resume})
-        if form.is_valid() and form.cleaned_data['resume_template'] == 'tokyo':
-            html = render_to_string('resumes/tokyo.html', {'resume': resume})
-        if form.is_valid() and form.cleaned_data['resume_template'] == 'rome':
-            html = render_to_string('resumes/rome.html', {'resume': resume})
-        if form.is_valid() and form.cleaned_data['resume_template'] == 'sf':
-            html = render_to_string('resumes/san_francisco.html', {'resume': resume})
+            if form.is_valid() and form.cleaned_data['resume_template'] == 'jakarta':
+                html = render_to_string('resumes/jakarta.html', {'resume': resume})
+            if form.is_valid() and form.cleaned_data['resume_template'] == 'new_york':
+                html = render_to_string('resumes/new_york.html', {'resume': resume})
+            if form.is_valid() and form.cleaned_data['resume_template'] == 'tokyo':
+                html = render_to_string('resumes/tokyo.html', {'resume': resume})
+            if form.is_valid() and form.cleaned_data['resume_template'] == 'rome':
+                html = render_to_string('resumes/rome.html', {'resume': resume})
+            if form.is_valid() and form.cleaned_data['resume_template'] == 'sf':
+                html = render_to_string('resumes/san_francisco.html', {'resume': resume})
 
-        client.convertStringToStream(html, pdf_response)
-        # send the generated PDF
-        return pdf_response
+            client.convertStringToStream(html, pdf_response)
+            # send the generated PDF
+            return pdf_response
+        else:
+            messages.info(request, "Please purchase a package to export to PDF format")
+            return HttpResponseRedirect(reverse('resumes:payment'))
     else:
         form = ChooseForm()
     return render(request, 'resumes/choose.html', {'form': form, 'resume': resume})

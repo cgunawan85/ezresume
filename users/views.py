@@ -55,7 +55,8 @@ def activate(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
-        login(request, user)
+        # do I want to login user here?
+        # login(request, user)
         messages.success(request, "You're account is now active! Please login with your credentials")
         return redirect('login')
     else:
