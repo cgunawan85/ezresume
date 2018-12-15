@@ -55,7 +55,12 @@
 {% block script %}
     <script type="text/javascript">
         $(function() {
-            $('.form-duplicate').formset({ prefix: 'work_experience' })
+            $('.form-duplicate').formset({
+              prefix: 'work_experience',
+              added: function() {
+                tinymceInit();
+              }
+            })
         })
     </script>
 {% endblock %}
