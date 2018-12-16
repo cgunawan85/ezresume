@@ -49,12 +49,10 @@
                         Login with
                     </p>
                     <p>
-                        <a href="{% provider_login_url 'google' %}" class="google-button">
-                            <i class="fa fa-google fa-fw"></i> Google</a>
+                        <a href="{% provider_login_url 'google' %}">
+                            <img src="{% static 'images/btn_google_signin_dark_normal_web.png' %}"></a>
                         <a href="{% provider_login_url 'linkedin' %}" class="linkedin-button">
                             <i class="fa fa-linkedin fa-fw"></i> LinkedIn</a>
-                        <a href="{% provider_login_url 'facebook' %}" class="facebook-button">
-                            <i class="fa fa-facebook fa-fw"></i> Facebook</a>
                     </p>
                 </div>
 				<form class="login100-form validate-form flex-sb flex-w" method="POST"

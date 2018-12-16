@@ -28,18 +28,18 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.email
-
+    '''
     def save(self, force_insert=False, using=None):
         # calling super, using args and kwargs
         super().save()
 
-        img = Image.open(self.profile_pic.path)
+        img = Image.open(self.profile_pic.name)
 
         if img.height > 300 or img.width > 300:
             output_size = (100, 100)
             img.thumbnail(output_size)
-            img.save(self.profile_pic.path)
-
+            img.save(self.profile_pic.name)
+    '''
 
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

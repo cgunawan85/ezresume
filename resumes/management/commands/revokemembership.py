@@ -20,7 +20,7 @@ class Command(BaseCommand):
                     group.user_set.remove(user)
                     self.stdout.write("Removed %s from paying_user group" % user)
             else:
-                self.stdout.write("No users were moved")
+                self.stdout.write("User not moved")
 
         """
         time = timezone.now().strftime('%X')
