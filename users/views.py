@@ -54,8 +54,6 @@ def activate(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
-        # do I want to login user here?
-        # login(request, user)
         messages.success(request, "You're account is now active! Please login with your credentials")
         return redirect('login')
     else:
@@ -64,11 +62,10 @@ def activate(request, uidb64, token):
 
 @csrf_exempt
 def payment_notification(request):
-    # TODO: Not all payment methods return fraud_status parameter, need split up payment types
     if request.method == "POST":
         body_unicode = request.body.decode('utf-8')
         request_dict = json.loads(body_unicode)
-        if request_dict["status_code"] == "200" and request_dict["transaction_status"] == "settlement" or "capture":
+        if request_dict["status_code"] == "200" and (request_dict["transaction_status"] == "settlement" or "capture"):
             # for SHA512 decoding
             order_id = request_dict['order_id']
             status_code = request_dict['status_code']
@@ -78,9 +75,9 @@ def payment_notification(request):
             # does this work yet?
             signature_key_encoded = (order_id + status_code + gross_amount + serverkey).encode('utf-8')
             m = hashlib.sha512()
-            signature_key = m.update(signature_key_encoded)
+            m.update(signature_key_encoded)
 
-            if signature_key == request_dict['signature_key']:
+            if m.digest() == request_dict['signature_key']:
                 order = Order.objects.get(pk=order_id)
                 user = order.user
                 if order.package == '7 day':
@@ -100,6 +97,13 @@ def payment_notification(request):
     return redirect('home')
 
 
+@login_required
+def payment_confirmed(request):
+    messages.success(request, "Thank you for your purchase! You now have unlimited PDF exports!")
+    return render(request, 'resumes/my_resumes.html')
+
+
+@login_required
 def payment(request):
     if request.method == 'POST':
         form = OrderForm(request.POST)

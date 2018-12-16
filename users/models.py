@@ -43,6 +43,8 @@ class Profile(models.Model):
             img.save(default_storage.save(self.profile_pic.name, 'r'), 'PNG')
             img.close()
 	'''
+
+
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
