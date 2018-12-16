@@ -65,14 +65,12 @@ def payment_notification(request):
     if request.method == "POST":
         body_unicode = request.body.decode('utf-8')
         request_dict = json.loads(body_unicode)
-        if request_dict["status_code"] == "200" and (request_dict["transaction_status"] == "settlement" or "capture"):
-            # for SHA512 decoding
-            order_id = request_dict['order_id']
-            status_code = request_dict['status_code']
-            gross_amount = request_dict['gross_amount']
-            serverkey = 'SB-Mid-server-ZTiZXa5L2pyYVdAUljABci8P'
+        order_id = request_dict['order_id']
+        status_code = request_dict['status_code']
+        gross_amount = request_dict['gross_amount']
+        serverkey = 'SB-Mid-server-ZTiZXa5L2pyYVdAUljABci8P'
 
-            # does this work yet?
+        if (request_dict["transaction_status"] == "settlement" or request_dict["transaction_status"] == "capture") and request_dict["status_code"] == "200":
             signature_key_encoded = (order_id + status_code + gross_amount + serverkey).encode('utf-8')
             m = hashlib.sha512()
             m.update(signature_key_encoded)

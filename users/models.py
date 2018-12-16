@@ -30,19 +30,6 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.email
-    '''
-    def save(self, force_insert=False, using=None):
-        # calling super, using args and kwargs
-        super().save()
-
-        img = Image.open(default_storage.open(self.profile_pic.name, 'r'))
-
-        if img.height > 300 or img.width > 300:
-            output_size = (100, 100)
-            img.thumbnail(output_size)
-            img.save(default_storage.save(self.profile_pic.name, 'r'), 'PNG')
-            img.close()
-	'''
 
 
 class Order(models.Model):
