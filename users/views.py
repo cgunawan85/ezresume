@@ -97,13 +97,11 @@ def payment_notification(request):
     return redirect('home')
 
 
-@login_required
 def payment_confirmed(request):
     messages.success(request, "Thank you for your purchase! You now have unlimited PDF exports!")
     return render(request, 'resumes/my_resumes.html')
 
 
-@login_required
 def payment(request):
     if request.method == 'POST':
         form = OrderForm(request.POST)
