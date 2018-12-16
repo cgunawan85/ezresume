@@ -25,7 +25,7 @@ class Profile(models.Model):
     country = CountryField(blank_label='(Select country)', blank=True)
     linked_in = models.CharField(max_length=255, blank=True)
     objective = HTMLField(blank=True)
-    profile_pic = models.ResizedImageField(size=[100, 100], quality=75, default="profile-pics/default.jpg", upload_to="profile-pics")
+    profile_pic = ResizedImageField(size=[300, 300], quality=100, default="profile-pics/default.jpg", upload_to="profile-pics")
     sub_expires_on = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):

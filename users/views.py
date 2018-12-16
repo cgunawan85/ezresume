@@ -11,7 +11,6 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from django.contrib import messages
 from django.core.mail import EmailMessage
-from django.contrib.auth import login
 from django.contrib.auth.models import Group
 from django.views.decorators.csrf import csrf_exempt
 from django.utils import timezone
@@ -69,7 +68,7 @@ def payment_notification(request):
     if request.method == "POST":
         body_unicode = request.body.decode('utf-8')
         request_dict = json.loads(body_unicode)
-        if request_dict["status_code"] == "200" and request_dict["transaction_status"] == "settlement":
+        if request_dict["status_code"] == "200" and request_dict["transaction_status"] == "settlement" or "capture":
             # for SHA512 decoding
             order_id = request_dict['order_id']
             status_code = request_dict['status_code']
@@ -93,12 +92,11 @@ def payment_notification(request):
                 order.save()
                 group = Group.objects.get(name='paying_user')
                 group.user_set.add(user)
-                messages.success(request, "Thank you {}! You now have unlimited resume exports".format(user.username))
-                return redirect('resumes:my-resumes')
+                return HttpResponse(status=200)
             else:
-                return HttpResponse('Error!')
+                return HttpResponse(status=401)
         else:
-            return HttpResponse('Error!')
+            return HttpResponse(status=201)
     return redirect('home')
 
 
