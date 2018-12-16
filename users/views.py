@@ -77,7 +77,7 @@ def payment_notification(request):
             m = hashlib.sha512()
             m.update(signature_key_encoded)
 
-            if m.digest() == request_dict['signature_key']:
+            if m.hexdigest() == request_dict['signature_key']:
                 order = Order.objects.get(pk=order_id)
                 user = order.user
                 if order.package == '7 day':
