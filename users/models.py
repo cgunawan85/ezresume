@@ -3,6 +3,8 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from PIL import Image
 from tinymce.models import HTMLField
+from django.core.files.storage import default_storage
+from django_resized import ResizedImageField
 
 
 class User(AbstractUser):
@@ -23,7 +25,7 @@ class Profile(models.Model):
     country = CountryField(blank_label='(Select country)', blank=True)
     linked_in = models.CharField(max_length=255, blank=True)
     objective = HTMLField(blank=True)
-    profile_pic = models.ImageField(default="profile-pics/default.jpg/", upload_to="profile-pics")
+    profile_pic = models.ResizedImageField(size=[100, 100], quality=75, default="profile-pics/default.jpg", upload_to="profile-pics")
     sub_expires_on = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
@@ -33,14 +35,14 @@ class Profile(models.Model):
         # calling super, using args and kwargs
         super().save()
 
-        img = Image.open(self.profile_pic.name)
+        img = Image.open(default_storage.open(self.profile_pic.name, 'r'))
 
         if img.height > 300 or img.width > 300:
             output_size = (100, 100)
             img.thumbnail(output_size)
-            img.save(self.profile_pic.name)
-    '''
-
+            img.save(default_storage.save(self.profile_pic.name, 'r'), 'PNG')
+            img.close()
+	'''
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
