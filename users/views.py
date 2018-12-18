@@ -97,7 +97,7 @@ def payment_notification(request):
 
 def payment_confirmed(request):
     messages.success(request, "Thank you for your purchase! You now have unlimited PDF exports!")
-    return render(request, 'resumes/my_resumes.html')
+    return redirect('resumes:my-resumes')
 
 
 def payment(request):
