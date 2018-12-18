@@ -3,7 +3,12 @@
 {% block title %}<title>EZResume | Buy a Package</title>{% endblock %}
 {% block subheader %}
     <div class="sub-header">
-        <h1>Buy a Package</h1>
+            {% if user.profile.sub_expires_on %}
+                <h1 class="package-title">Your package expires on {{ user.profile.sub_expires_on|date:"D d M Y" }} at 23:59</h1>
+            {% else %}
+                <h1>You currently don't have a package</h1>
+            {% endif %}
+        <h1>Buy or Renew a Package</h1>
     </div>
 {% endblock %}
 {% block content %}

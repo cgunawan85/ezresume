@@ -101,11 +101,11 @@ def payment_confirmed(request):
 
 
 def payment(request):
+    user = request.user
     if request.method == 'POST':
         form = OrderForm(request.POST)
         if form.is_valid():
             url = 'https://app.sandbox.midtrans.com/snap/v1/transactions/'
-            user = request.user
             if '7-day' in request.POST:
                 order = Order.objects.create(user=user, package='7 day', total=24000)
             elif '1-month' in request.POST:
@@ -148,4 +148,4 @@ def payment(request):
             return redirect(redirect_url)
     else:
         form = OrderForm()
-    return render(request, 'users/payment.html', {'form': form})
+    return render(request, 'users/payment.html', {'form': form, 'user': user})

@@ -1,9 +1,7 @@
 from django_countries.fields import CountryField
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from PIL import Image
 from tinymce.models import HTMLField
-from django.core.files.storage import default_storage
 from django_resized import ResizedImageField
 
 
@@ -35,7 +33,6 @@ class Profile(models.Model):
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
-    # use choice field for package?
     package = models.CharField(max_length=255)
     total = models.IntegerField()
     paid_status = models.BooleanField(default=False)

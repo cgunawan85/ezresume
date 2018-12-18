@@ -13,7 +13,15 @@ from .choices import RESUME_CHOICES
 
 
 class ChooseForm(forms.Form):
-    resume_template = forms.ChoiceField(choices=RESUME_CHOICES)
+    resume_template = forms.ChoiceField(choices=RESUME_CHOICES, required=True)
+
+    '''
+    def clean_resume_template(self):
+        data = self.cleaned_data['resume_template']
+        if not data:
+            raise forms.ValidationError('Please select a resume!')
+        return data
+    '''
 
     class Meta:
         pass
