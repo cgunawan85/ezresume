@@ -29,7 +29,9 @@ urlpatterns = [
     path('activate/<uidb64>/<token>/', user_views.activate, name='activate'),
     path('payment-notification/', user_views.payment_notification, name='payment-notif'),
     path('privacy/', views.privacy, name='privacy'),
-    path('payment-confirmed/', user_views.payment_confirmed, name='payment-confirmed')
+    path('payment-confirmed/', user_views.payment_confirmed, name='payment-confirmed'),
+    path('payment-unfinished/', user_views.payment_unfinished, name='payment-unfinished'),
+    path('payment-error/', user_views.payment_error, name='payment-error'),
 ]
 
 if settings.DEBUG:

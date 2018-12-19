@@ -100,6 +100,16 @@ def payment_confirmed(request):
     return redirect('resumes:my-resumes')
 
 
+def payment_unfinished(request):
+    messages.info(request, "Your payment has not been completed. Please check your email and follow the instructions to complete your payment")
+    return redirect('resumes:my-resumes')
+
+
+def payment_error(request):
+    messages.error(request, "There was an error processing your payment! Please try again...")
+    return redirect('resumes:my-resumes')
+
+
 def payment(request):
     user = request.user
     if request.method == 'POST':
