@@ -11,7 +11,7 @@
    ================================================== -->
     <meta charset="utf-8">
     <title>EZResume | Indonesia</title>
-    <meta name="description" content="Resume/CV Builder">
+    <meta name="description" content="Buat Resume/CV Anda dengan EZResume dalam 5 menit secara online!">
     <meta name="keywords" content="">
     <meta name="author" content="Chris Gunawan">
 
@@ -53,18 +53,18 @@
 	   	<nav id="header-nav-wrap">
 			<ul class="header-main-nav">
 				<li class="current"><a class="smoothscroll"  href="#home" title="home">Home</a></li>
-                <li><a class="smoothscroll"  href="#about" title="about">About</a></li>
-				<li><a class="smoothscroll"  href="#pricing" title="pricing">Pricing</a></li>
-				<li><a class="smoothscroll"  href="#testimonials" title="testimonials">Testimonials</a></li>
-				<li><a class="smoothscroll"  href="#companies" title="companies">Companies</a></li>
+                <li><a class="smoothscroll"  href="#about" title="about">Tentang Kami</a></li>
+				<li><a class="smoothscroll"  href="#pricing" title="pricing">Harga</a></li>
+				<li><a class="smoothscroll"  href="#testimonials" title="testimonials">Testimoni</a></li>
+				<li><a class="smoothscroll"  href="#companies" title="companies">Perusahaan</a></li>
 			</ul>
 
             {% if user.is_authenticated %}
                 <a href="{% url 'resumes:my-resumes' %}" title="my-resumes" class="button button-secondary cta">
                     Resume Builder</a>
             {% else %}
-                <a href="{% url 'login' %}" title="login" class="button button-secondary cta">Login</a>
-                <a href="{% url 'register' %}" title="sign-up" class="button button-primary cta">Register</a>
+                <a href="{% url 'login' %}" title="login" class="button button-secondary cta">Masuk</a>
+                <a href="{% url 'register' %}" title="sign-up" class="button button-primary cta">Daftar Akun</a>
             {% endif %}
 
 		</nav>
@@ -84,17 +84,17 @@
             <div class="row contents">
                 <div class="home-content-left">
 
-                    <h3>EZResume is a resume/CV builder</h3>
+                    <h3>Buat Resume/CV Anda Dengan EZResume</h3>
 
                     <h1>
-                        Because Building a<br>
-                        Beautiful Resume<br>
-                        Should Be Easy!
+                        Membuat Resume<br>
+                        yang Menarik Kini<br>
+                        Lebih Mudah!
                     </h1>
 
                     <div class="buttons">
                         <a href="{% url 'resumes:my-resumes' %}" class="button stroke">
-                            Build Your Resume
+                            Buat Resume Sekarang
                         </a>
                         <!-- We don't have any videos yet
                         <a href="http://player.vimeo.com/video/14592941?title=0&amp;byline=0&amp;portrait=0&amp;color=39b54a" data-lity class="button stroke">
@@ -139,11 +139,14 @@
         <div class="row about-intro">
 
             <div class="col-four">
-                <h1 class="intro-header">About EZResume</h1>
+                <h1 class="intro-header">Tentang EZResume</h1>
             </div>
             <div class="col-eight">
                 <p class="lead">
-                    Our goal is to help you land that dream job using our time-tested resume designs. We make it easy for you to create gorgeous yet professionally formatted resumes. Whatever industry you’re in, we have a resume design just for you. Apply for your next job with confidence!
+                    Kami berada untuk membantu Anda mendapatkan job impian dengan menggunakan desain resume kami yang tak
+                    lelang oleh waktu. Kami memudahkan Anda membuat resume yang indah, kreatif, namun tetap profesional.
+                    Apapun bidang pekerjaan Anda, kami memiliki desain resume terbaik untuk Anda. Resume kami membuat Anda
+                    semakin percaya diri dalam melamar pekerjaan.
                 </p>
             </div>
 
@@ -159,9 +162,11 @@
 
                     <div class="service-content">
 
-                        <h3>Quick & Easy</h3>
+                        <h3>Cepat dan Mudah</h3>
 
-                        <p>No more formatting difficulties in Microsoft Word. Using our resume builder, it only takes a few minutes to get the resume you've always wanted.
+                        <p>
+                            Tidak perlu lagi kesulitan membuat Resume di Microsoft Word. Dengan menggunakan resume builder kami,
+                            Anda hanya butuh waktu beberapaa menit untuk menciptakan resume yang atraktif.
                         </p>
 
                     </div>
@@ -173,9 +178,12 @@
                         <span class="icon"><i class="icon-megaphone"></i></span>
 
                     <div class="service-content">
-                        <h3>Stand Out</h3>
+                        <h3>Menonjol</h3>
 
-                        <p>Content is King but design is the Queen. Studies show that recruiters on average only spend six seconds viewing invidual resumes. It's more important than ever for your resume to jump out of the stack.
+                        <p>
+                            Konten adalah raja, tapi desain adalah ratunya. Penelitian menyatakan bahwa perusahaan hanya
+                            menghabiskan waktu 6 detik saja untuk melihat resume pelamar kerja. Itulah kenapa resume
+                            Anda harus terlihat menonjol dibandingkan pelamar lainnya.
                         </p>
 
 
@@ -188,9 +196,11 @@
                     <span class="icon"><i class="icon-file"></i></span>
 
                     <div class="service-content">
-                        <h3>Get Organized</h3>
+                        <h3>Terorganisir</h3>
 
-                        <p>Job hunting? Keep all your resumes in one place. Experiment, export and email your resumes exactly when and where you need them.
+                        <p>
+                            Sedang mencari pekerjaan? Simpan semua resume Anda di satu tempat. Anda bisa menyunting,
+                            mengekspor resume, atau mengirim resume Anda di mana dan kapan saja.
                         </p>
 
                     </div>
@@ -203,32 +213,41 @@
 
         <div class="row about-how">
 
-            <h1 class="intro-header">How Does EZResume Works?</h1>
+            <h1 class="intro-header">Bagaimana Cara Kerja EZResume?</h1>
 
             <div class="about-how-content">
                 <div class="about-how-steps block-1-2 block-tab-full group">
 
                     <div class="bgrid step" data-item="1">
-                        <h3>Sign Up</h3>
-                        <p>Great job opportunities require even greater resumes. Signing up is the first step in fulfilling your career potential. It's effortless!
+                        <h3>Daftar</h3>
+                        <p>
+                            Lowongan kerja yang bagus membutuhkan resume yang luar biasa. Daftarkan diri Anda di EZResume.
+                            Ini menjadi langkah pertama untuk mendapatkan pekerjaan impian Anda. Cara daftarnya sangat mudah!
                         </p>
                     </div>
 
                     <div class="bgrid step" data-item="2">
-                        <h3>Complete</h3>
-                        <p>Fill in all the requested details using our simple forms and we'll take care of the rest! Look out for tips and advice on constructing the ultimate resume.
+                        <h3>Lengkapi</h3>
+                        <p>
+                            Lengkapi setiap detail data yang diminta menggunakan form sederhana dari kami. Selanjutnya,
+                            serahkan pada kami! Cari tahu tips dan info dalam membuat resume yang terbaik.
                         </p>
                     </div>
 
                     <div class="bgrid step" data-item="3">
-                        <h3>Choose</h3>
-                        <p>Select the resume design that best suits your job application. Our resumes are all professionally crafted with the sole purpose of making you look good.
+                        <h3>Pilih</h3>
+                        <p>
+                            Pilih desain resume yang sesuai dengan lamaran pekerjaan Anda. Semua resume di EZResume dibuat secara profesional dengan
+                            tujuan agar Anda terlihat luar biasa.
                         </p>
                     </div>
 
                     <div class="bgrid step" data-item="4">
                         <h3>Export</h3>
-                        <p>Whether you want a professional, creative or modern looking resume, receiving your crispy new resume is super easy! Just click export and we'll instantly deliver it right to your email inbox.
+                        <p>
+                            Apapun desain resume yang Anda pilih, baik itu profesional, kreatif, atau modern, Anda bisa
+                            mendapatkan hasil resume Anda dengan mudah. Anda hanya perlu klik export dan kami akan
+                            langsung mengirimkannya ke email Anda.
                         </p>
                     </div>
 
@@ -253,12 +272,14 @@
         <div class="row pricing-content">
 
             <div class="col-four pricing-intro">
-                <h1 class="intro-header">Pricing</h1>
+                <h1 class="intro-header">Harga</h1>
 
-                <p>We don't want your business for long. Choose a subscription package that's right for you.
+                <p>
+                    Anda tidak perlu berlangganan dalam waktu yang lama. Pilih paket langganan yang sesuai dengan keperluan Anda.
                 </p>
                 <p>&nbsp</p> <!-- Ugly, figure this out later -->
-                <p>We accept all major payment methods and process payments with Midtrans SSL Secure / 256-bit SSL secure checkout.
+                <p>
+                    Kami menerima semua metode pembayaran dan kami memproses pembayaran dengan Midtrans SSL Secure / 256-bit SSL secure yang terjamin aman.
                 </p>
                 <p><img src="{% static 'images/go-pay-logo.png' %}" class="payment-logo"></p>
             </div>
@@ -270,7 +291,7 @@
 
                             <div class="plan-top-part">
                                 <img src="{% static 'images/espresso-short.png' %}" id="short-photo" alt="espresso">
-                                <h3 class="plan-block-title">7 Day Package</h3>
+                                <h3 class="plan-block-title">Paket 7 Hari</h3>
                                 <p class="plan-block-price"><sup>IDR</sup>24,000</p>
                                 <!--
                                 <p class="plan-block-per">Per Month</p>
@@ -279,12 +300,12 @@
 
                             <div class="plan-bottom-part">
                                 <ul class="plan-block-features">
-                                    <li><span>Unlimited</span> PDF Exports</li>
-                                    <li><span>Access</span> To All Templates</li>
-                                    <li><span>One Time</span> Payment</li>
+                                    <li><span>PDF Export</span> Tidak Terbatas</li>
+                                    <li><span>Dapat Mengakses</span> Semua Template</li>
+                                    <li><span>Pembayaran</span> Satu Kali</li>
                                 </ul>
 
-                                <a class="button button-primary large" href="{% url 'register' %}">Get Started</a>
+                                <a class="button button-primary large" href="{% url 'register' %}">Mulai Sekarang</a>
                             </div>
 
                         </div>
@@ -295,7 +316,7 @@
 
                             <div class="plan-top-part">
                                 <img src="{% static 'images/coffee-long.png' %}" id="long-photo" alt="long-black">
-                                <h3 class="plan-block-title">1 Month Package</h3>
+                                <h3 class="plan-block-title">Paket 1 Bulan</h3>
                                 <p class="plan-block-price"><sup>IDR</sup>72,000</p>
                                 <!--
                                 <p class="plan-block-per">Per Month</p>
@@ -304,12 +325,12 @@
 
                             <div class="plan-bottom-part">
                                 <ul class="plan-block-features">
-                                    <li><span>Unlimited</span> PDF Exports</li>
-                                    <li><span>Access</span> To All Templates</li>
-                                    <li><span>One Time</span> Payment</li>
+                                    <li><span>PDF Export</span> Tidak Terbatas</li>
+                                    <li><span>Dapat Mengakses</span> Semua Template</li>
+                                    <li><span>Pembayaran</span> Satu Kali</li>
                                 </ul>
 
-                                <a class="button button-primary large" href="{% url 'register' %}">Get Started</a>
+                                <a class="button button-primary large" href="{% url 'register' %}">Mulai Sekarang</a>
                             </div>
 
                         </div>
@@ -328,7 +349,7 @@
 
         <div class="row">
             <div class="col-twelve">
-                <h1 class="intro-header">What They Say About EZResume.</h1>
+                <h1 class="intro-header">Testimoni tentang EZResume</h1>
             </div>
         </div>
 
@@ -381,7 +402,7 @@
 
         <div class="row">
             <div class="col-full">
-                <h1 class="intro-header">Companies that have hired applicants who used EZResume</h1>
+                <h1 class="intro-header">Perusahaan yang telah memperkerjakan pelamar yang menggunakan EZResume</h1>
                 <ul class="download-badges">
                     <li><img src="{% static 'images/company-logos-gray.png' %}" class="banner"></li>
                 </ul>
@@ -404,7 +425,8 @@
                     <div class="footer-logo"></div>
 
                     <p>
-                    EZResume was born in Jakarta, Indonesia. We're obsessed about helping people find the perfect job.
+                        EZResume diciptakan di Jakarta, Indonesia.
+                        Kita berada untuk membantu semua orang mendapatkan pekerjaan impiannya.
                     </p>
                     <!--
                     <ul class="footer-social-list">
@@ -427,7 +449,7 @@
 
                 <div class="col-three md-1-3 tab-1-2 mob-full footer-contact">
 
-                    <h4>Contact</h4>
+                    <h4>Kontak</h4>
 
                     <p>
                     Rukan CBD Blok G No. 17A<br>
@@ -436,20 +458,21 @@
                     </p>
 
                     <p>
-                    team@ezresume.id <br>
-                    Phone: +62 818 678 222
+                    chrisgunawan@gmail.com <br>
                     </p>
 
                 </div> <!-- end footer-contact -->
 
                 <div class="col-two md-1-3 tab-1-2 mob-full footer-site-links">
 
-                    <h4>Site Links</h4>
+                    <h4>Navigasi</h4>
 
                     <ul class="list-links">
                         <li><a href="#">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#about">Tentang Kami</a></li>
+                        <!--
                         <li><a href="#">Terms and Conditions</a></li>
+                        -->
                         <li><a href="{% url 'privacy' %}">Privacy Policy</a></li>
                     </ul>
                 </div> <!-- end footer-site-links -->
@@ -496,11 +519,11 @@
       </div>
 
     </footer>
-
+    <!--
     <div id="preloader">
     	<div id="loader"></div>
     </div>
-
+    -->
     <!-- Java Script
     ================================================== -->
     <script src="{% static 'js/jquery-2.1.3.min.js' %}"></script>

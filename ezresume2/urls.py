@@ -1,11 +1,16 @@
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
-from django.urls import include, path
+from django.http import HttpResponse
+from django.urls import include, path, re_path
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.sitemaps.views import sitemap
 
 from users import views as user_views
 from . import views
+from .sitemap import StaticSitemap
+
+sitemaps = {'pages': StaticSitemap}
 
 urlpatterns = [
     path('app/', include(('resumes.urls', 'resumes'), namespace='resumes')),
@@ -32,6 +37,9 @@ urlpatterns = [
     path('payment-confirmed/', user_views.payment_confirmed, name='payment-confirmed'),
     path('payment-unfinished/', user_views.payment_unfinished, name='payment-unfinished'),
     path('payment-error/', user_views.payment_error, name='payment-error'),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+    re_path(r'^robots\.txt$', lambda r: HttpResponse("User-agent: *\nDisallow: ", mimetype="text/plain")),
+
 ]
 
 if settings.DEBUG:
