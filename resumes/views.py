@@ -71,7 +71,7 @@ def choose(request, pk):
             pdf_response['Cache-Control'] = 'max-age=0'
             pdf_response['Accept-Ranges'] = 'none'
             content_disp = 'attachment' if 'asAttachment' in request.POST else 'inline'
-            pdf_response['Content-Disposition'] = content_disp + '; filename=demo_django.pdf'
+            pdf_response['Content-Disposition'] = content_disp + '; filename=my_resume.pdf'
 
             if form.cleaned_data['resume_template'] == 'jakarta':
                 html = render_to_string('resumes/jakarta.html', {'resume': resume, 'pp_url': pp_url})

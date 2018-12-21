@@ -68,7 +68,7 @@ def payment_notification(request):
         order_id = request_dict['order_id']
         status_code = request_dict['status_code']
         gross_amount = request_dict['gross_amount']
-        serverkey = 'SB-Mid-server-ZTiZXa5L2pyYVdAUljABci8P'
+        serverkey = 'Mid-server-2pj2krTSNlIM7PXH2PD-qxoC'
 
         if (request_dict["transaction_status"] == "settlement" or request_dict["transaction_status"] == "capture") and request_dict["status_code"] == "200":
             signature_key_encoded = (order_id + status_code + gross_amount + serverkey).encode('utf-8')
@@ -115,7 +115,8 @@ def payment(request):
     if request.method == 'POST':
         form = OrderForm(request.POST)
         if form.is_valid():
-            url = 'https://app.sandbox.midtrans.com/snap/v1/transactions/'
+            # TODO: Change to production
+            url = 'https://app.midtrans.com/snap/v1/transactions'
             if '7-day' in request.POST:
                 order = Order.objects.create(user=user, package='7 day', total=24000)
             elif '1-month' in request.POST:
@@ -151,7 +152,7 @@ def payment(request):
                 },
             }
 
-            snap_token = requests.post(url, auth=('SB-Mid-server-ZTiZXa5L2pyYVdAUljABci8P', ''),
+            snap_token = requests.post(url, auth=('Mid-server-2pj2krTSNlIM7PXH2PD-qxoC', ''),
                                        headers=headers, json=payload)
             response_dict = snap_token.json()
             redirect_url = response_dict['redirect_url']
