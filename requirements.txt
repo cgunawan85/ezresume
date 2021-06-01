@@ -32,7 +32,7 @@ requests-oauthlib==1.0.0
 six==1.11.0
 sqlparse==0.2.4
 tinycss2==0.6.1
-urllib3==1.24
+urllib3==1.26.5
 virtualenv==16.0.0
 virtualenvwrapper-win==1.2.5
 webencodings==0.5.1
