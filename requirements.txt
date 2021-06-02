@@ -16,7 +16,7 @@ django-tinymce==2.7.0
 djangorestframework==3.9.0
 html5lib==1.0.1
 idna==2.7
-markdown2==2.3.5
+markdown2==2.4.0
 oauthlib==2.1.0
 pdfcrowd==4.3.5
 peewee==3.6.4
